@@ -6,7 +6,7 @@
     <title x-text="lang === 'ne' ? 'परिचय तथा राजनीतिक यात्रा — माननीय निश्कल राई' : 'About & Political Journey — Hon. Nishcal Rai, MP'">
         About & Political Journey — Hon. Nishcal Rai
     </title>
-    <meta name="description" content="Biography, leadership philosophy, and comprehensive political journey of Hon. Nishcal Rai, Member of Parliament for Ilam-1, Nepal.">
+    <meta name="description" content="Official biography, leadership philosophy, and comprehensive political journey of Hon. Nishcal Rai, Member of the House of Representatives for Ilam-1, Nepal.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
     <!-- Civic Top Bar -->
     <header class="civic-top-bar">
         <div class="container civic-top-inner">
-            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left">
+            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left" title="House of Representatives, Nepal">
                 <img :src="profile.emblemUrl" alt="Emblem" class="civic-emblem" onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
                 <div class="civic-institution">
                     <span class="civic-rep-title" x-text="lang === 'ne' ? 'प्रतिनिधि सभा • संघीय संसद' : 'House of Representatives • Federal Parliament'"></span>
@@ -61,7 +61,7 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Main Navigation -->
     <nav class="main-nav" id="navbar">
         <div class="container nav-inner">
             <a href="index.html" class="nav-brand">
@@ -108,128 +108,143 @@
         </div>
     </div>
 
-    <!-- Page Header Hero Banner -->
-    <section style="background: linear-gradient(135deg, #07172b 0%, #0f2c59 100%); color: #ffffff; padding: 4rem 0 3.5rem 0; text-align: center;">
+    <!-- ======================================================================
+         Kamala Harris Presidential Editorial Header (Unboxed, Stately)
+         ====================================================================== -->
+    <header class="editorial-page-header">
         <div class="container">
-            <span class="section-tag" style="background: rgba(255,255,255,0.12); color: #fbbf24; border-color: rgba(255,255,255,0.2);"
-                  x-text="lang === 'ne' ? 'व्यक्तिगत तथा राजनीतिक परिचय' : 'Leadership & Profile'"></span>
-            <h1 style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 900; margin-top: 0.5rem; margin-bottom: 0.75rem;"
-                x-text="lang === 'ne' ? 'परिचय तथा राजनीतिक यात्रा' : 'Biography & Political Journey'"></h1>
-            <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 700px; margin: 0 auto;"
-               x-text="lang === 'ne' ? 'इलाम–१ का जनताको विश्वास, निष्ठापूर्ण राजनीति र जनमुखी विकासको संकल्प' : 'A lifetime of public service, constitutional activism, and constituency empowerment.'"></p>
-        </div>
-    </section>
-
-    <!-- Detailed About Section -->
-    <section class="section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-portrait-frame">
-                    <img :src="profile.photoUrl" :alt="profile.nameEn" class="about-portrait-img" loading="eager"
-                         onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80'">
-                </div>
-                <div class="about-text-content">
-                    <h2 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; color: var(--primary); margin-bottom: 1rem;"
-                        x-text="lang === 'ne' ? profile.nameNe + ' — जनप्रतिनिधिको भूमिका' : 'Hon. ' + profile.nameEn + ' — MP Profile'"></h2>
-                    
-                    <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 1.25rem; line-height: 1.75;"
-                       x-text="lang === 'ne' 
-                        ? 'नेपाली कांग्रेसका युवा तथा प्रखर नेता निश्कल राई प्रतिनिधि सभा निर्वाचन २०७९ मा इलाम निर्वाचन क्षेत्र नं. १ बाट प्रत्यक्ष निर्वाचित सांसद हुनुहुन्छ। विद्यार्थी राजनीतिबाट सुरु भएको उहाँको राजनीतिक यात्रा लोकतन्त्रको सुदृढीकरण, नीतिगत सुधार र पूर्वी पहाडको आर्थिक रूपान्तरणमा केन्द्रित छ।'
-                        : 'Hon. Nishcal Rai is a distinguished Member of the House of Representatives (Federal Parliament of Nepal), directly elected from Ilam Constituency No. 1 representing the Nepali Congress. Starting his political journey in youth democratic movements, he is renowned for his evidence-based legislative contributions, transparency, and regional advocacy.'">
-                    </p>
-
-                    <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 1.25rem; line-height: 1.75;"
-                       x-text="lang === 'ne' 
-                        ? 'इलामका चिया, अलैंची, अदुवा तथा दुग्ध उत्पादक किसानहरूको हकहित संरक्षण, ग्रामीण सडकको दिगो स्तरोन्नति, प्राविधिक शिक्षा र सुशासन उहाँका मुख्य प्राथमिकता हुन्। संसदमा प्रभावकारी बहस र संसदीय समितिहरूमा उहाँको सक्रिय भूमिका रहँदै आएको छ।'
-                        : 'His core legislative priorities center on institutionalizing fair pricing and export rebates for orthodox tea and cardamom farmers, upgrading rural transit corridors, empowering youth with modern STEM education, and fostering zero-tolerance governance.'">
-                    </p>
-
-                    <div class="about-quote-box">
-                        <p style="font-size: 1.1rem;"
-                           x-text="lang === 'ne' 
-                            ? '“हाम्रो राजनीति सत्ता केन्द्रित होइन, जनताको दैनिक जीवनमा सकारात्मक परिवर्तन ल्याउने माध्यम हुनुपर्छ। इलामको सम्भावनालाई समृद्धिको यथार्थमा बदल्न म प्रतिवद्ध छु।”' 
-                            : '“Politics must never be about power; it must be an instrument to elevate the everyday lives of our people and transform regional potential into tangible prosperity.”'"></p>
-                    </div>
-
-                    <div class="about-highlights" style="margin-top: 2rem;">
-                        <div class="highlight-box">
-                            <i class="fas fa-graduation-cap highlight-icon"></i>
-                            <div>
-                                <h5 x-text="lang === 'ne' ? 'शैक्षिक पृष्ठभूमि' : 'Education'"></h5>
-                                <p x-text="lang === 'ne' ? 'उच्च शिक्षा तथा नीति अध्ययन' : 'Higher Education & Public Policy'"></p>
-                            </div>
-                        </div>
-                        <div class="highlight-box">
-                            <i class="fas fa-users-gear highlight-icon"></i>
-                            <div>
-                                <h5 x-text="lang === 'ne' ? 'संसदीय समिति' : 'House Standing Committee'"></h5>
-                                <p x-text="lang === 'ne' ? 'पूर्वाधार, सुशासन तथा विकास' : 'Infrastructure & Good Governance'"></p>
-                            </div>
-                        </div>
-                        <div class="highlight-box">
-                            <i class="fas fa-hand-holding-heart highlight-icon"></i>
-                            <div>
-                                <h5 x-text="lang === 'ne' ? 'सामाजिक सम्बन्ध' : 'Community Roots'"></h5>
-                                <p x-text="lang === 'ne' ? 'इलामका सबै पालिका र समुदायसँग निरन्तर' : 'Grassroots connection across Ilam wards'"></p>
-                            </div>
-                        </div>
-                        <div class="highlight-box">
-                            <i class="fas fa-tree highlight-icon"></i>
-                            <div>
-                                <h5 x-text="lang === 'ne' ? 'पार्टी निष्ठा' : 'Party Affiliation'"></h5>
-                                <p x-text="lang === 'ne' ? 'नेपाली कांग्रेस (चार तारा)' : 'Nepali Congress (Four Stars)'"></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Democratic Ideology & Four Stars Box -->
-                    <div style="margin-top: 2rem; background: var(--bg-surface); border: 1.5px solid var(--nc-green); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm);">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
-                            <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--nc-green);" x-text="lang === 'ne' ? 'नेपाली कांग्रेसका चार स्तम्भ (चार तारा)' : 'Four Pillars of Nepali Congress'"></h4>
-                            <div style="display: flex; gap: 0.3rem;">
-                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
-                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
-                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
-                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
-                            </div>
-                        </div>
-                        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;"
-                           x-text="lang === 'ne' 
-                            ? 'राष्ट्रियता, लोकतन्त्र, समाजवाद र नागरिक स्वतन्त्रता — यी चार आदर्शलाई शिरोधार्य गर्दै जनताको समृद्धिका लागि गति, पारदर्शिता र नतिजामुखी परिणाम दिन हामी प्रतिवद्ध छौँ।'
-                            : 'Nationalism, Democracy, Democratic Socialism, and Individual Liberty — guided by these four foundational ideals to deliver measurable progress and dignity.'">
-                        </p>
-                        <a :href="profile.partyWebsite" target="_blank" rel="noopener" class="btn btn-sm btn-congress" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-                            <img :src="profile.partyLogoUrl" alt="NC Emblem" style="width: 18px; height: 18px; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
-                            <span x-text="lang === 'ne' ? 'नेपाली कांग्रेस आधिकारिक वेबसाइट हेर्नुहोस्' : 'Visit Nepali Congress Official Portal'"></span>
-                            <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
-                        </a>
-                    </div>
-
+            <div class="editorial-header-inner animate-fade-in-up">
+                <h1 class="editorial-title" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h1>
+                <p class="editorial-subtitle" x-text="lang === 'ne' ? 'प्रतिनिधि सभा सदस्य • इलाम–१ • नेपाली कांग्रेस' : 'Member of the House of Representatives • Ilam-1 • Nepali Congress'"></p>
+                
+                <!-- Quick In-Page Editorial Navigation -->
+                <div class="editorial-nav-pills">
+                    <a href="#biography" class="editorial-nav-link" x-text="lang === 'ne' ? 'परिचय' : 'Biography'"></a>
+                    <span style="color: var(--border-color);">/</span>
+                    <a href="#ideology" class="editorial-nav-link" x-text="lang === 'ne' ? 'आदर्श र मान्यता' : 'Ideology & Four Stars'"></a>
+                    <span style="color: var(--border-color);">/</span>
+                    <a href="#action" class="editorial-nav-link" x-text="lang === 'ne' ? 'संसदीय कार्य' : 'Legislative Action'"></a>
+                    <span style="color: var(--border-color);">/</span>
+                    <a href="#journey" class="editorial-nav-link" x-text="lang === 'ne' ? 'ऐतिहासिक यात्रा' : 'Political Journey'"></a>
                 </div>
             </div>
 
-            <!-- Leadership Photo Showcase -->
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3.5rem;">
-                <div class="gallery-item animate-stagger" style="height: 320px; border-radius: var(--radius-xl); border: 1px solid var(--border-color);">
-                    <img src="images/journey image.jpg" alt="Political Journey" class="gallery-img">
-                    <div class="gallery-overlay" style="opacity: 1; background: linear-gradient(180deg, transparent 40%, rgba(5, 19, 34, 0.95) 100%);">
-                        <span class="gallery-category-pill" x-text="lang === 'ne' ? 'राजनीतिक यात्रा' : 'Political Action'"></span>
-                        <h4 class="gallery-item-title" x-text="lang === 'ne' ? 'संसदीय गतिविधि तथा जनसंवाद यात्रा' : 'Parliamentary Action & Youth Leadership'"></h4>
-                    </div>
-                </div>
-                <div class="gallery-item animate-stagger" style="height: 320px; border-radius: var(--radius-xl); border: 1px solid var(--border-color);">
-                    <img src="images/another image.jpg" alt="Community Interaction" class="gallery-img">
-                    <div class="gallery-overlay" style="opacity: 1; background: linear-gradient(180deg, transparent 40%, rgba(5, 19, 34, 0.95) 100%);">
-                        <span class="gallery-category-pill" style="background: var(--nc-green); color: #ffffff;" x-text="lang === 'ne' ? 'जनतासँग भेटघाट' : 'Community'"></span>
-                        <h4 class="gallery-item-title" x-text="lang === 'ne' ? 'इलामका जनतासँग प्रत्यक्ष अन्तरक्रिया र छलफल' : 'Grassroots Dialogue across Ilam-1 Wards'"></h4>
-                    </div>
+            <!-- Grand Full-Width Featured Portrait Figure -->
+            <figure class="editorial-featured-figure animate-fade-in-scale">
+                <img :src="profile.photoUrl" :alt="profile.nameEn" class="editorial-featured-img"
+                     onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80'">
+                <figcaption class="editorial-caption" x-text="lang === 'ne' ? 'माननीय निश्कल राई — प्रतिनिधि सभा सदस्य, इलाम निर्वाचन क्षेत्र नं. १' : 'Hon. Nishcal Rai, Member of the House of Representatives (Federal Parliament of Nepal), directly elected from Ilam Constituency No. 1.'"></figcaption>
+            </figure>
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         Longform Editorial Biography Narrative
+         ====================================================================== -->
+    <main class="editorial-article-container" id="biography">
+        
+        <!-- Lead Statement -->
+        <p class="editorial-lead animate-fade-in-up"
+           x-text="lang === 'ne' 
+            ? 'माननीय निश्कल राई सधैं जनताको अधिकार, सुशासन र पूर्वी नेपालको समृद्धिका लागि दृढतापूर्वक उभिनुहुन्छ — विद्यार्थी आन्दोलनको अग्रमोर्चादेखि प्रतिनिधि सभाको रोष्ट्रमसम्म।'
+            : 'Hon. Nishcal Rai consistently champions the fundamental rights of citizens, zero-tolerance governance, and structural transformation for eastern Nepal — from youth democratic activism to the Federal Parliament.'">
+        </p>
+
+        <!-- Drop-cap Main Paragraph -->
+        <p class="editorial-p editorial-drop-cap"
+           x-text="lang === 'ne' 
+            ? 'वि.सं. २०७९ को प्रतिनिधि सभा निर्वाचनमा इलाम निर्वाचन क्षेत्र नं. १ का सचेत नागरिकहरूको अपार विश्वास र समर्थनबाट प्रत्यक्ष निर्वाचित सांसद हुनुभएको हो। नेपाली कांग्रेसको मूल्यमान्यतामा आधारित लोकतान्त्रिक समाजवाद र जनउत्तरदायी राजनीतिलाई आत्मसात् गर्दै उहाँले नीति निर्माण, विधायी कार्य तथा विकास योजनाहरूको सशक्त नेतृत्व गरिरहनुभएको छ।'
+            : 'In the 2022 Federal Parliamentary Elections, Hon. Nishcal Rai secured a decisive mandate as the directly elected representative of Ilam Constituency No. 1. Grounded in the enduring ideals of democratic socialism and civic accountability of the Nepali Congress, he spearheads transformative legislative initiatives, parliamentary scrutiny, and regional infrastructure revitalization.'">
+        </p>
+
+        <p class="editorial-p"
+           x-text="lang === 'ne' 
+            ? 'इलामका चिया, अलैंची, अदुवा, किवी तथा दुग्ध उत्पादक किसानहरूको श्रमको उचित मूल्य, ग्रामीण कृषि सडकको दिगो स्तरोन्नति, प्राविधिक तथा गुणस्तरीय शिक्षाको विस्तार, र स्वास्थ्य सेवामा नागरिकको सहज पहुँच उहाँको संसदीय यात्राको मूल मर्म हो। संसदका महत्वपूर्ण समितिहरूमा नीतिगत स्पष्टता र प्रमाणमा आधारित तथ्य प्रस्तुत गर्ने प्रखर वक्ताको रूपमा उहाँ सुपरिचित हुनुहुन्छ।'
+            : 'His core legislative priorities center on institutionalizing fair pricing and export rebates for orthodox tea and cardamom farmers, modernizing rural transit corridors, democratizing high-quality technical STEM education, and expanding universal healthcare access across eastern hill communities.'">
+        </p>
+
+        <!-- Full-Width In-line Photo Break 1 -->
+        <figure class="editorial-inline-figure animate-fade-in-scale" id="action">
+            <img src="images/journey image.jpg" alt="Parliamentary Action" class="editorial-inline-img" loading="lazy">
+            <figcaption class="editorial-caption" x-text="lang === 'ne' ? 'संसदीय समिति तथा राष्ट्रिय नीतिगत छलफलमा माननीय निश्कल राई सक्रिय सहभागिता जनाउँदै।' : 'Hon. Nishcal Rai actively deliberating on public infrastructure policy, transparency, and youth empowerment in the Federal Parliament.'"></figcaption>
+        </figure>
+
+        <!-- Kamala Harris Style Presidential Pullquote -->
+        <figure class="editorial-pullquote">
+            <blockquote>
+                <p x-text="lang === 'ne' ? '“हाम्रो राजनीति सत्ता वा पदका लागि होइन; यो त जनताको दैनिक जीवनमा आत्मसम्मान, पारदर्शिता र समृद्धिका ढोका खोल्नका लागि हो।”' : '“Our politics is never about power or titles; it is an enduring instrument to restore dignity, enforce transparency, and unlock prosperity for every citizen.”'"></p>
+                <cite x-text="lang === 'ne' ? '— माननीय निश्कल राई, प्रतिनिधि सभा सदस्य' : '— Hon. Nishcal Rai, Member of Parliament'"></cite>
+            </blockquote>
+        </figure>
+
+        <!-- Stately Editorial Section: Four Pillars of Nepali Congress -->
+        <div id="ideology" class="editorial-manifesto-box">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: var(--nc-green);" 
+                    x-text="lang === 'ne' ? 'नेपाली कांग्रेसका चार आदर्श स्तम्भ (चार तारा)' : 'The Four Pillars of Nepali Congress'"></h3>
+                <div style="display: flex; gap: 0.5rem; font-size: 1.15rem; color: var(--accent-red);">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                 </div>
             </div>
 
-        </div>
-    </section>
+            <p class="editorial-p" style="margin-bottom: 1.5rem;"
+               x-text="lang === 'ne' 
+                ? 'राष्ट्रियता, लोकतन्त्र, समाजवाद र व्यक्तिगत नागरिक स्वतन्त्रता — यी चार ऐतिहासिक आदर्शलाई शिरोधार्य गर्दै नेपाली कांग्रेसको झण्डामुनि जनताको जीवनस्तर उकास्ने, सामाजिक न्याय स्थापित गर्ने र विधिको शासनलाई अक्षुण्ण राख्ने हाम्रो दृढ प्रतिवद्धता छ।'
+                : 'Nationalism, Democracy, Democratic Socialism, and Individual Liberty — guided by these four foundational ideals to protect the constitution, eliminate corruption, and deliver measurable prosperity to every household.'">
+            </p>
 
-    <!-- Comprehensive Political Journey Timeline -->
+            <a :href="profile.partyWebsite" target="_blank" rel="noopener" class="btn btn-congress" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none;">
+                <img :src="profile.partyLogoUrl" alt="NC Emblem" style="width: 20px; height: 20px; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
+                <span x-text="lang === 'ne' ? 'नेपाली कांग्रेस केन्द्रीय वेबसाइट भ्रमण गर्नुहोस्' : 'Visit Nepali Congress Official Portal'"></span>
+                <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8rem;"></i>
+            </a>
+        </div>
+
+        <!-- Legislative Performance Indicators (Unboxed Editorial Stats) -->
+        <div class="editorial-stats-row">
+            <div class="editorial-stat-item">
+                <div class="editorial-stat-num">८०+</div>
+                <div class="editorial-stat-label" x-text="lang === 'ne' ? 'संसदीय प्रश्न तथा विशेष समय बहस' : 'Parliamentary Speeches & Interpellations'"></div>
+            </div>
+            <div class="editorial-stat-item">
+                <div class="editorial-stat-num">१००%</div>
+                <div class="editorial-stat-label" x-text="lang === 'ne' ? 'संसदीय बैठक र समिति उपस्थिति' : 'House & Committee Attendance'"></div>
+            </div>
+            <div class="editorial-stat-item">
+                <div class="editorial-stat-num">१४</div>
+                <div class="editorial-stat-label" x-text="lang === 'ne' ? 'इलाम–१ का प्रत्यक्ष जोडिएका पालिका' : 'Directly Connected Municipalities'"></div>
+            </div>
+        </div>
+
+        <!-- Section 2: Grassroots Commitment -->
+        <h2 class="editorial-heading" x-text="lang === 'ne' ? 'जनतासँगको निरन्तर सम्वाद र स्थलगत उपस्थिति' : 'Grassroots Dialogue & Unwavering Public Presence'"></h2>
+
+        <p class="editorial-p"
+           x-text="lang === 'ne' 
+            ? 'संसदको अधिवेशन सकिनासाथ राजधानीको चार पर्खालबाट बाहिर निस्केर इलामका दुर्गम वस्तीहरू, किसानका चियाबारीहरू, र गाउँ–गाउँका नागरिक भेलाहरूमा पुग्नु उहाँको नियमित अभ्यास हो। नागरिकका गुनासा प्रत्यक्ष सुन्नु, बजेट विनियोजनको स्थलगत अनुगमन गर्नु, र जनताको सुझावलाई नीतिमा रूपान्तरण गर्नु नै जनप्रतिनिधिको सच्चा धर्म हो।'
+            : 'As soon as legislative sessions adjourn, Hon. Rai returns to the hill communities of Ilam — visiting tea plantations, inspecting rural road construction, and convening open town halls. Listening directly to citizen grievances and translating regional necessities into federal policy remains the core of his public service.'">
+        </p>
+
+        <!-- Full-Width In-line Photo Break 2 -->
+        <figure class="editorial-inline-figure animate-fade-in-scale">
+            <img src="images/another image.jpg" alt="Community Dialogue" class="editorial-inline-img" loading="lazy">
+            <figcaption class="editorial-caption" x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १ का नागरिक तथा किसान समुदायसँग खुला अन्तरक्रिया र विकास छलफल।' : 'Direct grassroots engagement with farmers, women entrepreneurs, and local community representatives across Ilam-1.'"></figcaption>
+        </figure>
+
+        <p class="editorial-p"
+           x-text="lang === 'ne' 
+            ? 'पूर्वी पहाडको जलविद्युत, पर्यटकीय सम्भावना, अर्गानिक कृषि उत्पादन, र युवा उद्यमशीलतालाई अन्तर्राष्ट्रिय बजारसँग जोड्न उहाँले दीर्घकालीन योजना अघि सार्नुभएको छ। स्वच्छ, पारदर्शी र जवाफदेही नेतृत्व नै नयाँ नेपालको भविष्य हो।'
+            : 'He has advanced strategic policy frameworks linking eastern Nepal’s hydropower, eco-tourism, high-value organic agriculture, and youth innovation to domestic and international markets. Clean, transparent, and responsive governance is the pathway forward.'">
+        </p>
+
+    </main>
+
+    <!-- ======================================================================
+         Comprehensive Political Journey Timeline (Centered & Perfectly Aligned)
+         ====================================================================== -->
     <section class="section section-muted" id="journey">
         <div class="container">
             <div class="section-header">
@@ -288,19 +303,18 @@
                     <ul class="footer-links">
                         <li><a href="index.html" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a></li>
                         <li><a href="projects.html" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Tracker'"></a></li>
-                        <li><a href="media.html" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Speeches & Media'"></a></li>
-                        <li><a href="gallery.html" x-text="lang === 'ne' ? 'फोटो ग्यालरी' : 'Image Gallery'"></a></li>
+                        <li><a href="media.html" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a></li>
                         <li><a href="constituency.html" x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency Profile'"></a></li>
                         <li><a href="gunaso.html" x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></a></li>
                         <li><a href="contact.html" x-text="lang === 'ne' ? 'सम्पर्क कार्यालय' : 'Contact Secretariat'"></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4 x-text="lang === 'ne' ? 'सरकारी पोर्टल' : 'Official Portals'"></h4>
+                    <h4 x-text="lang === 'ne' ? 'सरकारी तथा पार्टी पोर्टल' : 'Official Portals'"></h4>
                     <ul class="footer-links">
-                        <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संसद)' : 'Federal Parliament'"></a></li>
+                        <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संघीय संसद)' : 'House of Representatives'"></a></li>
                         <li><a href="https://nepal.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाल सरकार' : 'Government of Nepal'"></a></li>
-                        <li><a href="https://nepalicongress.org" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाली कांग्रेस' : 'Nepali Congress'"></a></li>
+                        <li><a href="https://nepalicongress.org" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाली कांग्रेस आधिकारिक वेबसाइट' : 'Nepali Congress Central'"></a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

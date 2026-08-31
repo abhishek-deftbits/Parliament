@@ -6,36 +6,26 @@ Inspired by [nishcalrai.com.np](https://nishcalrai.com.np/) and modern civic-tec
 
 ---
 
-## 🧩 Component Architecture
+## 📁 Project Structure
 
-Every single section is isolated into its own independent, clean HTML component inside the `components/` directory:
+The project is structured as a clean, high-performance static multi-page web application:
 
 ```
 Parliament/
-├── index.html                  # Main layout orchestrating all components
-├── components/
-│   ├── topbar.html             # Parliament emblem, live date, news ticker & lang switcher
-│   ├── navbar.html             # Sticky main navigation & mobile drawer
-│   ├── hero.html               # Portrait, verified MP badge, quote & quick CTAs
-│   ├── stats.html              # Key legislative impact & attendance counters
-│   ├── services.html           # Quick action cards (Grievance, Tracker, Parliament)
-│   ├── about.html              # Executive bio, philosophy & highlight pills
-│   ├── journey.html            # Chronological milestone timeline
-│   ├── priorities.html         # 6 Core strategic pillars & policy focus
-│   ├── projects.html           # Constituency project & budget tracker with progress bars
-│   ├── media.html              # Dedicated video speeches & TV debate archive
-│   ├── gallery.html            # Dedicated photo gallery with categorized filters
-│   ├── constituency.html       # Geography, specialty & demographic profile
-│   ├── gunaso.html             # Public grievance portal with instant ticket generation & tracker
-│   ├── contact.html            # Secretariat liaison offices & direct message form
-│   ├── footer.html             # Institutional links, copyright & social handles
-│   └── modals.html             # Video player lightbox, image lightbox, & appointment scheduler
+├── index.html                  # Main Home Portal (Hero, Counters, Pledges, Speech Theater, Moving Gallery)
+├── about.html                  # Presidential Editorial Biography & Political Journey
+├── projects.html               # Constituency Development Dossier & Budget Tracker
+├── media.html                  # Speeches, Video Archive & Photo Highlights
+├── constituency.html           # Constituency Demographic, Geographic & Agricultural Profile
+├── gunaso.html                 # Citizen Grievance Portal & Live Ticket Tracker
+├── contact.html                # Secretariat Offices, Contact Directory & Appointments
 ├── css/
-│   ├── style.css               # Civic design system tokens, typography, grid layouts, themes
+│   ├── style.css               # Civic design system tokens, typography, layouts, themes
 │   └── components.css          # Modals, lightboxes, drawers, grievance widgets
 ├── js/
-│   ├── data.js                 # Centralized structured data source
-│   └── app.js                  # Alpine.js component loader (`x-component`) & reactive logic
+│   ├── data.js                 # Centralized structured profile & legislative data source
+│   └── app.js                  # Alpine.js state management, search filters, modal handlers
+├── images/                     # Official high-resolution portraits and photo assets
 └── README.md
 ```
 

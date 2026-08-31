@@ -337,3 +337,283 @@ html.dark .appointment-modal-title {
     margin: 0.85rem 0;
     box-shadow: 0 4px 12px rgba(10, 37, 64, 0.25);
 }
+
+/* --------------------------------------------------------------------------
+   Editorial Media & Gallery System
+   -------------------------------------------------------------------------- */
+.media-section-header-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.media-view-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-surface);
+    padding: 0.35rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.media-view-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.75rem;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.media-view-tab:hover {
+    color: var(--text-main);
+    background: var(--bg-muted);
+}
+
+.media-view-tab.active {
+    background: var(--parliament-blue);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(10, 37, 64, 0.28);
+}
+
+.media-view-tab.active i {
+    color: #fbbf24;
+}
+
+.filter-chips-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-chip:hover {
+    color: var(--parliament-blue);
+    border-color: var(--parliament-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.filter-chip.active {
+    background: var(--parliament-blue);
+    color: #ffffff;
+    border-color: var(--parliament-blue);
+    box-shadow: 0 4px 12px rgba(10, 37, 64, 0.22);
+}
+
+.filter-chip.tag-green.active {
+    background: var(--nc-green);
+    border-color: var(--nc-green);
+    box-shadow: 0 4px 12px rgba(0, 92, 55, 0.25);
+}
+
+/* Editorial Speech Row */
+.speech-row {
+    display: grid;
+    grid-template-columns: 48px 190px 1fr 48px;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: var(--radius-lg);
+    background: transparent;
+}
+
+.speech-row:hover {
+    background: var(--bg-surface);
+    transform: translateX(6px);
+    box-shadow: var(--shadow-sm);
+}
+
+.speech-row-num {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--border-color);
+    font-family: var(--font-heading);
+    line-height: 1;
+    letter-spacing: -0.5px;
+    transition: color 0.2s ease;
+}
+
+.speech-row:hover .speech-row-num {
+    color: var(--parliament-blue);
+}
+
+.speech-thumb-wrap {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    background: var(--bg-muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.speech-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.speech-row:hover .speech-thumb-img {
+    transform: scale(1.06);
+}
+
+.speech-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 19, 34, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.speech-row:hover .speech-play-overlay {
+    opacity: 1;
+}
+
+.speech-play-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--parliament-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    font-size: 0.85rem;
+    padding-left: 2px;
+}
+
+.speech-arrow-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.speech-row:hover .speech-arrow-btn {
+    background: var(--parliament-blue);
+    color: #ffffff;
+    border-color: var(--parliament-blue);
+    transform: scale(1.08);
+}
+
+/* Gallery Masonry Wall */
+.gallery-masonry-wall {
+    columns: 3 320px;
+    column-gap: 1.25rem;
+}
+
+.gallery-masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.gallery-masonry-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.gallery-masonry-img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-masonry-item:hover .gallery-masonry-img {
+    transform: scale(1.04);
+}
+
+.gallery-masonry-caption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 1.25rem 1.25rem;
+    background: linear-gradient(to top, rgba(5, 19, 34, 0.92) 0%, rgba(5, 19, 34, 0.4) 60%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-masonry-item:hover .gallery-masonry-caption {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .speech-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .speech-row-num, .speech-arrow-btn {
+        display: none;
+    }
+    .media-view-switcher {
+        width: 100%;
+    }
+    .media-view-tab {
+        flex: 1;
+        justify-content: center;
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
+    }
+    .gallery-masonry-wall {
+        columns: 1;
+    }
+}
+

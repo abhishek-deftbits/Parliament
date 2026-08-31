@@ -5,11 +5,11 @@
    ========================================================================== */
 
 :root {
-    /* Institutional & State: Federal Parliament Blue */
-    --parliament-blue: #0a2540;        /* Official Civic Deep Navy */
-    --parliament-blue-light: #173b64;
-    --parliament-blue-dark: #051322;
-    --parliament-blue-glow: rgba(10, 37, 64, 0.25);
+    /* Institutional & State: Nepal Airlines National Royal Blue */
+    --parliament-blue: #0055b8;        /* Nepal Airlines / National Flag Royal Blue */
+    --parliament-blue-light: #1e70d6;
+    --parliament-blue-dark: #003882;
+    --parliament-blue-glow: rgba(0, 85, 184, 0.28);
 
     /* Political Identity: Nepali Congress Emerald Green */
     --nc-green: #005c37;              /* Nepali Congress Emerald Green */
@@ -18,9 +18,12 @@
     --nc-green-subtle: #ecfdf5;
     --nc-green-glow: rgba(0, 92, 55, 0.25);
 
-    /* National & Civic Accents */
-    --accent-red: #c1121f;            /* Nepal Crimson & Congress 4-Stars */
-    --accent-red-hover: #9b0d18;
+    /* National Flag Crimson Red (Nepal Airlines Livery Crimson) */
+    --accent-red: #d81e28;            /* Nepal Flag Crimson Red */
+    --accent-red-hover: #b7121b;
+    --accent-red-light: #f43f5e;
+    --accent-red-subtle: #fef2f2;
+    --accent-red-glow: rgba(216, 30, 40, 0.28);
     --accent-gold: #d97706;           /* Emblem & Lion Gold */
     --accent-sky: #0284c7;
 
@@ -29,9 +32,9 @@
     --bg-surface: #ffffff;
     --bg-card: #ffffff;
     --bg-muted: #f1f5f9;
-    --bg-parliament-subtle: #f0f4f9;
+    --bg-parliament-subtle: #eef5fc;
     --border-color: #e2e8f0;
-    --border-focus: #0a2540;
+    --border-focus: #0055b8;
 
     /* Typography */
     --text-main: #0f172a;
@@ -46,10 +49,10 @@
     --radius-xl: 24px;
     --radius-full: 9999px;
 
-    --shadow-sm: 0 2px 4px rgba(10, 37, 64, 0.04);
-    --shadow-md: 0 6px 18px -2px rgba(10, 37, 64, 0.08), 0 2px 6px -1px rgba(0, 92, 55, 0.05);
-    --shadow-lg: 0 14px 32px -4px rgba(10, 37, 64, 0.12), 0 4px 12px -2px rgba(0, 92, 55, 0.08);
-    --shadow-xl: 0 24px 48px -8px rgba(10, 37, 64, 0.18);
+    --shadow-sm: 0 2px 4px rgba(0, 85, 184, 0.05);
+    --shadow-md: 0 6px 18px -2px rgba(0, 85, 184, 0.10), 0 2px 6px -1px rgba(216, 30, 40, 0.06);
+    --shadow-lg: 0 14px 32px -4px rgba(0, 85, 184, 0.14), 0 4px 12px -2px rgba(216, 30, 40, 0.08);
+    --shadow-xl: 0 24px 48px -8px rgba(0, 85, 184, 0.20);
 
     /* Fonts */
     --font-heading: 'Outfit', 'Mukta', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -62,9 +65,11 @@
 
 /* Dark Mode Overrides */
 html.dark {
-    --parliament-blue: #1e3a8a;
-    --parliament-blue-light: #3b82f6;
-    --parliament-blue-dark: #0f172a;
+    --parliament-blue: #3b82f6;
+    --parliament-blue-light: #60a5fa;
+    --parliament-blue-dark: #1d4ed8;
+    --accent-red: #f43f5e;
+    --accent-red-hover: #e11d48;
     --nc-green: #10b981;
     --nc-green-light: #34d399;
     --nc-green-subtle: rgba(16, 185, 129, 0.12);
@@ -405,7 +410,7 @@ button, input, select, textarea {
 
 /* Page Header Hero Banner Styling with Stately Speed */
 .page-banner {
-    background: linear-gradient(135deg, #051322 0%, #0a2540 60%, #004126 100%);
+    background: linear-gradient(135deg, #001e44 0%, #004b99 60%, #b7121b 100%);
     color: #ffffff;
     padding: 5.5rem 0 4.8rem 0;
     text-align: center;
@@ -543,7 +548,7 @@ html.dark .nc-star-line {
    ========================================================================== */
 
 .civic-top-bar {
-    background: linear-gradient(135deg, #051322 0%, #0a2540 65%, #004126 100%);
+    background: linear-gradient(135deg, #001e44 0%, #004b99 65%, #9e0e17 100%);
     color: #ffffff;
     padding: 0.65rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -896,15 +901,18 @@ html.dark .btn-outline {
 }
 
 /* ==========================================================================
-   Hero Section (Federal Blue Authority + Congress Identity)
+   Hero Section (Nepal Airlines Aero Flag Livery & Presidential Identity)
    ========================================================================== */
 
 .hero-section {
-    background: linear-gradient(135deg, #051322 0%, #0a2540 50%, #004126 100%);
+    background: #001633;
     color: #ffffff;
-    padding: 5.5rem 0 6.5rem 0;
+    padding: 0;
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: stretch;
 }
 
 .hero-bg-pattern {
@@ -912,156 +920,277 @@ html.dark .btn-outline {
     inset: 0;
     background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
     background-size: 32px 32px;
-    opacity: 0.5;
+    opacity: 0.4;
     pointer-events: none;
+    z-index: 1;
+}
+
+/* Nepal Airlines Aero Flag Ribbon Layer */
+.hero-aero-flag-ribbon {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.hero-aero-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-glow-blue {
     position: absolute;
     top: 15%;
-    left: 10%;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(23, 59, 100, 0.35) 0%, transparent 70%);
-    filter: blur(60px);
+    left: 8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 85, 184, 0.35) 0%, transparent 70%);
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-glow-red {
+    position: absolute;
+    bottom: 5%;
+    right: 15%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(216, 30, 40, 0.3) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Cinematic portrait fills right side absolutely */
+.hero-cinematic-portrait {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    z-index: 2;
+    display: block;
+    mix-blend-mode: normal;
+}
+
+/* Gradient mask: left content clearly readable, right blends with aero ribbons */
+.hero-portrait-mask {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        #001633 0%,
+        #001633 36%,
+        rgba(0, 22, 51, 0.88) 50%,
+        rgba(0, 22, 51, 0.35) 68%,
+        transparent 100%
+    );
+    z-index: 3;
     pointer-events: none;
 }
 
-.hero-glow-green {
+/* Bottom atmospheric vignette */
+.hero-bottom-vignette {
     position: absolute;
-    bottom: 10%;
-    right: 5%;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(0, 92, 55, 0.3) 0%, transparent 70%);
-    filter: blur(60px);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 240px;
+    background: linear-gradient(to top, #001633 0%, rgba(0, 22, 51, 0.6) 50%, transparent 100%);
+    z-index: 3;
     pointer-events: none;
 }
 
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1.18fr 0.82fr;
-    gap: 4.5rem;
-    align-items: center;
     position: relative;
-    z-index: 2;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    min-height: 100vh;
+    padding: 8rem 0 6rem 5vw;
+    max-width: 720px;
+    margin-left: 0;
 }
 
-.hero-badge-row {
+.hero-authority-strip {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 0.85rem;
-    margin-bottom: 1.35rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
-/* Floating Badges */
-.hero-badge {
+.hero-authority-tag {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(10px);
-    padding: 0.45rem 1.15rem;
-    border-radius: var(--radius-full);
-    font-size: 0.88rem;
-    font-weight: 700;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: var(--transition);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
 }
 
-.hero-badge.badge-parliament {
-    background: rgba(14, 165, 233, 0.2);
-    border-color: rgba(14, 165, 233, 0.5);
-    color: #7dd3fc;
-}
-
-.hero-badge.badge-congress {
-    background: rgba(16, 185, 129, 0.2);
-    border-color: rgba(16, 185, 129, 0.5);
-    color: #6ee7b7;
-}
-
-.hero-name {
+.hero-name-grand {
     font-family: var(--font-heading);
-    font-size: 4.2rem;
+    font-size: 4.5rem;
     font-weight: 900;
-    line-height: 1.08;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.8px;
-    animation: fadeInUp 1.2s ease-out;
+    line-height: 1.05;
+    letter-spacing: -1.2px;
+    color: #ffffff;
+    margin-bottom: 0.85rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.hero-role {
-    font-size: 1.45rem;
+.hero-designation {
+    font-size: 1.35rem;
     font-weight: 800;
     color: #fbbf24;
-    margin-bottom: 1.35rem;
+    margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.75rem;
+    letter-spacing: -0.2px;
 }
 
-.hero-tagline {
-    font-size: 1.32rem;
-    font-style: italic;
+.hero-manifesto-lead {
+    font-size: 1.2rem;
     color: #e2e8f0;
-    margin-bottom: 1.35rem;
-    position: relative;
-    padding-left: 1.35rem;
-    border-left: 4px solid var(--accent-red);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+    max-width: 680px;
+    font-weight: 400;
+    border-left: 3px solid var(--accent-red);
+    padding-left: 1.25rem;
 }
 
-.hero-bio {
-    font-size: 1.12rem;
+/* Quick Legislative Agenda Pills */
+.hero-agenda-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.25rem;
+}
+
+.hero-agenda-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(10, 37, 64, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 700;
     color: #cbd5e1;
-    margin-bottom: 2.5rem;
-    max-width: 720px;
-    line-height: 1.75;
+    text-decoration: none;
+    transition: all 0.25s ease;
 }
 
-.hero-cta-group {
+.hero-agenda-pill:hover {
+    background: rgba(0, 92, 55, 0.8);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.hero-cta-suite {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 1.15rem;
 }
 
-/* Hero Portrait Frame */
-.hero-portrait-wrap {
+/* Presidential Portrait Showcase */
+.hero-showcase-wrap {
     position: relative;
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.hero-portrait-card {
+.hero-portrait-stage {
     position: relative;
     width: 100%;
-    max-width: 480px;
-    border-radius: var(--radius-xl);
+    max-width: 440px;
+    border-radius: 28px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.06);
-    border: 3px solid rgba(255, 255, 255, 0.18);
-    box-shadow: var(--shadow-xl);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(5,19,34,0.9) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    transition: transform 0.5s ease;
 }
 
-.hero-portrait-card:hover {
-    transform: translateY(-8px) scale(1.02);
+.hero-portrait-stage:hover {
+    transform: translateY(-6px);
 }
 
-.hero-portrait-img {
+.hero-portrait-cinematic {
     width: 100%;
-    height: 540px;
+    height: 520px;
     object-fit: cover;
     object-position: top center;
+    display: block;
     transition: transform 0.6s ease;
-    background: #0d2137;
 }
 
-.hero-portrait-card:hover .hero-portrait-img {
-    transform: scale(1.04);
+.hero-portrait-stage:hover .hero-portrait-cinematic {
+    transform: scale(1.03);
+}
+
+/* Floating Accountability Ribbon */
+.hero-accountability-ribbon {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    background: rgba(5, 19, 34, 0.92);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 1rem 1.25rem;
+    border-radius: 18px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 992px) {
+    .hero-grid {
+        gap: 3rem;
+        text-align: left;
+        align-items: flex-start;
+    }
+    .hero-authority-strip {
+        justify-content: flex-start;
+    }
+    .hero-manifesto-lead {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .hero-agenda-row {
+        justify-content: flex-start;
+    }
+    .hero-cta-suite {
+        justify-content: flex-start;
+    }
+    .hero-name-grand {
+        font-size: 3.2rem;
+    }
 }
 
 /* Stat Bar Grid Expansion */
@@ -1946,6 +2075,174 @@ html.dark .media-cat-tag {
 }
 
 /* ==========================================================================
+   Pitch.com Style Infinite Photo Marquee Gallery (Home Section)
+   ========================================================================== */
+
+.gallery-marquee-section {
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem 0 3rem 0;
+}
+
+.gallery-marquee-container {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    padding: 1.5rem 0;
+}
+
+/* Gradient edge fades for seamless entrance/exit */
+.gallery-marquee-container::before,
+.gallery-marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 140px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.gallery-marquee-container::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--bg-muted) 0%, transparent 100%);
+}
+
+.gallery-marquee-container::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--bg-muted) 0%, transparent 100%);
+}
+
+.gallery-marquee-track {
+    display: flex;
+    gap: 1.75rem;
+    width: max-content;
+    animation: marqueeScroll 45s linear infinite;
+    will-change: transform;
+}
+
+/* Pause smoothly when hovering over the marquee track or cards */
+.gallery-marquee-track:hover,
+.gallery-marquee-container:hover .gallery-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.gallery-marquee-card {
+    position: relative;
+    width: 360px;
+    height: 440px;
+    flex-shrink: 0;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    background: #000000;
+    border: 1.5px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.gallery-marquee-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 35px -10px rgba(10, 37, 64, 0.35);
+    border-color: var(--nc-green);
+    z-index: 5;
+}
+
+.gallery-marquee-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.gallery-marquee-card:hover .gallery-marquee-img {
+    transform: scale(1.08);
+}
+
+.gallery-marquee-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(5, 19, 34, 0.35) 45%, rgba(5, 19, 34, 0.95) 100%);
+    pointer-events: none;
+}
+
+.gallery-marquee-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.75rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    pointer-events: none;
+}
+
+.gallery-marquee-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.35;
+}
+
+.gallery-marquee-desc {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.gallery-marquee-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.gallery-marquee-card:hover .gallery-marquee-badge {
+    transform: scale(1.15);
+    background: var(--nc-green);
+    border-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .gallery-marquee-card {
+        width: 290px;
+        height: 380px;
+    }
+    .gallery-marquee-container::before,
+    .gallery-marquee-container::after {
+        width: 40px;
+    }
+}
+
+/* ==========================================================================
    Citizen Grievance & Service Portal (जनगुनासो)
    ========================================================================== */
 
@@ -2408,5 +2705,642 @@ html.dark .contact-icon {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
+    }
+}
+
+/* ==========================================================================
+   Kamala Harris Inspired Presidential Editorial Biography Styles
+   ========================================================================== */
+
+.editorial-page-header {
+    padding: 4.5rem 0 2rem 0;
+    text-align: center;
+}
+
+.editorial-header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.editorial-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--parliament-blue);
+    margin-bottom: 0.65rem;
+}
+
+html.dark .editorial-title {
+    color: #ffffff;
+}
+
+.editorial-subtitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--nc-green);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+}
+
+.editorial-nav-pills {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.editorial-nav-link {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.25s ease;
+}
+
+.editorial-nav-link:hover,
+.editorial-nav-link.active {
+    color: var(--accent-red);
+    border-bottom-color: var(--accent-red);
+}
+
+.editorial-featured-figure {
+    max-width: 1060px;
+    margin: 0 auto 3.5rem auto;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+}
+
+.editorial-featured-img {
+    width: 100%;
+    height: 560px;
+    object-fit: cover;
+    display: block;
+    border-radius: 32px;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-featured-figure:hover .editorial-featured-img {
+    transform: scale(1.02);
+}
+
+.editorial-caption {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.editorial-article-container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem 1.5rem;
+}
+
+.editorial-lead {
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--parliament-blue);
+    line-height: 1.8;
+    margin-bottom: 2.25rem;
+    font-weight: 500;
+}
+
+html.dark .editorial-lead {
+    color: #93c5fd;
+}
+
+.editorial-p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+}
+
+.editorial-drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-heading);
+    font-size: 4.6rem;
+    line-height: 0.8;
+    padding-top: 4px;
+    padding-right: 14px;
+    padding-bottom: 4px;
+    font-weight: 900;
+    color: var(--accent-red);
+}
+
+.editorial-inline-figure {
+    width: 100%;
+    margin: 3.5rem 0;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.editorial-inline-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    border-radius: 24px;
+    transition: transform 0.6s ease;
+}
+
+.editorial-inline-figure:hover .editorial-inline-img {
+    transform: scale(1.03);
+}
+
+.editorial-pullquote {
+    border-left: 4px solid var(--accent-red);
+    padding: 1.5rem 0 1.5rem 2.25rem;
+    margin: 3.5rem 0;
+}
+
+.editorial-pullquote blockquote {
+    margin: 0;
+}
+
+.editorial-pullquote p {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+}
+
+.editorial-pullquote cite {
+    display: block;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--nc-green);
+    font-style: normal;
+    letter-spacing: 0.03em;
+}
+
+.editorial-heading {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--parliament-blue);
+    line-height: 1.3;
+    margin: 3.5rem 0 1.5rem 0;
+}
+
+html.dark .editorial-heading {
+    color: #ffffff;
+}
+
+.editorial-manifesto-box {
+    margin: 3.5rem 0;
+    padding: 2.5rem;
+    border-top: 2px solid var(--nc-green);
+    border-bottom: 2px solid var(--nc-green);
+    background: transparent;
+}
+
+.editorial-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 2rem 0;
+}
+
+.editorial-stat-item {
+    text-align: center;
+}
+
+.editorial-stat-num {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--parliament-blue);
+}
+
+html.dark .editorial-stat-num {
+    color: #60a5fa;
+}
+
+.editorial-stat-label {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .editorial-title {
+        font-size: 2.3rem;
+    }
+    .editorial-featured-img {
+        height: 340px;
+        border-radius: 20px;
+    }
+    .editorial-featured-figure {
+        border-radius: 20px;
+    }
+    .editorial-inline-img {
+        height: 280px;
+        border-radius: 16px;
+    }
+    .editorial-inline-figure {
+        border-radius: 16px;
+    }
+    .editorial-pullquote p {
+        font-size: 1.25rem;
+    }
+    .editorial-pullquote {
+        padding-left: 1.25rem;
+    }
+    .editorial-drop-cap::first-letter {
+        font-size: 3.4rem;
+    }
+    .editorial-stats-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* ==========================================================================
+   Unboxed Editorial Architecture (Non-Generic Card Free Design)
+   ========================================================================== */
+
+/* 1. Unboxed Architectural Counter Strip */
+.editorial-counter-strip {
+    background: var(--bg-surface);
+    border-top: 1.5px solid var(--border-color);
+    border-bottom: 1.5px solid var(--border-color);
+    margin-top: -3.5rem;
+    position: relative;
+    z-index: 10;
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-lg);
+}
+
+.editorial-counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.editorial-counter-col {
+    padding: 2.25rem 2rem;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: background 0.3s ease;
+}
+
+.editorial-counter-col:last-child {
+    border-right: none;
+}
+
+.editorial-counter-col:hover {
+    background: var(--bg-muted);
+}
+
+.editorial-counter-num {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--parliament-blue);
+    line-height: 1;
+}
+
+html.dark .editorial-counter-num {
+    color: #60a5fa;
+}
+
+.editorial-counter-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+}
+
+/* 2. Unboxed Citizen Quick Action Hub */
+.editorial-action-hub {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 3.5rem 0 2rem 0;
+}
+
+.editorial-action-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.editorial-action-item:hover {
+    border-bottom-color: var(--nc-green);
+    background: var(--bg-muted);
+    padding-left: 1.75rem;
+}
+
+.editorial-action-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--parliament-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.editorial-action-item:hover .editorial-action-icon {
+    background: var(--nc-green);
+    color: #ffffff;
+    border-color: transparent;
+    transform: scale(1.1);
+}
+
+.editorial-action-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+}
+
+.editorial-action-sub {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* 3. Unboxed Policy & Vision Architectural Ledger */
+.editorial-ledger-container {
+    margin-top: 3rem;
+}
+
+.editorial-ledger-row {
+    display: grid;
+    grid-template-columns: 90px 1.2fr 1.8fr;
+    gap: 2.5rem;
+    padding: 2.75rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    align-items: baseline;
+    transition: all 0.3s ease;
+}
+
+.editorial-ledger-row:first-child {
+    border-top: 1px solid var(--border-color);
+}
+
+.editorial-ledger-row:hover {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    background: var(--bg-surface);
+    border-left: 4px solid var(--nc-green);
+}
+
+.editorial-ledger-num {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--nc-green);
+}
+
+.editorial-ledger-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--parliament-blue);
+    line-height: 1.35;
+}
+
+html.dark .editorial-ledger-title {
+    color: #ffffff;
+}
+
+.editorial-ledger-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+/* 4. Unboxed Speech Theater & Editorial Archive */
+.editorial-theater-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.9fr;
+    gap: 3.5rem;
+    align-items: start;
+    margin-top: 3rem;
+}
+
+.editorial-theater-featured {
+    position: relative;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    background: #000000;
+    box-shadow: var(--shadow-xl);
+    cursor: pointer;
+}
+
+.editorial-theater-thumb {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    opacity: 0.88;
+    transition: transform 0.6s ease;
+}
+
+.editorial-theater-featured:hover .editorial-theater-thumb {
+    transform: scale(1.04);
+}
+
+.editorial-theater-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(5, 19, 34, 0.95) 100%);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.editorial-playlist {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-color);
+}
+
+.editorial-playlist-item {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.editorial-playlist-item:hover {
+    padding-left: 1.75rem;
+    background: var(--bg-muted);
+    border-left: 3px solid var(--parliament-blue);
+}
+
+.editorial-playlist-date {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--nc-green);
+    margin-bottom: 0.25rem;
+}
+
+.editorial-playlist-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+/* 5. Unboxed Architectural Project Ledger */
+.editorial-project-ledger {
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.editorial-project-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr 1.5fr;
+    gap: 2rem;
+    padding: 1.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    align-items: center;
+    transition: all 0.25s ease;
+}
+
+.editorial-project-row:hover {
+    background: var(--bg-muted);
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+}
+
+.editorial-project-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+}
+
+.editorial-project-sector {
+    font-size: 0.82rem;
+    color: var(--nc-green);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+    .editorial-counter-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .editorial-action-hub {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .editorial-ledger-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .editorial-theater-grid {
+        grid-template-columns: 1fr;
+    }
+    .editorial-project-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .editorial-counter-grid {
+        grid-template-columns: 1fr;
+    }
+    .editorial-action-hub {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Responsive: Cinematic Full-Bleed Hero
+   ========================================================================== */
+
+/* Tablet: portrait narrows, gradient starts sooner */
+@media (max-width: 992px) {
+    .hero-cinematic-portrait {
+        width: 65%;
+    }
+    .hero-portrait-mask {
+        background: linear-gradient(
+            to right,
+            #051322 0%,
+            #051322 30%,
+            rgba(5, 19, 34, 0.9) 50%,
+            rgba(5, 19, 34, 0.5) 70%,
+            transparent 100%
+        );
+    }
+    .hero-grid {
+        max-width: 560px;
+        padding: 7rem 0 5rem 0;
+    }
+}
+
+/* Mobile: portrait fills top half as background, full-width gradient overlay */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: auto;
+    }
+    .hero-cinematic-portrait {
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        top: 0;
+        right: 0;
+        object-position: top center;
+    }
+    .hero-portrait-mask {
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(5, 19, 34, 0.6) 30%,
+            #051322 60%,
+            #051322 100%
+        );
+    }
+    .hero-bottom-vignette {
+        display: none;
+    }
+    .hero-grid {
+        max-width: 100%;
+        padding: 55vw 1rem 4rem 1rem;
+        min-height: auto;
+    }
+    .hero-name-grand {
+        font-size: clamp(2.2rem, 8vw, 3.5rem) !important;
     }
 }

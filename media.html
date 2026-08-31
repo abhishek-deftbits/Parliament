@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title x-text="lang === 'ne' ? 'मिडिया, संसदीय सम्बोधन तथा फोटो ग्यालरी — माननीय निश्कल राई' : 'Media, Speeches & Photo Gallery — Hon. Nishcal Rai'"></title>
+    <title x-text="lang === 'ne' ? 'संसदीय सम्बोधन, भिडियो तथा फोटो ग्यालरी — माननीय निश्कल राई' : 'Speeches, Media & Photo Gallery — Hon. Nishcal Rai'"></title>
     
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,12 +25,12 @@
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
 </head>
-<body :class="{ 'dark': theme === 'dark' }">
+<body :class="{ 'dark': theme === 'dark' }" :data-lang="lang">
 
     <!-- Civic Top Bar -->
     <header class="civic-top-bar">
         <div class="container civic-top-inner">
-            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left">
+            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left" title="House of Representatives, Nepal">
                 <img :src="profile.emblemUrl" alt="Emblem" class="civic-emblem" onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
                 <div class="civic-institution">
                     <span class="civic-rep-title" x-text="lang === 'ne' ? 'प्रतिनिधि सभा • संघीय संसद' : 'House of Representatives • Federal Parliament'"></span>
@@ -57,9 +57,9 @@
                     <span x-text="lang === 'ne' ? currentDateNe : currentDateEn"></span>
                 </div>
                 <div class="civic-tools">
-                    <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')">ने</button>
-                    <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')">EN</button>
-                    <button class="theme-toggle-btn" @click="toggleTheme()">
+                    <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')" title="नेपाली">ने</button>
+                    <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')" title="English">EN</button>
+                    <button class="theme-toggle-btn" @click="toggleTheme()" :title="theme === 'dark' ? 'Light Mode' : 'Dark Mode'">
                         <i class="fas" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
                     </button>
                 </div>
@@ -90,7 +90,7 @@
                     <i class="fas fa-headset"></i>
                     <span x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></span>
                 </a>
-                <button class="mobile-toggle" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
+                <button class="mobile-toggle" @click="mobileMenu = !mobileMenu" aria-label="Toggle Mobile Menu"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </nav>
@@ -137,118 +137,193 @@
     </section>
 
     <!-- Unified Media & Gallery Section -->
-    <section class="section" x-data="{ mediaSectionTab: 'all' }">
+    <section class="section" x-data="{ mediaSectionTab: 'videos' }">
         <div class="container">
-            
-            <!-- Main Content Mode Switcher (Speeches vs Photo Gallery) -->
-            <div class="filter-tabs animate-fade-in-up" style="margin-bottom: 3.5rem; display: flex; justify-content: center; gap: 1rem;">
-                <button class="btn btn-lg" 
-                        :class="mediaSectionTab === 'all' || mediaSectionTab === 'videos' ? 'btn-primary' : 'btn-outline'"
-                        @click="mediaSectionTab = 'videos'"
-                        style="border-radius: var(--radius-full);">
-                    <i class="fas fa-play-circle"></i>
-                    <span x-text="lang === 'ne' ? 'संसदीय भाषण तथा भिडियोहरू' : 'Speeches & Video Archive'"></span>
-                </button>
-                <button class="btn btn-lg" 
-                        :class="mediaSectionTab === 'photos' ? 'btn-congress' : 'btn-outline'"
-                        @click="mediaSectionTab = 'photos'"
-                        style="border-radius: var(--radius-full);">
-                    <i class="fas fa-images"></i>
-                    <span x-text="lang === 'ne' ? 'फोटो ग्यालरी तथा गतिविधि' : 'Photo Gallery & Highlights'"></span>
-                </button>
+
+            <!-- Section Switcher Header -->
+            <div class="media-section-header-wrap">
+                <div class="media-view-switcher">
+                    <button type="button"
+                            class="media-view-tab"
+                            :class="{ 'active': mediaSectionTab === 'videos' }"
+                            @click="mediaSectionTab = 'videos'">
+                        <i class="fas fa-play-circle"></i>
+                        <span x-text="lang === 'ne' ? 'संसदीय भाषण तथा भिडियो' : 'Speeches & Video Archive'"></span>
+                    </button>
+                    <button type="button"
+                            class="media-view-tab"
+                            :class="{ 'active': mediaSectionTab === 'photos' }"
+                            @click="mediaSectionTab = 'photos'">
+                        <i class="fas fa-images"></i>
+                        <span x-text="lang === 'ne' ? 'फोटो ग्यालरी तथा गतिविधि' : 'Photo Gallery'"></span>
+                    </button>
+                </div>
+
+                <!-- Live Counter -->
+                <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted);">
+                    <span x-show="mediaSectionTab === 'videos'" x-text="filteredMedia.length + (lang === 'ne' ? ' भिडियो अभिलेख' : ' recorded speeches')"></span>
+                    <span x-show="mediaSectionTab === 'photos'" x-text="filteredGallery.length + (lang === 'ne' ? ' तस्विरहरू' : ' curated photos')"></span>
+                </div>
             </div>
 
             <!-- ==========================================================
                  1. SPEECHES & VIDEO ARCHIVE
                  ========================================================== -->
-            <div x-show="mediaSectionTab === 'all' || mediaSectionTab === 'videos'" x-transition>
-                
-                <div class="section-header" style="margin-bottom: 2rem;">
-                    <span class="section-tag" x-text="lang === 'ne' ? 'संसद तथा बहस' : 'Parliamentary Broadcasts'"></span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'संसदीय सम्बोधन तथा भिडियो अभिलेख' : 'Keynote Speeches & Debates'"></h2>
-                </div>
+            <div x-show="mediaSectionTab === 'videos'" x-transition>
 
-                <!-- Search & Filter Controls -->
-                <div class="animate-fade-in-up" style="max-width: 750px; margin: 0 auto 2.5rem auto;">
-                    <div style="position: relative; margin-bottom: 1.5rem;">
-                        <i class="fas fa-search" style="position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
-                        <input type="text" class="form-input" style="padding-left: 3rem; font-size: 1rem; border-radius: var(--radius-full);"
+                <!-- Header + Search Row -->
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; gap: 1.5rem; flex-wrap: wrap;">
+                    <div>
+                        <span class="section-tag" x-text="lang === 'ne' ? 'संसद तथा राष्ट्रिय प्रसारण' : 'Parliamentary Broadcasts'"></span>
+                        <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 900; color: var(--text-main); margin-top: 0.35rem;"
+                            x-text="lang === 'ne' ? 'संसदीय सम्बोधन तथा भिडियो अभिलेख' : 'Speeches & Video Archive'"></h2>
+                    </div>
+
+                    <!-- Search Box -->
+                    <div style="position: relative; min-width: 280px; flex-shrink: 0;">
+                        <i class="fas fa-search" style="position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem; pointer-events: none;"></i>
+                        <input type="text"
+                               class="form-input"
+                               style="padding-left: 2.75rem; border-radius: var(--radius-full); height: 46px; font-size: 0.92rem;"
                                x-model="mediaSearchQuery"
-                               :placeholder="lang === 'ne' ? 'भाषण वा अन्तरवार्ता खोज्नुहोस् (उदा: बजेट, चिया, सडक, सुशासन)...' : 'Search speeches by topic (e.g. Budget, Tea, Infrastructure)...'">
-                    </div>
-
-                    <div class="filter-tabs">
-                        <button class="tab-btn" :class="{ 'active': activeMediaTab === 'all' }" @click="activeMediaTab = 'all'" x-text="lang === 'ne' ? 'सबै भिडियो' : 'All Videos'"></button>
-                        <button class="tab-btn" :class="{ 'active': activeMediaTab === 'speech' }" @click="activeMediaTab = 'speech'" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Parliament Speeches'"></button>
-                        <button class="tab-btn" :class="{ 'active': activeMediaTab === 'media' }" @click="activeMediaTab = 'media'" x-text="lang === 'ne' ? 'अन्तरवार्ता तथा बहस' : 'Interviews & Debates'"></button>
+                               :placeholder="lang === 'ne' ? 'भाषण वा बहस खोज्नुहोस्...' : 'Search speeches by topic...'">
                     </div>
                 </div>
 
-                <!-- Media Cards Grid with Staggered Cascading Animation -->
-                <div class="media-grid animate-stagger" style="margin-bottom: 5rem;">
-                    <template x-for="item in filteredMedia" :key="item.id">
-                        <div class="media-card" @click="openVideoModal(item)">
-                            <div class="media-thumb-wrap">
-                                <img :src="item.thumbnail" :alt="item.titleEn" class="media-thumb" loading="lazy">
-                                <div class="media-play-overlay">
-                                    <div class="play-circle"><i class="fas fa-play"></i></div>
+                <!-- Category Filter Chips -->
+                <div class="filter-chips-wrap">
+                    <button type="button"
+                            class="filter-chip"
+                            :class="{ 'active': activeMediaTab === 'all' }"
+                            @click="activeMediaTab = 'all'">
+                        <i class="fas fa-layer-group"></i>
+                        <span x-text="lang === 'ne' ? 'सबै भिडियो' : 'All Videos'"></span>
+                    </button>
+                    <button type="button"
+                            class="filter-chip"
+                            :class="{ 'active': activeMediaTab === 'speech' }"
+                            @click="activeMediaTab = 'speech'">
+                        <i class="fas fa-landmark"></i>
+                        <span x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Parliament Speeches'"></span>
+                    </button>
+                    <button type="button"
+                            class="filter-chip"
+                            :class="{ 'active': activeMediaTab === 'media' }"
+                            @click="activeMediaTab = 'media'">
+                        <i class="fas fa-tv"></i>
+                        <span x-text="lang === 'ne' ? 'अन्तरवार्ता तथा बहस' : 'Interviews & Debates'"></span>
+                    </button>
+                </div>
+
+                <!-- Editorial Speech List Rows -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 3.5rem;">
+                    <template x-for="(item, index) in filteredMedia" :key="item.id">
+                        <div class="speech-row" @click="openVideoModal(item)">
+                            <!-- Numeric Ledger ID -->
+                            <div class="speech-row-num" x-text="String(index + 1).padStart(2, '0')"></div>
+
+                            <!-- Thumbnail -->
+                            <div class="speech-thumb-wrap">
+                                <img :src="item.thumbnail" :alt="lang === 'ne' ? item.titleNe : item.titleEn" class="speech-thumb-img" loading="lazy">
+                                <div class="speech-play-overlay">
+                                    <div class="speech-play-badge"><i class="fas fa-play"></i></div>
                                 </div>
                             </div>
-                            <div class="media-body">
-                                <div class="media-meta-row">
-                                    <span class="media-cat-tag">
-                                        <i class="fas" :class="item.type === 'speech' ? 'fa-landmark' : 'fa-tv'"></i>
-                                        <span x-text="lang === 'ne' ? item.categoryNe : item.categoryEn"></span>
-                                    </span>
-                                    <span x-text="lang === 'ne' ? item.dateNe : item.dateEn"></span>
+
+                            <!-- Details -->
+                            <div>
+                                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.45rem;">
+                                    <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--nc-green);"
+                                          x-text="lang === 'ne' ? item.categoryNe : item.categoryEn"></span>
+                                    <span style="width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); opacity: 0.6;"></span>
+                                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);"
+                                          x-text="lang === 'ne' ? item.dateNe : item.dateEn"></span>
                                 </div>
-                                <h4 class="media-title" x-text="lang === 'ne' ? item.titleNe : item.titleEn"></h4>
-                                <p class="media-summary" x-text="lang === 'ne' ? item.summaryNe : item.summaryEn"></p>
+                                <h4 style="font-family: var(--font-heading); font-size: 1.12rem; font-weight: 800; color: var(--text-main); line-height: 1.35; margin-bottom: 0.35rem;"
+                                    x-text="lang === 'ne' ? item.titleNe : item.titleEn"></h4>
+                                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
+                                   x-text="lang === 'ne' ? item.summaryNe : item.summaryEn"></p>
+                            </div>
+
+                            <!-- Arrow Circle CTA -->
+                            <div class="speech-arrow-btn">
+                                <i class="fas fa-arrow-right" style="font-size: 0.88rem;"></i>
                             </div>
                         </div>
                     </template>
                 </div>
 
+                <!-- Empty State -->
                 <template x-if="filteredMedia.length === 0">
-                    <div style="text-align: center; padding: 3rem; color: var(--text-muted); margin-bottom: 4rem;">
-                        <i class="fas fa-video-slash" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-                        <p x-text="lang === 'ne' ? 'कुनै भिडियो फेला परेन। कृपया फरक शब्द प्रयोग गर्नुहोस्।' : 'No media items matched your search query.'"></p>
+                    <div style="padding: 5rem 0; text-align: center; color: var(--text-muted); border-top: 1px solid var(--border-color);">
+                        <i class="fas fa-video-slash" style="font-size: 2.75rem; opacity: 0.3; display: block; margin-bottom: 1rem;"></i>
+                        <p style="font-size: 1.05rem; font-weight: 600;" x-text="lang === 'ne' ? 'कुनै भिडियो फेला परेन। कृपया फरक शब्द प्रयोग गर्नुहोस्।' : 'No media items matched your search query.'"></p>
                     </div>
                 </template>
-
             </div>
 
-
             <!-- ==========================================================
-                 2. PHOTO GALLERY & ACTIVITIES ARCHIVE
+                 2. PHOTO GALLERY & ACTIVITIES
                  ========================================================== -->
-            <div x-show="mediaSectionTab === 'all' || mediaSectionTab === 'photos'" x-transition>
-                
-                <div class="section-header" style="margin-bottom: 2rem;">
-                    <span class="section-tag tag-congress" x-text="lang === 'ne' ? 'तस्विर अभिलेख' : 'Visual Highlights'"></span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'फोटो ग्यालरी तथा गतिविधि' : 'Photo Gallery & Field Highlights'"></h2>
-                    <p class="section-subtitle" x-text="lang === 'ne' ? 'संसद भवन, विकास आयोजना अनुगमन, जनतासँग भेटघाट र साँस्कृतिक महोत्सवहरू' : 'High-resolution photo highlights from parliamentary work and community townhalls.'"></p>
+            <div x-show="mediaSectionTab === 'photos'" x-transition>
+
+                <!-- Header Row -->
+                <div style="margin-bottom: 2rem;">
+                    <span class="section-tag tag-congress" x-text="lang === 'ne' ? 'तस्विर अभिलेख तथा गतिविधि' : 'Visual Highlights & Fieldwork'"></span>
+                    <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 900; color: var(--text-main); margin-top: 0.35rem;"
+                        x-text="lang === 'ne' ? 'फोटो ग्यालरी तथा स्थलगत गतिविधि' : 'Photo Gallery & Field Highlights'"></h2>
                 </div>
 
-                <!-- Category Filter Tabs -->
-                <div class="filter-tabs animate-fade-in-up" style="margin-bottom: 2.5rem;">
-                    <button class="tab-btn" :class="{ 'active': activeGalleryTab === 'all' }" @click="activeGalleryTab = 'all'" x-text="lang === 'ne' ? 'सबै फोटो' : 'All Photos'"></button>
-                    <button class="tab-btn" :class="{ 'active': activeGalleryTab === 'parliament' }" @click="activeGalleryTab = 'parliament'" x-text="lang === 'ne' ? 'संसदीय गतिविधि' : 'Parliament'"></button>
-                    <button class="tab-btn" :class="{ 'active': activeGalleryTab === 'constituency' }" @click="activeGalleryTab = 'constituency'" x-text="lang === 'ne' ? 'जनतासँग भेटघाट' : 'Community'"></button>
-                    <button class="tab-btn" :class="{ 'active': activeGalleryTab === 'development' }" @click="activeGalleryTab = 'development'" x-text="lang === 'ne' ? 'विकास अनुगमन' : 'Inspections'"></button>
-                    <button class="tab-btn" :class="{ 'active': activeGalleryTab === 'youth' }" @click="activeGalleryTab = 'youth'" x-text="lang === 'ne' ? 'शिक्षा तथा युवा' : 'Youth & Tech'"></button>
+                <!-- Category Filter Chips -->
+                <div class="filter-chips-wrap">
+                    <button type="button"
+                            class="filter-chip tag-green"
+                            :class="{ 'active': activeGalleryTab === 'all' }"
+                            @click="activeGalleryTab = 'all'">
+                        <i class="fas fa-border-all"></i>
+                        <span x-text="lang === 'ne' ? 'सबै फोटो' : 'All Photos'"></span>
+                    </button>
+                    <button type="button"
+                            class="filter-chip tag-green"
+                            :class="{ 'active': activeGalleryTab === 'parliament' }"
+                            @click="activeGalleryTab = 'parliament'">
+                        <i class="fas fa-landmark"></i>
+                        <span x-text="lang === 'ne' ? 'संसदीय गतिविधि' : 'Parliament'"></span>
+                    </button>
+                    <button type="button"
+                            class="filter-chip tag-green"
+                            :class="{ 'active': activeGalleryTab === 'constituency' }"
+                            @click="activeGalleryTab = 'constituency'">
+                        <i class="fas fa-users"></i>
+                        <span x-text="lang === 'ne' ? 'जनतासँग भेटघाट' : 'Community'"></span>
+                    </button>
+                    <button type="button"
+                            class="filter-chip tag-green"
+                            :class="{ 'active': activeGalleryTab === 'development' }"
+                            @click="activeGalleryTab = 'development'">
+                        <i class="fas fa-hard-hat"></i>
+                        <span x-text="lang === 'ne' ? 'विकास अनुगमन' : 'Inspections'"></span>
+                    </button>
+                    <button type="button"
+                            class="filter-chip tag-green"
+                            :class="{ 'active': activeGalleryTab === 'youth' }"
+                            @click="activeGalleryTab = 'youth'">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span x-text="lang === 'ne' ? 'शिक्षा तथा युवा' : 'Youth & Tech'"></span>
+                    </button>
                 </div>
 
-                <!-- Gallery Grid with Staggered Cascading Animation -->
-                <div class="gallery-grid animate-stagger">
+                <!-- Modern Masonry Gallery Wall -->
+                <div class="gallery-masonry-wall">
                     <template x-for="(photo, index) in filteredGallery" :key="photo.id">
-                        <div class="gallery-item" :class="{ 'span-2': index === 0 || index === 5 }" @click="openGalleryModal(index)">
-                            <img :src="photo.thumb" :alt="photo.titleEn" class="gallery-img" loading="lazy">
-                            <div class="gallery-overlay">
-                                <span class="gallery-category-pill" x-text="lang === 'ne' ? photo.categoryNe : photo.categoryEn"></span>
-                                <h4 class="gallery-item-title" x-text="lang === 'ne' ? photo.titleNe : photo.titleEn"></h4>
+                        <div class="gallery-masonry-item" @click="openGalleryModal(index)">
+                            <img :src="photo.thumb" :alt="lang === 'ne' ? photo.titleNe : photo.titleEn" class="gallery-masonry-img" loading="lazy">
+                            <div class="gallery-masonry-caption">
+                                <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #4ade80; margin-bottom: 0.35rem;"
+                                      x-text="lang === 'ne' ? photo.categoryNe : photo.categoryEn"></span>
+                                <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #ffffff; line-height: 1.3;"
+                                    x-text="lang === 'ne' ? photo.titleNe : photo.titleEn"></h4>
                             </div>
-                            <div class="gallery-zoom-icon"><i class="fas fa-expand"></i></div>
                         </div>
                     </template>
                 </div>
@@ -277,34 +352,50 @@
                         <a :href="profile.social.instagram" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+
+                <!-- Navigation Quick Links -->
                 <div class="footer-col">
                     <h4 x-text="lang === 'ne' ? 'द्रुत पृष्ठहरू' : 'Pages'"></h4>
                     <ul class="footer-links">
-                        <li><a href="index.html" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a></li>
-                        <li><a href="about.html" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a></li>
+                        <li><a href="about.html" x-text="lang === 'ne' ? 'परिचय तथा दृष्टिकोण' : 'About & Journey'"></a></li>
                         <li><a href="projects.html" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Tracker'"></a></li>
-                        <li><a href="media.html" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a></li>
+                        <li><a href="media.html" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Speeches & Media'"></a></li>
                         <li><a href="constituency.html" x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency Profile'"></a></li>
                         <li><a href="gunaso.html" x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></a></li>
                         <li><a href="contact.html" x-text="lang === 'ne' ? 'सम्पर्क कार्यालय' : 'Contact Secretariat'"></a></li>
                     </ul>
                 </div>
+
+                <!-- Institutional Links -->
                 <div class="footer-col">
-                    <h4 x-text="lang === 'ne' ? 'सरकारी पोर्टल' : 'Official Portals'"></h4>
+                    <h4 x-text="lang === 'ne' ? 'सरकारी तथा संसदीय पोर्टल' : 'Official Portals'"></h4>
                     <ul class="footer-links">
                         <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संसद)' : 'Federal Parliament'"></a></li>
-                        <li><a href="https://nepal.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाल सरकार' : 'Government of Nepal'"></a></li>
+                        <li><a href="https://nepal.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाल सरकार आधिकारिक पोर्टल' : 'Government of Nepal'"></a></li>
                         <li><a href="https://nepalicongress.org" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाली कांग्रेस' : 'Nepali Congress'"></a></li>
+                        <li><a href="https://koshi.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'कोशी प्रदेश सरकार' : 'Koshi Province Gov.'"></a></li>
+                        <li><a href="https://ilam.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'इलाम जिल्ला समन्वय' : 'Ilam District Portal'"></a></li>
                     </ul>
                 </div>
+
+                <!-- Liaison Office Summary -->
                 <div class="footer-col">
-                    <h4 x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></h4>
+                    <h4 x-text="lang === 'ne' ? 'सम्पर्क सचिवालय' : 'Office Liaison'"></h4>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-location-dot"></i> <span x-text="profile.centralOffice"></span></p>
                     <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> <span x-text="profile.phone"></span></p>
                     <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> <span x-text="profile.email"></span></p>
+                    <p style="font-size: 0.85rem; color: #fbbf24;"><i class="fas fa-clock"></i> <span x-text="lang === 'ne' ? profile.officeHoursNe : profile.officeHoursEn"></span></p>
                 </div>
             </div>
+
+            <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
-                <span x-text="'© 2026 ' + (lang === 'ne' ? profile.nameNe : profile.nameEn) + ' — All rights reserved.'"></span>
+                <div>
+                    <span x-text="'© 2026 ' + (lang === 'ne' ? profile.nameNe : profile.nameEn) + ' — ' + (lang === 'ne' ? 'प्रतिनिधि सभा सदस्य, इलाम–१। सर्वाधिकार सुरक्षित।' : 'Member of Parliament, Ilam-1. All rights reserved.')"></span>
+                </div>
+                <div>
+                    <span x-text="lang === 'ne' ? 'पारदर्शिता, जनउत्तरदायित्व र लोकतान्त्रिक मूल्यमा आधारित' : 'Committed to Transparency, Good Governance & Public Service'"></span>
+                </div>
             </div>
         </div>
     </footer>

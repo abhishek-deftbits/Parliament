@@ -153,30 +153,33 @@
                 </div>
             </div>
 
-            <!-- Projects Grid with Staggered Cascading Animation -->
-            <div class="projects-grid animate-stagger">
+            <!-- Projects Dossier (Architectural Ledger) -->
+            <div class="editorial-project-ledger animate-fade-in-up">
                 <template x-for="project in filteredProjects" :key="project.id">
-                    <div class="project-card">
-                        <div class="project-thumb-wrap">
-                            <img :src="project.image" :alt="project.titleEn" class="project-thumb" loading="lazy">
+                    <div class="editorial-project-row" style="grid-template-columns: 2.2fr 1fr 1fr 1.5fr;">
+                        <div style="display: flex; align-items: center; gap: 1.5rem;">
+                            <img :src="project.image" :alt="project.titleEn" style="width: 80px; height: 64px; object-fit: cover; border-radius: var(--radius-md); flex-shrink: 0;" loading="lazy">
+                            <div>
+                                <div class="editorial-project-sector" x-text="lang === 'ne' ? project.categoryNe : project.categoryEn"></div>
+                                <h4 class="editorial-project-name" x-text="lang === 'ne' ? project.titleNe : project.titleEn"></h4>
+                                <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-map-pin" style="color: var(--accent-red);"></i> <span x-text="lang === 'ne' ? project.locationNe : project.locationEn"></span></span>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;" x-text="lang === 'ne' ? 'कुल बजेट' : 'Total Budget'"></span>
+                            <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 900; color: var(--parliament-blue);" x-text="lang === 'ne' ? project.budgetNe : project.budgetEn"></div>
+                        </div>
+                        <div>
                             <span class="project-status-tag" :class="project.progress === 100 ? 'status-completed' : 'status-progress'"
                                   x-text="lang === 'ne' ? project.statusNe : project.statusEn"></span>
                         </div>
-                        <div class="project-body">
-                            <div class="project-category" x-text="lang === 'ne' ? project.categoryNe : project.categoryEn"></div>
-                            <h4 class="project-title" x-text="lang === 'ne' ? project.titleNe : project.titleEn"></h4>
-                            
-                            <div class="project-meta-row">
-                                <span><i class="fas fa-map-pin"></i> <span x-text="lang === 'ne' ? project.locationNe : project.locationEn"></span></span>
-                                <span><i class="fas fa-coins"></i> <span x-text="lang === 'ne' ? project.budgetNe : project.budgetEn"></span></span>
-                            </div>
-
-                            <div class="progress-bar-wrap">
+                        <div>
+                            <div class="progress-bar-wrap" style="margin-top: 0;">
                                 <div class="progress-label-row">
                                     <span x-text="lang === 'ne' ? 'भौतिक प्रगति' : 'Physical Progress'"></span>
-                                    <span x-text="project.progress + '%'"></span>
+                                    <span x-text="project.progress + '%'" style="font-weight: 800; color: var(--parliament-blue);"></span>
                                 </div>
-                                <div class="progress-track">
+                                <div class="progress-track" style="height: 8px;">
                                     <div class="progress-fill" :style="'width: ' + project.progress + '%'"></div>
                                 </div>
                             </div>
