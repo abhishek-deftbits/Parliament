@@ -1,28 +1,6 @@
-// Alpine.js Application Logic & Modular Component Engine
+// Alpine.js Application Logic for Member of Parliament Multi-Page Portal
 
 document.addEventListener('alpine:init', () => {
-    // Custom Alpine Directive for Modular HTML Component Loading
-    Alpine.directive('component', (el, { expression }) => {
-        const compName = expression.replace(/['"]/g, '').trim();
-        const url = `components/${compName}.html`;
-
-        fetch(url)
-            .then(res => {
-                if (!res.ok) throw new Error(`Failed to load component: ${url} (HTTP ${res.status})`);
-                return res.text();
-            })
-            .then(html => {
-                // Replace or populate container
-                el.innerHTML = html;
-                // Initialize Alpine reactive bindings in the newly inserted component DOM tree
-                Alpine.initTree(el);
-            })
-            .catch(err => {
-                console.error(`Component load error [${compName}]:`, err);
-            });
-    });
-
-    // Root Alpine Data Model
     Alpine.data('parliamentApp', () => ({
         lang: localStorage.getItem('mp_lang') || 'ne',
         theme: localStorage.getItem('mp_theme') || 'light',
@@ -31,6 +9,8 @@ document.addEventListener('alpine:init', () => {
         // Data references from js/data.js
         profile: MP_DATA.profile,
         stats: MP_DATA.stats,
+        pledges: MP_DATA.pledges,
+        activePledgeIndex: 0,
         tickerNews: MP_DATA.tickerNews,
         priorities: MP_DATA.priorities,
         journey: MP_DATA.journey,
@@ -38,10 +18,12 @@ document.addEventListener('alpine:init', () => {
         mediaItems: MP_DATA.mediaItems,
         galleryItems: MP_DATA.galleryItems,
 
-        // Filters
+        // Filters & Search
         activeMediaTab: 'all',
+        mediaSearchQuery: '',
         activeGalleryTab: 'all',
         activeProjectTab: 'all',
+        projectSearchQuery: '',
 
         // Video Lightbox Modal
         videoModal: {
@@ -97,6 +79,7 @@ document.addEventListener('alpine:init', () => {
         init() {
             this.updateDates();
             this.applyTheme(this.theme);
+            this.setupScrollReveal();
             
             // Re-render date every minute
             setInterval(() => this.updateDates(), 60000);
@@ -115,6 +98,89 @@ document.addEventListener('alpine:init', () => {
                     this.appointmentModal.isOpen = false;
                 }
             });
+        },
+
+        setupScrollReveal() {
+            const initObserver = () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            
+                            // Animate number counters if stat card
+                            if (entry.target.classList.contains('stat-card')) {
+                                const numEl = entry.target.querySelector('.stat-number span:first-child');
+                                if (numEl && !numEl.dataset.counted) {
+                                    numEl.dataset.counted = 'true';
+                                    const targetVal = parseInt(numEl.innerText) || 0;
+                                    let current = 0;
+                                    const increment = Math.max(1, Math.ceil(targetVal / 35));
+                                    const timer = setInterval(() => {
+                                        current += increment;
+                                        if (current >= targetVal) {
+                                            numEl.innerText = targetVal;
+                                            clearInterval(timer);
+                                        } else {
+                                            numEl.innerText = current;
+                                        }
+                                    }, 25);
+                                }
+                            }
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+                // Select every major component across pages
+                const selectors = [
+                    '.section-header',
+                    '.hero-content',
+                    '.hero-portrait-card',
+                    '.stat-card',
+                    '.service-card',
+                    '.priority-card',
+                    '.pledge-banner-section',
+                    '.project-card',
+                    '.media-card',
+                    '.gallery-item',
+                    '.c-fact-card',
+                    '.constituency-map-frame',
+                    '.contact-card',
+                    '.timeline-item',
+                    '.gunaso-wrapper',
+                    '.about-portrait-frame',
+                    '.about-text-content',
+                    '.filter-tabs',
+                    '.footer-grid > *'
+                ];
+
+                document.querySelectorAll(selectors.join(', ')).forEach((el, index) => {
+                    if (!el.classList.contains('scroll-reveal') && !el.classList.contains('scroll-reveal-left') && !el.classList.contains('scroll-reveal-right')) {
+                        el.classList.add('scroll-reveal');
+                    }
+                    // Assign stagger to siblings inside grids
+                    if (el.parentElement && (el.parentElement.classList.contains('projects-grid') || 
+                                             el.parentElement.classList.contains('media-grid') || 
+                                             el.parentElement.classList.contains('gallery-grid') || 
+                                             el.parentElement.classList.contains('priorities-grid') || 
+                                             el.parentElement.classList.contains('stats-grid') || 
+                                             el.parentElement.classList.contains('services-grid') ||
+                                             el.parentElement.classList.contains('constituency-facts-grid'))) {
+                        const siblingIndex = Array.from(el.parentElement.children).indexOf(el);
+                        el.classList.add(`stagger-${(siblingIndex % 6) + 1}`);
+                    }
+                    observer.observe(el);
+                });
+            };
+
+            // Run on load and after DOM settles
+            setTimeout(initObserver, 80);
+            setTimeout(initObserver, 300);
+
+            // Observe dynamic changes (e.g. Alpine template renders & tab filtering)
+            const mutationObserver = new MutationObserver(() => {
+                setTimeout(initObserver, 50);
+            });
+            mutationObserver.observe(document.body, { childList: true, subtree: true });
         },
 
         // Language toggle
@@ -139,7 +205,7 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
-        // Date Calculation (Gregorian + Bikram Sambat approximations)
+        // Date Calculation (Gregorian + Bikram Sambat)
         updateDates() {
             const now = new Date();
             const optionsEn = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
@@ -154,8 +220,20 @@ document.addEventListener('alpine:init', () => {
 
         // Filtered Media
         get filteredMedia() {
-            if (this.activeMediaTab === 'all') return this.mediaItems;
-            return this.mediaItems.filter(item => item.type === this.activeMediaTab);
+            let list = this.mediaItems;
+            if (this.activeMediaTab !== 'all') {
+                list = list.filter(item => item.type === this.activeMediaTab);
+            }
+            if (this.mediaSearchQuery.trim()) {
+                const q = this.mediaSearchQuery.toLowerCase();
+                list = list.filter(item => 
+                    item.titleEn.toLowerCase().includes(q) || 
+                    item.titleNe.toLowerCase().includes(q) ||
+                    item.summaryEn.toLowerCase().includes(q) ||
+                    item.summaryNe.toLowerCase().includes(q)
+                );
+            }
+            return list;
         },
 
         // Filtered Gallery
@@ -166,8 +244,20 @@ document.addEventListener('alpine:init', () => {
 
         // Filtered Projects
         get filteredProjects() {
-            if (this.activeProjectTab === 'all') return this.projects;
-            return this.projects.filter(item => item.category === this.activeProjectTab);
+            let list = this.projects;
+            if (this.activeProjectTab !== 'all') {
+                list = list.filter(item => item.category === this.activeProjectTab);
+            }
+            if (this.projectSearchQuery.trim()) {
+                const q = this.projectSearchQuery.toLowerCase();
+                list = list.filter(item => 
+                    item.titleEn.toLowerCase().includes(q) || 
+                    item.titleNe.toLowerCase().includes(q) ||
+                    item.locationEn.toLowerCase().includes(q) ||
+                    item.locationNe.toLowerCase().includes(q)
+                );
+            }
+            return list;
         },
 
         // Video Lightbox Actions

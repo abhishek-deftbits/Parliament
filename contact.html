@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ne" x-data="parliamentApp" :class="{ 'dark': theme === 'dark' }">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title x-text="lang === 'ne' ? 'सम्पर्क सचिवालय तथा भेटघाट — माननीय निश्कल राई' : 'Contact Secretariat & Appointments — Hon. Nishcal Rai, MP'">
+        Contact Secretariat & Appointments — Hon. Nishcal Rai
+    </title>
+    <meta name="description" content="Contact Hon. Nishcal Rai's Central Parliamentary Office in Kathmandu or Constituency Liaison Office in Ilam Bazaar. Schedule appointments online.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Mukta:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+</head>
+<body :data-lang="lang">
+
+    <!-- Civic Top Bar -->
+    <header class="civic-top-bar">
+        <div class="container civic-top-inner">
+            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left">
+                <img :src="profile.emblemUrl" alt="Emblem" class="civic-emblem" onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+                <div class="civic-institution">
+                    <span class="civic-rep-title" x-text="lang === 'ne' ? 'प्रतिनिधि सभा • संघीय संसद' : 'House of Representatives • Federal Parliament'"></span>
+                    <span class="civic-mp-name" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></span>
+                    <span class="civic-constituency" x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></span>
+                </div>
+            </a>
+            <div class="civic-ticker">
+                <span class="ticker-label"><i class="fas fa-bullhorn"></i> <span x-text="lang === 'ne' ? 'ताजा समाचार' : 'Updates'"></span></span>
+                <div class="ticker-marquee">
+                    <marquee scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+                        <template x-for="(news, index) in tickerNews" :key="index">
+                            <span>
+                                <a href="media.html" class="ticker-item" x-text="lang === 'ne' ? news.titleNe : news.titleEn"></a>
+                                <span style="margin: 0 12px; opacity: 0.5;">•</span>
+                            </span>
+                        </template>
+                    </marquee>
+                </div>
+            </div>
+            <div class="civic-right">
+                <div class="civic-date">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" alt="Nepal Flag" class="civic-flag">
+                    <span x-text="lang === 'ne' ? currentDateNe : currentDateEn"></span>
+                </div>
+                <div class="civic-tools">
+                    <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')">ने</button>
+                    <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')">EN</button>
+                    <button class="theme-toggle-btn" @click="toggleTheme()">
+                        <i class="fas" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png" alt="Emblem" style="width: 36px; height: 36px;">
+                <div>
+                    <span class="nav-brand-title" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></span>
+                    <span class="nav-brand-sub" x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १' : 'Ilam Constituency No. 1'"></span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a></li>
+                <li><a href="about.html" class="nav-link" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a></li>
+                <li><a href="projects.html" class="nav-link" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a></li>
+                <li><a href="media.html" class="nav-link" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a></li>
+                <li><a href="constituency.html" class="nav-link" x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a></li>
+                <li><a href="contact.html" class="nav-link active" x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="gunaso.html" class="btn btn-accent btn-sm">
+                    <i class="fas fa-headset"></i>
+                    <span x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></span>
+                </a>
+                <button class="mobile-toggle" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" x-show="mobileMenu" x-cloak style="display: none;">
+        <div class="mobile-drawer-header">
+            <div>
+                <h3 style="font-weight: 800; color: var(--primary);" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted);" x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></p>
+            </div>
+            <button class="modal-close-btn" style="position: static;" @click="mobileMenu = false"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="mobile-drawer-links">
+            <a href="index.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a>
+            <a href="about.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a>
+            <a href="projects.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a>
+            <a href="media.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a>
+            <a href="constituency.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a>
+            <a href="contact.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></a>
+        </div>
+    </div>
+
+    <!-- Banner Header with Animation -->
+    <section class="page-banner">
+        <div class="container">
+            <span class="section-tag page-banner-tag" style="background: rgba(255,255,255,0.12); color: #fbbf24; border-color: rgba(255,255,255,0.2);"
+                  x-text="lang === 'ne' ? 'सम्पर्क तथा सचिवालय' : 'Liaison & Contact'"></span>
+            <h1 class="page-banner-title"
+                x-text="lang === 'ne' ? 'सम्पर्क तथा भेटघाट व्यवस्थापन' : 'Secretariat Offices & Appointments'"></h1>
+            <p class="page-banner-desc"
+               x-text="lang === 'ne' ? 'काठमाडौँ तथा इलाम स्थित सचिवालयमा सिधै सम्पर्क गर्नुहोस् वा भेटघाटका लागि समय लिनुहोस्।' : 'Reach the central parliamentary secretariat in Kathmandu or constituency office in Ilam.'"></p>
+            
+            <!-- 4 Stars Divider -->
+            <div class="nc-stars-divider">
+                <div class="nc-star-line"></div>
+                <i class="fas fa-star nc-star"></i>
+                <i class="fas fa-star nc-star"></i>
+                <i class="fas fa-star nc-star"></i>
+                <i class="fas fa-star nc-star"></i>
+                <div class="nc-star-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Secretariat Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Office Addresses -->
+                <div class="animate-fade-in-left">
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-landmark"></i></div>
+                        <div class="contact-info">
+                            <h4 x-text="lang === 'ne' ? 'केन्द्रीय संसदीय कार्यालय' : 'Central Parliamentary Secretariat'"></h4>
+                            <p x-text="profile.centralOffice"></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-building-user"></i></div>
+                        <div class="contact-info">
+                            <h4 x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र सम्पर्क कार्यालय' : 'Constituency Liaison Office'"></h4>
+                            <p x-text="profile.constituencyOffice"></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-phone-volume"></i></div>
+                        <div class="contact-info">
+                            <h4 x-text="lang === 'ne' ? 'फोन तथा हटलाइन' : 'Telephone & Hotline'"></h4>
+                            <p x-text="profile.phone"></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+                        <div class="contact-info">
+                            <h4 x-text="lang === 'ne' ? 'आधिकारिक इमेल' : 'Official Email'"></h4>
+                            <p x-text="profile.email"></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon" style="background: rgba(0, 92, 55, 0.1); color: var(--nc-green);"><i class="fas fa-share-nodes"></i></div>
+                        <div class="contact-info">
+                            <h4 x-text="lang === 'ne' ? 'सामाजिक सञ्जालमा जोडिनुहोस्' : 'Connect on Social Media'"></h4>
+                            <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <a :href="profile.social.facebook" target="_blank" rel="noopener" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a :href="profile.social.twitter" target="_blank" rel="noopener" class="social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                                <a :href="profile.social.instagram" target="_blank" rel="noopener" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a :href="profile.partyWebsite" target="_blank" rel="noopener" class="social-btn" style="background: var(--nc-green); color: #ffffff;" title="Nepali Congress Official Website"><i class="fas fa-tree"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-accent btn-lg" style="width: 100%;" @click="appointmentModal.isOpen = true">
+                            <i class="fas fa-calendar-check"></i>
+                            <span x-text="lang === 'ne' ? 'सांसदसँग भेटघाट समय अनुरोध गर्नुहोस्' : 'Request Official Meeting / Appointment'"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Message Form -->
+                <div style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 2.25rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+                    <h4 style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;"
+                        x-text="lang === 'ne' ? 'सिधै सन्देश पठाउनुहोस्' : 'Send a Direct Message'"></h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.5rem;"
+                       x-text="lang === 'ne' ? 'सुझाव, सल्लाह वा आधिकारिक पत्राचारका लागि फारम भर्नुहोस्:' : 'For general inquiries, policy feedback, or invitations:'"></p>
+
+                    <form @submit.prevent="alert(lang === 'ne' ? 'सन्देश पठाइयो। धन्यवाद!' : 'Message sent successfully. Thank you!')">
+                        <div class="form-group">
+                            <label class="form-label" x-text="lang === 'ne' ? 'नाम *' : 'Name *'"></label>
+                            <input type="text" class="form-input" required :placeholder="lang === 'ne' ? 'तपाईंको पूरा नाम' : 'Your full name'">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" x-text="lang === 'ne' ? 'इमेल वा फोन *' : 'Email or Phone *'"></label>
+                            <input type="text" class="form-input" required :placeholder="lang === 'ne' ? 'इमेल वा मोबाइल' : 'Email or phone number'">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" x-text="lang === 'ne' ? 'सन्देश *' : 'Message *'"></label>
+                            <textarea class="form-textarea" rows="4" required :placeholder="lang === 'ne' ? 'तपाईंको सन्देश वा सुझाव...' : 'Your message or suggestion...'"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            <span x-text="lang === 'ne' ? 'सन्देश पठाउनुहोस्' : 'Send Message'"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand-logo">
+                        <img :src="profile.emblemUrl" alt="Emblem" class="footer-emblem" onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+                        <div class="footer-brand-text">
+                            <h3 x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
+                            <p x-text="lang === 'ne' ? profile.roleNe + ', ' + profile.constituencyNe : profile.roleEn + ', ' + profile.constituencyEn"></p>
+                        </div>
+                    </div>
+                    <p class="footer-desc" x-text="lang === 'ne' ? profile.bioNe : profile.bioEn"></p>
+                    <div class="footer-social-links">
+                        <a :href="profile.social.facebook" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a :href="profile.social.twitter" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                        <a :href="profile.social.instagram" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 x-text="lang === 'ne' ? 'द्रुत पृष्ठहरू' : 'Pages'"></h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a></li>
+                        <li><a href="about.html" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a></li>
+                        <li><a href="projects.html" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Tracker'"></a></li>
+                        <li><a href="media.html" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a></li>
+                        <li><a href="constituency.html" x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency Profile'"></a></li>
+                        <li><a href="gunaso.html" x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></a></li>
+                        <li><a href="contact.html" x-text="lang === 'ne' ? 'सम्पर्क कार्यालय' : 'Contact Secretariat'"></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 x-text="lang === 'ne' ? 'सरकारी पोर्टल' : 'Official Portals'"></h4>
+                    <ul class="footer-links">
+                        <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संसद)' : 'Federal Parliament'"></a></li>
+                        <li><a href="https://nepal.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाल सरकार' : 'Government of Nepal'"></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></h4>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> <span x-text="profile.phone"></span></p>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> <span x-text="profile.email"></span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span x-text="'© 2026 ' + (lang === 'ne' ? profile.nameNe : profile.nameEn) + ' — All rights reserved.'"></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Appointment Modal -->
+    <div class="modal-backdrop" x-show="appointmentModal.isOpen" x-cloak style="display: none;" @click.self="appointmentModal.isOpen = false">
+        <div class="modal-container" style="max-width: 580px;">
+            <button class="modal-close-btn" @click="appointmentModal.isOpen = false"><i class="fas fa-times"></i></button>
+            <div class="appointment-modal-body">
+                <h3 class="appointment-modal-title" x-text="lang === 'ne' ? 'भेटघाट समय अनुरोध फारम' : 'Request MP Appointment'"></h3>
+                <p class="appointment-modal-desc" x-text="lang === 'ne' ? 'सांसद तथा सचिवालयसँग भेटघाटका लागि विवरण भर्नुहोस्:' : 'Fill in the schedule request for official meetings:'"></p>
+                <form @submit.prevent="submitAppointment()">
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'पूरा नाम *' : 'Full Name *'"></label>
+                        <input type="text" class="form-input" x-model="appointmentModal.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'मोबाइल नम्बर *' : 'Mobile Number *'"></label>
+                        <input type="tel" class="form-input" x-model="appointmentModal.phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'भेटघाट स्थान' : 'Meeting Office'"></label>
+                        <select class="form-select" x-model="appointmentModal.location">
+                            <option value="Constituency Office (Ilam)">Constituency Office (इलाम सम्पर्क कार्यालय)</option>
+                            <option value="Central Parliament (Kathmandu)">Central Parliament Office (काठमाडौँ)</option>
+                            <option value="Virtual Video Meeting">Virtual / Video Call (अनलाइन संवाद)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'प्रस्तावित मिति' : 'Preferred Date'"></label>
+                        <input type="date" class="form-input" x-model="appointmentModal.date" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'भेटघाटको मुख्य उद्देश्य *' : 'Purpose of Meeting *'"></label>
+                        <textarea class="form-textarea" rows="3" x-model="appointmentModal.purpose" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-calendar-check"></i>
+                        <span x-text="lang === 'ne' ? 'अनुरोध पेस गर्नुहोस्' : 'Submit Appointment Request'"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

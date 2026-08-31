@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ne" x-data="parliamentApp" :class="{ 'dark': theme === 'dark' }">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title x-text="lang === 'ne' ? 'परिचय तथा राजनीतिक यात्रा — माननीय निश्कल राई' : 'About & Political Journey — Hon. Nishcal Rai, MP'">
+        About & Political Journey — Hon. Nishcal Rai
+    </title>
+    <meta name="description" content="Biography, leadership philosophy, and comprehensive political journey of Hon. Nishcal Rai, Member of Parliament for Ilam-1, Nepal.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Mukta:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+</head>
+<body :data-lang="lang">
+
+    <!-- Civic Top Bar -->
+    <header class="civic-top-bar">
+        <div class="container civic-top-inner">
+            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left">
+                <img :src="profile.emblemUrl" alt="Emblem" class="civic-emblem" onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+                <div class="civic-institution">
+                    <span class="civic-rep-title" x-text="lang === 'ne' ? 'प्रतिनिधि सभा • संघीय संसद' : 'House of Representatives • Federal Parliament'"></span>
+                    <span class="civic-mp-name" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></span>
+                    <span class="civic-constituency" x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></span>
+                </div>
+            </a>
+            <div class="civic-ticker">
+                <span class="ticker-label"><i class="fas fa-bullhorn"></i> <span x-text="lang === 'ne' ? 'ताजा समाचार' : 'Updates'"></span></span>
+                <div class="ticker-marquee">
+                    <marquee scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+                        <template x-for="(news, index) in tickerNews" :key="index">
+                            <span>
+                                <a href="media.html" class="ticker-item" x-text="lang === 'ne' ? news.titleNe : news.titleEn"></a>
+                                <span style="margin: 0 12px; opacity: 0.5;">•</span>
+                            </span>
+                        </template>
+                    </marquee>
+                </div>
+            </div>
+            <div class="civic-right">
+                <div class="civic-date">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" alt="Nepal Flag" class="civic-flag">
+                    <span x-text="lang === 'ne' ? currentDateNe : currentDateEn"></span>
+                </div>
+                <div class="civic-tools">
+                    <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')">ने</button>
+                    <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')">EN</button>
+                    <button class="theme-toggle-btn" @click="toggleTheme()">
+                        <i class="fas" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png" alt="Emblem" style="width: 36px; height: 36px;">
+                <div>
+                    <span class="nav-brand-title" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></span>
+                    <span class="nav-brand-sub" x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १' : 'Ilam Constituency No. 1'"></span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a></li>
+                <li><a href="about.html" class="nav-link active" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a></li>
+                <li><a href="projects.html" class="nav-link" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a></li>
+                <li><a href="media.html" class="nav-link" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a></li>
+                <li><a href="constituency.html" class="nav-link" x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a></li>
+                <li><a href="contact.html" class="nav-link" x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="gunaso.html" class="btn btn-accent btn-sm">
+                    <i class="fas fa-headset"></i>
+                    <span x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></span>
+                </a>
+                <button class="mobile-toggle" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" x-show="mobileMenu" x-cloak style="display: none;">
+        <div class="mobile-drawer-header">
+            <div>
+                <h3 style="font-weight: 800; color: var(--primary);" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted);" x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></p>
+            </div>
+            <button class="modal-close-btn" style="position: static;" @click="mobileMenu = false"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="mobile-drawer-links">
+            <a href="index.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a>
+            <a href="about.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a>
+            <a href="projects.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a>
+            <a href="media.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a>
+            <a href="constituency.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a>
+            <a href="contact.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></a>
+        </div>
+    </div>
+
+    <!-- Page Header Hero Banner -->
+    <section style="background: linear-gradient(135deg, #07172b 0%, #0f2c59 100%); color: #ffffff; padding: 4rem 0 3.5rem 0; text-align: center;">
+        <div class="container">
+            <span class="section-tag" style="background: rgba(255,255,255,0.12); color: #fbbf24; border-color: rgba(255,255,255,0.2);"
+                  x-text="lang === 'ne' ? 'व्यक्तिगत तथा राजनीतिक परिचय' : 'Leadership & Profile'"></span>
+            <h1 style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 900; margin-top: 0.5rem; margin-bottom: 0.75rem;"
+                x-text="lang === 'ne' ? 'परिचय तथा राजनीतिक यात्रा' : 'Biography & Political Journey'"></h1>
+            <p style="color: #cbd5e1; font-size: 1.15rem; max-width: 700px; margin: 0 auto;"
+               x-text="lang === 'ne' ? 'इलाम–१ का जनताको विश्वास, निष्ठापूर्ण राजनीति र जनमुखी विकासको संकल्प' : 'A lifetime of public service, constitutional activism, and constituency empowerment.'"></p>
+        </div>
+    </section>
+
+    <!-- Detailed About Section -->
+    <section class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-portrait-frame">
+                    <img :src="profile.photoUrl" :alt="profile.nameEn" class="about-portrait-img" loading="eager"
+                         onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="about-text-content">
+                    <h2 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; color: var(--primary); margin-bottom: 1rem;"
+                        x-text="lang === 'ne' ? profile.nameNe + ' — जनप्रतिनिधिको भूमिका' : 'Hon. ' + profile.nameEn + ' — MP Profile'"></h2>
+                    
+                    <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 1.25rem; line-height: 1.75;"
+                       x-text="lang === 'ne' 
+                        ? 'नेपाली कांग्रेसका युवा तथा प्रखर नेता निश्कल राई प्रतिनिधि सभा निर्वाचन २०७९ मा इलाम निर्वाचन क्षेत्र नं. १ बाट प्रत्यक्ष निर्वाचित सांसद हुनुहुन्छ। विद्यार्थी राजनीतिबाट सुरु भएको उहाँको राजनीतिक यात्रा लोकतन्त्रको सुदृढीकरण, नीतिगत सुधार र पूर्वी पहाडको आर्थिक रूपान्तरणमा केन्द्रित छ।'
+                        : 'Hon. Nishcal Rai is a distinguished Member of the House of Representatives (Federal Parliament of Nepal), directly elected from Ilam Constituency No. 1 representing the Nepali Congress. Starting his political journey in youth democratic movements, he is renowned for his evidence-based legislative contributions, transparency, and regional advocacy.'">
+                    </p>
+
+                    <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 1.25rem; line-height: 1.75;"
+                       x-text="lang === 'ne' 
+                        ? 'इलामका चिया, अलैंची, अदुवा तथा दुग्ध उत्पादक किसानहरूको हकहित संरक्षण, ग्रामीण सडकको दिगो स्तरोन्नति, प्राविधिक शिक्षा र सुशासन उहाँका मुख्य प्राथमिकता हुन्। संसदमा प्रभावकारी बहस र संसदीय समितिहरूमा उहाँको सक्रिय भूमिका रहँदै आएको छ।'
+                        : 'His core legislative priorities center on institutionalizing fair pricing and export rebates for orthodox tea and cardamom farmers, upgrading rural transit corridors, empowering youth with modern STEM education, and fostering zero-tolerance governance.'">
+                    </p>
+
+                    <div class="about-quote-box">
+                        <p style="font-size: 1.1rem;"
+                           x-text="lang === 'ne' 
+                            ? '“हाम्रो राजनीति सत्ता केन्द्रित होइन, जनताको दैनिक जीवनमा सकारात्मक परिवर्तन ल्याउने माध्यम हुनुपर्छ। इलामको सम्भावनालाई समृद्धिको यथार्थमा बदल्न म प्रतिवद्ध छु।”' 
+                            : '“Politics must never be about power; it must be an instrument to elevate the everyday lives of our people and transform regional potential into tangible prosperity.”'"></p>
+                    </div>
+
+                    <div class="about-highlights" style="margin-top: 2rem;">
+                        <div class="highlight-box">
+                            <i class="fas fa-graduation-cap highlight-icon"></i>
+                            <div>
+                                <h5 x-text="lang === 'ne' ? 'शैक्षिक पृष्ठभूमि' : 'Education'"></h5>
+                                <p x-text="lang === 'ne' ? 'उच्च शिक्षा तथा नीति अध्ययन' : 'Higher Education & Public Policy'"></p>
+                            </div>
+                        </div>
+                        <div class="highlight-box">
+                            <i class="fas fa-users-gear highlight-icon"></i>
+                            <div>
+                                <h5 x-text="lang === 'ne' ? 'संसदीय समिति' : 'House Standing Committee'"></h5>
+                                <p x-text="lang === 'ne' ? 'पूर्वाधार, सुशासन तथा विकास' : 'Infrastructure & Good Governance'"></p>
+                            </div>
+                        </div>
+                        <div class="highlight-box">
+                            <i class="fas fa-hand-holding-heart highlight-icon"></i>
+                            <div>
+                                <h5 x-text="lang === 'ne' ? 'सामाजिक सम्बन्ध' : 'Community Roots'"></h5>
+                                <p x-text="lang === 'ne' ? 'इलामका सबै पालिका र समुदायसँग निरन्तर' : 'Grassroots connection across Ilam wards'"></p>
+                            </div>
+                        </div>
+                        <div class="highlight-box">
+                            <i class="fas fa-tree highlight-icon"></i>
+                            <div>
+                                <h5 x-text="lang === 'ne' ? 'पार्टी निष्ठा' : 'Party Affiliation'"></h5>
+                                <p x-text="lang === 'ne' ? 'नेपाली कांग्रेस (चार तारा)' : 'Nepali Congress (Four Stars)'"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Democratic Ideology & Four Stars Box -->
+                    <div style="margin-top: 2rem; background: var(--bg-surface); border: 1.5px solid var(--nc-green); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+                            <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--nc-green);" x-text="lang === 'ne' ? 'नेपाली कांग्रेसका चार स्तम्भ (चार तारा)' : 'Four Pillars of Nepali Congress'"></h4>
+                            <div style="display: flex; gap: 0.3rem;">
+                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
+                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
+                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
+                                <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.9rem;"></i>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;"
+                           x-text="lang === 'ne' 
+                            ? 'राष्ट्रियता, लोकतन्त्र, समाजवाद र नागरिक स्वतन्त्रता — यी चार आदर्शलाई शिरोधार्य गर्दै जनताको समृद्धिका लागि गति, पारदर्शिता र नतिजामुखी परिणाम दिन हामी प्रतिवद्ध छौँ।'
+                            : 'Nationalism, Democracy, Democratic Socialism, and Individual Liberty — guided by these four foundational ideals to deliver measurable progress and dignity.'">
+                        </p>
+                        <a :href="profile.partyWebsite" target="_blank" rel="noopener" class="btn btn-sm btn-congress" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                            <img :src="profile.partyLogoUrl" alt="NC Emblem" style="width: 18px; height: 18px; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
+                            <span x-text="lang === 'ne' ? 'नेपाली कांग्रेस आधिकारिक वेबसाइट हेर्नुहोस्' : 'Visit Nepali Congress Official Portal'"></span>
+                            <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Leadership Photo Showcase -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3.5rem;">
+                <div class="gallery-item animate-stagger" style="height: 320px; border-radius: var(--radius-xl); border: 1px solid var(--border-color);">
+                    <img src="images/journey image.jpg" alt="Political Journey" class="gallery-img">
+                    <div class="gallery-overlay" style="opacity: 1; background: linear-gradient(180deg, transparent 40%, rgba(5, 19, 34, 0.95) 100%);">
+                        <span class="gallery-category-pill" x-text="lang === 'ne' ? 'राजनीतिक यात्रा' : 'Political Action'"></span>
+                        <h4 class="gallery-item-title" x-text="lang === 'ne' ? 'संसदीय गतिविधि तथा जनसंवाद यात्रा' : 'Parliamentary Action & Youth Leadership'"></h4>
+                    </div>
+                </div>
+                <div class="gallery-item animate-stagger" style="height: 320px; border-radius: var(--radius-xl); border: 1px solid var(--border-color);">
+                    <img src="images/another image.jpg" alt="Community Interaction" class="gallery-img">
+                    <div class="gallery-overlay" style="opacity: 1; background: linear-gradient(180deg, transparent 40%, rgba(5, 19, 34, 0.95) 100%);">
+                        <span class="gallery-category-pill" style="background: var(--nc-green); color: #ffffff;" x-text="lang === 'ne' ? 'जनतासँग भेटघाट' : 'Community'"></span>
+                        <h4 class="gallery-item-title" x-text="lang === 'ne' ? 'इलामका जनतासँग प्रत्यक्ष अन्तरक्रिया र छलफल' : 'Grassroots Dialogue across Ilam-1 Wards'"></h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Comprehensive Political Journey Timeline -->
+    <section class="section section-muted" id="journey">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" x-text="lang === 'ne' ? 'ऐतिहासिक माइलस्टोन' : 'Milestones & History'"></span>
+                <h2 class="section-title" x-text="lang === 'ne' ? 'राजनीतिक तथा सामाजिक संघर्षको यात्रा' : 'Political Journey & Milestones'"></h2>
+                <p class="section-subtitle" x-text="lang === 'ne' ? 'विद्यार्थी आन्दोलन देखि प्रतिनिधि सभा सदस्य सम्मको प्रेरणादायी यात्रा' : 'Key transformative chapters in leadership, activism, and public governance'"></p>
+                
+                <!-- 4 Stars Divider -->
+                <div class="nc-stars-divider">
+                    <div class="nc-star-line"></div>
+                    <i class="fas fa-star nc-star"></i>
+                    <i class="fas fa-star nc-star"></i>
+                    <i class="fas fa-star nc-star"></i>
+                    <i class="fas fa-star nc-star"></i>
+                    <div class="nc-star-line"></div>
+                </div>
+            </div>
+
+            <div class="timeline-wrap">
+                <template x-for="(item, index) in journey" :key="index">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="timeline-year" x-text="lang === 'ne' ? item.yearNe : item.yearEn"></span>
+                            <h4 class="timeline-title" x-text="lang === 'ne' ? item.titleNe : item.titleEn"></h4>
+                            <p class="timeline-desc" x-text="lang === 'ne' ? item.descNe : item.descEn"></p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div style="width: 45%;"></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand-logo">
+                        <img :src="profile.emblemUrl" alt="Emblem" class="footer-emblem" onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+                        <div class="footer-brand-text">
+                            <h3 x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
+                            <p x-text="lang === 'ne' ? profile.roleNe + ', ' + profile.constituencyNe : profile.roleEn + ', ' + profile.constituencyEn"></p>
+                        </div>
+                    </div>
+                    <p class="footer-desc" x-text="lang === 'ne' ? profile.bioNe : profile.bioEn"></p>
+                    <div class="footer-social-links">
+                        <a :href="profile.social.facebook" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a :href="profile.social.twitter" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                        <a :href="profile.social.instagram" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 x-text="lang === 'ne' ? 'द्रुत पृष्ठहरू' : 'Pages'"></h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a></li>
+                        <li><a href="projects.html" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Tracker'"></a></li>
+                        <li><a href="media.html" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Speeches & Media'"></a></li>
+                        <li><a href="gallery.html" x-text="lang === 'ne' ? 'फोटो ग्यालरी' : 'Image Gallery'"></a></li>
+                        <li><a href="constituency.html" x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency Profile'"></a></li>
+                        <li><a href="gunaso.html" x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></a></li>
+                        <li><a href="contact.html" x-text="lang === 'ne' ? 'सम्पर्क कार्यालय' : 'Contact Secretariat'"></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 x-text="lang === 'ne' ? 'सरकारी पोर्टल' : 'Official Portals'"></h4>
+                    <ul class="footer-links">
+                        <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संसद)' : 'Federal Parliament'"></a></li>
+                        <li><a href="https://nepal.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाल सरकार' : 'Government of Nepal'"></a></li>
+                        <li><a href="https://nepalicongress.org" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाली कांग्रेस' : 'Nepali Congress'"></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></h4>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> <span x-text="profile.phone"></span></p>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> <span x-text="profile.email"></span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span x-text="'© 2026 ' + (lang === 'ne' ? profile.nameNe : profile.nameEn) + ' — All rights reserved.'"></span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

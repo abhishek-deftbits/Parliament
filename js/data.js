@@ -1,5 +1,5 @@
 // Data file for Member of Parliament Website
-// Easily customizable data for profile, activities, projects, gallery, and translations
+// Inspired by Nepali Congress Leadership & Visionary Governance (Gagan Thapa & Nishcal Rai)
 
 const MP_DATA = {
     profile: {
@@ -13,19 +13,30 @@ const MP_DATA = {
         provinceNe: "कोशी प्रदेश, नेपाल",
         partyEn: "Nepali Congress",
         partyNe: "नेपाली कांग्रेस",
-        taglineEn: "Voice of Integrity, Action for Progress",
-        taglineNe: "बौद्धिक नेतृत्व, बलियो उपस्थिति र इमानदार सेवा",
+        taglineEn: "Voice of Integrity, Speed & Concrete Delivery",
+        taglineNe: "बौद्धिक नेतृत्व, स्पष्ट गति र नतिजामुखी सेवा",
+        teamMottoEn: "Building Ilam, Together — Team Ilam-1",
+        teamMottoNe: "हामी मिलेर बनाउँछौँ समृद्ध इलाम — टिम इलाम–१",
         bioEn: "Dedicated to transparent legislative governance, sustainable regional development, quality youth education, and agricultural transformation for the proud people of Ilam-1.",
         bioNe: "इलाम–१ का जनताको सुखदुःखमा समर्पित, संसद्मा सशक्त आवाज, नीति निर्माण र विकास आयोजनाहरूमा पारदर्शी एवं नतिजामुखी नेतृत्व।",
-        photoUrl: "https://nishcalrai.com.np/wp-content/uploads/2026/01/Nishcal-Rai-WEb-edited.jpeg",
-        emblemUrl: "https://hr.parliament.gov.np/uploads/images/1775207721.png",
+        photoUrl: "images/main image.jpg",
+        journeyPhotoUrl: "images/journey image.jpg",
+        communityPhotoUrl: "images/another image.jpg",
+        emblemUrl: "https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png",
         partyLogoUrl: "https://nepalicongress.org/logo.svg",
+        partyWebsite: "https://nepalicongress.org/",
         phone: "+977-27-520111 / +977-9851000000",
         email: "contact@nishcalrai.com.np",
         centralOffice: "Federal Parliament Building, Singha Durbar / New Baneshwor, Kathmandu",
         constituencyOffice: "Constituency Liaison Office, Ilam Bazaar, Koshi Province, Nepal",
         officeHoursEn: "Sunday – Friday: 9:30 AM – 5:30 PM",
-        officeHoursNe: "आइतबार – शुक्रबार: बिहान ९:३० देखि साँझ ५:३० सम्म"
+        officeHoursNe: "आइतबार – शुक्रबार: बिहान ९:३० देखि साँझ ५:३० सम्म",
+        social: {
+            facebook: "https://www.facebook.com/rainischalilam",
+            twitter: "https://x.com/NishcalRai",
+            instagram: "https://www.instagram.com/mpnishcalrai/",
+            nepaliCongress: "https://nepalicongress.org/"
+        }
     },
 
     stats: [
@@ -33,6 +44,46 @@ const MP_DATA = {
         { id: "issues", count: 142, suffix: "+", labelEn: "Constituency Issues Raised", labelNe: "उठाइएका जनसरोकारका मुद्दा", icon: "fa-bullhorn" },
         { id: "projects", count: 26, suffix: "", labelEn: "Development Projects Facilitated", labelNe: "विकास आयोजनाहरू", icon: "fa-diagram-project" },
         { id: "gunaso", count: 850, suffix: "+", labelEn: "Citizen Inquiries Addressed", labelNe: "समाधान गरिएका जनगुनासो", icon: "fa-clipboard-check" }
+    ],
+
+    // Vision & Policy Pledge (Inspired by Gagan Thapa's Vision / Pratigya Patra)
+    pledges: [
+        {
+            id: 1,
+            num: "०१",
+            titleEn: "Dignity, Freedom & Equal Opportunity",
+            titleNe: "सम्मानित जीवन र नागरिक आत्मसम्मान",
+            descEn: "We envision an inclusive society where every citizen's freedom, identity, and dignity are protected, ensuring fair opportunities regardless of background.",
+            descNe: "प्रत्येक नागरिकको स्वतन्त्रता, मौलिक पहिचान र आत्मसम्मानको पूर्ण संरक्षण गर्दै विभेदरहित र समतामूलक समाज निर्माणको संकल्प।",
+            icon: "fa-scale-balanced"
+        },
+        {
+            id: 2,
+            num: "०२",
+            titleEn: "Agro-Revolution & Himalayan Brand Ilam",
+            titleNe: "कृषि क्रान्ति र 'ब्रान्ड इलाम' को प्रवर्धन",
+            descEn: "Elevating orthodox tea, large cardamom, ginger, and kiwi through modern processing facilities, global certification, and guaranteed fair pricing.",
+            descNe: "इलामको प्रसिद्ध अर्थोडक्स चिया, अलैंची, अदुवा र किवीको अन्तर्राष्ट्रिय अर्गानिक प्रमाणीकरण, शीतभण्डार र किसानलाई उचित मूल्यको ग्यारेन्टी।",
+            icon: "fa-seedling"
+        },
+        {
+            id: 3,
+            num: "०३",
+            titleEn: "Digital Classrooms & Youth Skills",
+            titleNe: "आधुनिक शिक्षा, प्रविधि र युवा रोजगारी",
+            descEn: "Equipping every community school with STEM laboratories and providing youth vocational bootcamps to retain our best minds in Nepal.",
+            descNe: "सामुदायिक विद्यालयमा डिजिटल ल्याब, व्यावसायिक सीप विकास र प्रविधिमैत्री तालिममार्फत युवा जनशक्तिलाई स्वदेशमै रोजगारीको अवसर।",
+            icon: "fa-laptop-code"
+        },
+        {
+            id: 4,
+            num: "०४",
+            titleEn: "Universal Quality Healthcare & Telemedicine",
+            titleNe: "सुलभ गुणस्तरीय स्वास्थ्य र टेलिमेडिसिन",
+            descEn: "Strengthening primary health hospitals across all local wards with 24/7 emergency response, modern dialysis, and essential medicine availability.",
+            descNe: "सबै पालिकामा आधारभूत अस्पतालको सबलीकरण, चौबिसै घण्टा आकस्मिक सेवा, निःशुल्क औषधि र विशेषज्ञ डाक्टरको पहुँच।",
+            icon: "fa-heart-pulse"
+        }
     ],
 
     tickerNews: [
@@ -116,19 +167,19 @@ const MP_DATA = {
     journey: [
         {
             yearEn: "Student & Grassroots Movement",
-            yearNe: "विद्यार्थी राजनीति र सामाजिक आन्दोलन",
+            yearNe: "विद्यार्थी राजनीति र लोकतान्त्रिक आन्दोलन",
             titleEn: "Democratic Activism & Youth Leadership",
             titleNe: "प्रजातान्त्रिक आन्दोलन र युवा नेतृत्व",
-            descEn: "Active involvement in student movements advocating for constitutional democracy, educational access, and youth participation in governance.",
-            descNe: "विद्यार्थी संगठनमार्फत लोकतन्त्रको पुनर्स्थापना, शैक्षिक सुधार र युवा सशक्तीकरणमा सक्रिय सहभागिता र नेतृत्व।"
+            descEn: "Active involvement in student movements (Nepal Student Union) advocating for constitutional democracy, educational access, and youth participation in governance.",
+            descNe: "नेपाल विद्यार्थी संघमार्फत लोकतन्त्रको पुनर्स्थापना, शैक्षिक सुधार र राज्य सञ्चालनमा युवा सहभागिताको सशक्त पैरवी।"
         },
         {
             yearEn: "Party Leadership & Policy Formation",
-            yearNe: "पार्टी जिम्मेवारी र नीति निर्माण",
-            titleEn: "Organizational Strengthening in Koshi",
-            titleNe: "संगठन विस्तार र नीतिगत अध्ययन",
+            yearNe: "पार्टी जिम्मेवारी र नीतिगत अध्ययन",
+            titleEn: "Grassroots Organizing in Koshi",
+            titleNe: "संगठन विस्तार र स्थानीय विकास रणनीति",
             descEn: "Traveled across all districts of eastern Nepal, researching grassroots agricultural bottlenecks and mobilizing developmental planning frameworks.",
-            descNe: "पूर्वी नेपालका गाउँगाउँ पुगेर किसान र श्रमिकका समस्या संकलन, पार्टीको नीति तथा स्थानीय विकास रणनीति निर्माणमा योगदान।"
+            descNe: "पूर्वी नेपालका गाउँगाउँ पुगेर किसान, मजदुर र युवाका समस्या संकलन, पार्टीको नीति तथा स्थानीय विकास रणनीति निर्माणमा योगदान।"
         },
         {
             yearEn: "2079 BS (2022 AD) General Election",
@@ -344,38 +395,38 @@ const MP_DATA = {
         {
             id: "g1",
             category: "parliament",
-            categoryEn: "Parliament & Legislation",
-            categoryNe: "संसदीय गतिविधि",
-            titleEn: "Delivering Address at the House of Representatives Session",
-            titleNe: "प्रतिनिधि सभाको बैठकमा विशेष सम्बोधन गर्दै",
-            captionEn: "Presenting policy reforms during the national legislative debate at Federal Parliament.",
-            captionNe: "संघीय संसदमा नीतिगत सुधार र जनताका पक्षमा आफ्नो विचार राख्दै।",
-            image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1200&q=85",
-            thumb: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80"
+            categoryEn: "Parliament & Leadership",
+            categoryNe: "संसदीय गतिविधि तथा नेतृत्व",
+            titleEn: "Hon. Nishcal Rai — Member of Parliament Official Portrait",
+            titleNe: "माननीय निश्कल राई — प्रतिनिधि सभा सदस्य आधिकारिक तस्विर",
+            captionEn: "Official portrait of Hon. Nishcal Rai, directly elected MP from Ilam-1 representing Nepali Congress.",
+            captionNe: "इलाम निर्वाचन क्षेत्र नं. १ बाट निर्वाचित प्रतिनिधि सभा सदस्य माननीय निश्कल राई।",
+            image: "images/main image.jpg",
+            thumb: "images/main image.jpg"
         },
         {
             id: "g2",
             category: "constituency",
-            categoryEn: "Constituency & People",
-            categoryNe: "जनतासँग भेटघाट",
-            titleEn: "Community Town Hall with Local Farmers in Ilam",
-            titleNe: "इलामका किसानहरूसँग प्रत्यक्ष अन्तरक्रिया तथा संवाद",
-            captionEn: "Listening to the concerns of organic tea cultivators and local cooperatives.",
-            captionNe: "चिया किसान, सहकारी सञ्चालक तथा स्थानीय बासिन्दाका समस्या सुन्दै र समाधानको पहल गर्दै।",
-            image: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&w=1200&q=85",
-            thumb: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&w=600&q=80"
+            categoryEn: "Political Journey & Engagement",
+            categoryNe: "राजनीतिक यात्रा तथा जनसंवाद",
+            titleEn: "Constituency Leadership & Youth Advocacy in Ilam",
+            titleNe: "इलाममा जनसंवाद, युवा नेतृत्व तथा नीतिगत पहल",
+            captionEn: "Active engagement with local citizens, youth groups, and party workers across Ilam wards.",
+            captionNe: "स्थानीय जनता, युवा वर्ग र कार्यकर्ताहरूसँग निरन्तर संवाद र विकास छलफल।",
+            image: "images/journey image.jpg",
+            thumb: "images/journey image.jpg"
         },
         {
             id: "g3",
             category: "development",
-            categoryEn: "Development Inspection",
-            categoryNe: "विकास आयोजना अनुगमन",
-            titleEn: "Field Inspection of Sandakpur Road Construction",
-            titleNe: "सन्दकपुर सडक आयोजनाको स्थलगत अनुगमन",
-            captionEn: "Inspecting engineering standards, drainage systems, and environmental compliance.",
-            captionNe: "सडक निर्माणको गुणस्तर, नाला व्यवस्थापन र समय तालिकाको प्रत्यक्ष निरीक्षण।",
-            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=85",
-            thumb: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"
+            categoryEn: "Field Work & Community Interaction",
+            categoryNe: "स्थलगत अनुगमन तथा भेटघाट",
+            titleEn: "Community Interaction & Grassroots Development in Ilam",
+            titleNe: "इलामका जनतासँग प्रत्यक्ष भेटघाट र योजना अनुगमन",
+            captionEn: "Listening to local grievances and monitoring constituency development projects.",
+            captionNe: "स्थानीय बासिन्दाका समस्या सुन्दै र विकास आयोजनाहरूको स्थलगत अवलोकन गर्दै।",
+            image: "images/another image.jpg",
+            thumb: "images/another image.jpg"
         },
         {
             id: "g4",
