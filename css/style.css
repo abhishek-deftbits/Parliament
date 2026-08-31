@@ -901,7 +901,7 @@ html.dark .btn-outline {
 }
 
 /* ==========================================================================
-   Hero Section (Nepal Airlines Aero Flag Livery & Presidential Identity)
+   Hero Section (Presidential Executive Identity)
    ========================================================================== */
 
 .hero-section {
@@ -925,45 +925,6 @@ html.dark .btn-outline {
     z-index: 1;
 }
 
-/* Nepal Airlines Aero Flag Ribbon Layer */
-.hero-aero-flag-ribbon {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.hero-aero-svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-glow-blue {
-    position: absolute;
-    top: 15%;
-    left: 8%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(0, 85, 184, 0.35) 0%, transparent 70%);
-    filter: blur(70px);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.hero-glow-red {
-    position: absolute;
-    bottom: 5%;
-    right: 15%;
-    width: 550px;
-    height: 550px;
-    background: radial-gradient(circle, rgba(216, 30, 40, 0.3) 0%, transparent 70%);
-    filter: blur(80px);
-    pointer-events: none;
-    z-index: 1;
-}
-
 /* Cinematic portrait fills right side absolutely */
 .hero-cinematic-portrait {
     position: absolute;
@@ -978,7 +939,7 @@ html.dark .btn-outline {
     mix-blend-mode: normal;
 }
 
-/* Gradient mask: left content clearly readable, right blends with aero ribbons */
+/* Gradient mask: left content clearly readable, portrait blends right */
 .hero-portrait-mask {
     position: absolute;
     inset: 0;

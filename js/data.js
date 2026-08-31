@@ -19,6 +19,8 @@ const MP_DATA = {
         teamMottoNe: "हामी मिलेर बनाउँछौँ समृद्ध इलाम — टिम इलाम–१",
         bioEn: "Dedicated to transparent legislative governance, sustainable regional development, quality youth education, and agricultural transformation for the proud people of Ilam-1.",
         bioNe: "इलाम–१ का जनताको सुखदुःखमा समर्पित, संसद्मा सशक्त आवाज, नीति निर्माण र विकास आयोजनाहरूमा पारदर्शी एवं नतिजामुखी नेतृत्व।",
+        manifestoEn: "Integrity in legislation, agility in constituency development, and dedication to transparent governance for a prosperous Ilam.",
+        manifestoNe: "संसदमा तपाईको सशक्त आवाज, विकासमा हाम्रो इमानदार प्रयास। चिया किसानको समृद्धि, गुणस्तरीय शिक्षा र समुन्नत इलाम–१ का लागि निरन्तर समर्पित।",
         photoUrl: "images/main image.jpg",
         journeyPhotoUrl: "images/journey image.jpg",
         communityPhotoUrl: "images/another image.jpg",

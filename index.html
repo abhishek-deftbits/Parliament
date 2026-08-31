@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="ne" x-data="parliamentApp" :class="{ 'dark': theme === 'dark' }">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title x-text="lang === 'ne' ? 'माननीय निश्कल राई — प्रतिनिधि सभा सदस्य, इलाम–१' : 'Hon. Nishcal Rai — Member of Parliament, Ilam-1, Nepal'">
+    <title
+        x-text="lang === 'ne' ? 'माननीय निश्कल राई — प्रतिनिधि सभा सदस्य, इलाम–१' : 'Hon. Nishcal Rai — Member of Parliament, Ilam-1, Nepal'">
         Hon. Nishcal Rai — Member of Parliament, Ilam-1
     </title>
-    <meta name="description" content="Official website of Hon. Nishcal Rai, Member of the House of Representatives (Federal Parliament of Nepal), Ilam Constituency No. 1. Citizen services, parliamentary speeches, constituency development projects, and public grievance portal.">
+    <meta name="description"
+        content="Official website of Hon. Nishcal Rai, Member of the House of Representatives (Federal Parliament of Nepal), Ilam Constituency No. 1. Citizen services, parliamentary speeches, constituency development projects, and public grievance portal.">
 
     <!-- Google Fonts Preconnect & Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Mukta:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Mukta:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -27,6 +32,7 @@
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
 </head>
+
 <body :data-lang="lang">
 
     <!-- ======================================================================
@@ -35,13 +41,16 @@
     <header class="civic-top-bar">
         <div class="container civic-top-inner">
             <!-- Left: Parliament Seal + MP Quick Info -->
-            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left" title="House of Representatives, Nepal">
+            <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left"
+                title="House of Representatives, Nepal">
                 <img :src="profile.emblemUrl" alt="Emblem of Nepal" class="civic-emblem"
-                     onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+                    onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
                 <div class="civic-institution">
-                    <span class="civic-rep-title" x-text="lang === 'ne' ? 'प्रतिनिधि सभा • संघीय संसद' : 'House of Representatives • Federal Parliament'"></span>
+                    <span class="civic-rep-title"
+                        x-text="lang === 'ne' ? 'प्रतिनिधि सभा • संघीय संसद' : 'House of Representatives • Federal Parliament'"></span>
                     <span class="civic-mp-name" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></span>
-                    <span class="civic-constituency" x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></span>
+                    <span class="civic-constituency"
+                        x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></span>
                 </div>
             </a>
 
@@ -55,7 +64,8 @@
                     <marquee scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
                         <template x-for="(news, index) in tickerNews" :key="index">
                             <span>
-                                <a href="media.html" class="ticker-item" x-text="lang === 'ne' ? news.titleNe : news.titleEn"></a>
+                                <a href="media.html" class="ticker-item"
+                                    x-text="lang === 'ne' ? news.titleNe : news.titleEn"></a>
                                 <span style="margin: 0 12px; opacity: 0.5;">•</span>
                             </span>
                         </template>
@@ -66,13 +76,17 @@
             <!-- Right: Date, Language & Theme Controls -->
             <div class="civic-right">
                 <div class="civic-date">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" alt="Nepal Flag" class="civic-flag">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" alt="Nepal Flag"
+                        class="civic-flag">
                     <span x-text="lang === 'ne' ? currentDateNe : currentDateEn"></span>
                 </div>
                 <div class="civic-tools">
-                    <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')" title="नेपाली">ने</button>
-                    <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')" title="English">EN</button>
-                    <button class="theme-toggle-btn" @click="toggleTheme()" :title="theme === 'dark' ? 'Light Mode' : 'Dark Mode'">
+                    <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')"
+                        title="नेपाली">ने</button>
+                    <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')"
+                        title="English">EN</button>
+                    <button class="theme-toggle-btn" @click="toggleTheme()"
+                        :title="theme === 'dark' ? 'Light Mode' : 'Dark Mode'">
                         <i class="fas" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
                     </button>
                 </div>
@@ -86,10 +100,12 @@
     <nav class="main-nav" id="navbar">
         <div class="container nav-inner">
             <a href="index.html" class="nav-brand">
-                <img src="https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png" alt="Emblem" style="width: 36px; height: 36px;">
+                <img src="https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png" alt="Emblem"
+                    style="width: 36px; height: 36px;">
                 <div>
                     <span class="nav-brand-title" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></span>
-                    <span class="nav-brand-sub" x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १' : 'Ilam Constituency No. 1'"></span>
+                    <span class="nav-brand-sub"
+                        x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १' : 'Ilam Constituency No. 1'"></span>
                 </div>
             </a>
 
@@ -97,9 +113,12 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link active" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a></li>
                 <li><a href="about.html" class="nav-link" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a></li>
-                <li><a href="projects.html" class="nav-link" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a></li>
-                <li><a href="media.html" class="nav-link" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a></li>
-                <li><a href="constituency.html" class="nav-link" x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a></li>
+                <li><a href="projects.html" class="nav-link" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a>
+                </li>
+                <li><a href="media.html" class="nav-link"
+                        x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a></li>
+                <li><a href="constituency.html" class="nav-link"
+                        x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a></li>
                 <li><a href="contact.html" class="nav-link" x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></a></li>
             </ul>
 
@@ -121,20 +140,28 @@
         <div>
             <div class="mobile-drawer-header">
                 <div>
-                    <h3 style="font-weight: 800; color: var(--primary);" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
-                    <p style="font-size: 0.8rem; color: var(--text-muted);" x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></p>
+                    <h3 style="font-weight: 800; color: var(--primary);"
+                        x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);"
+                        x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></p>
                 </div>
                 <button class="modal-close-btn" style="position: static;" @click="mobileMenu = false">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="mobile-drawer-links">
-                <a href="index.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a>
-                <a href="about.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'परिचय' : 'About'"></a>
-                <a href="projects.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a>
-                <a href="media.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a>
-                <a href="constituency.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a>
-                <a href="contact.html" class="mobile-drawer-link" @click="mobileMenu = false" x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></a>
+                <a href="index.html" class="mobile-drawer-link" @click="mobileMenu = false"
+                    x-text="lang === 'ne' ? 'गृहपृष्ठ' : 'Home'"></a>
+                <a href="about.html" class="mobile-drawer-link" @click="mobileMenu = false"
+                    x-text="lang === 'ne' ? 'परिचय' : 'About'"></a>
+                <a href="projects.html" class="mobile-drawer-link" @click="mobileMenu = false"
+                    x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a>
+                <a href="media.html" class="mobile-drawer-link" @click="mobileMenu = false"
+                    x-text="lang === 'ne' ? 'मिडिया तथा ग्यालरी' : 'Media & Gallery'"></a>
+                <a href="constituency.html" class="mobile-drawer-link" @click="mobileMenu = false"
+                    x-text="lang === 'ne' ? 'क्षेत्र' : 'Constituency'"></a>
+                <a href="contact.html" class="mobile-drawer-link" @click="mobileMenu = false"
+                    x-text="lang === 'ne' ? 'सम्पर्क' : 'Contact'"></a>
             </div>
         </div>
         <div class="mobile-drawer-footer">
@@ -144,7 +171,8 @@
             </a>
             <div style="display: flex; gap: 0.5rem; justify-content: center;">
                 <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')">नेपाली</button>
-                <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')">English</button>
+                <button class="lang-btn" :class="{ 'active': lang === 'en' }"
+                    @click="setLanguage('en')">English</button>
             </div>
         </div>
     </div>
@@ -154,72 +182,16 @@
          ====================================================================== -->
     <main>
 
-        <!-- Presidential Cinematic Hero Section with Nepal Airlines Aero-Flag Livery -->
+        <!-- Presidential Hero Section -->
         <section class="hero-section" id="home">
             <!-- Ambient dot pattern -->
             <div class="hero-bg-pattern"></div>
 
-            <!-- Nepal Airlines Aero Flag Ribbon Vector Graphic -->
-            <div class="hero-aero-flag-ribbon">
-                <svg viewBox="0 0 1600 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" class="hero-aero-svg">
-                    <defs>
-                        <linearGradient id="aeroBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#0055b8" stop-opacity="0.95" />
-                            <stop offset="60%" stop-color="#003e8a" stop-opacity="0.88" />
-                            <stop offset="100%" stop-color="#00224d" stop-opacity="0.8" />
-                        </linearGradient>
-                        <linearGradient id="aeroRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#e11d48" stop-opacity="0.95" />
-                            <stop offset="50%" stop-color="#d81e28" stop-opacity="0.95" />
-                            <stop offset="100%" stop-color="#9e0e17" stop-opacity="0.9" />
-                        </linearGradient>
-                        <filter id="celestialGlow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="8" result="blur" />
-                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                        </filter>
-                    </defs>
-
-                    <!-- Aerodynamic Flowing Royal Blue Ribbon (Nepal Flag Border / Top Aero Wave) -->
-                    <path d="M 450,900 C 720,720 900,480 1160,380 C 1380,300 1510,240 1600,190 L 1600,900 Z" fill="url(#aeroBlueGrad)" />
-
-                    <!-- Aerodynamic Flowing Crimson Red Ribbon (Nepal Flag Body / Bottom Swoosh) -->
-                    <path d="M 380,900 C 660,820 920,680 1180,630 C 1410,590 1520,670 1600,610 L 1600,900 Z" fill="url(#aeroRedGrad)" />
-
-                    <!-- Stylized 12-Ray National Sun Symbol (As on Nepal Airlines Aircraft) -->
-                    <g transform="translate(1360, 410) scale(1.15)" filter="url(#celestialGlow)">
-                        <circle cx="0" cy="0" r="32" fill="#ffffff" />
-                        <!-- 12 Sharp Triangular Rays -->
-                        <polygon points="0,-54 7,-36 -7,-36" fill="#ffffff" />
-                        <polygon points="27,-46 25,-28 15,-35" fill="#ffffff" />
-                        <polygon points="46,-27 36,-15 28,-25" fill="#ffffff" />
-                        <polygon points="54,0 36,7 36,-7" fill="#ffffff" />
-                        <polygon points="46,27 28,25 36,15" fill="#ffffff" />
-                        <polygon points="27,46 15,35 25,28" fill="#ffffff" />
-                        <polygon points="0,54 -7,36 7,36" fill="#ffffff" />
-                        <polygon points="-27,46 -25,28 -15,35" fill="#ffffff" />
-                        <polygon points="-46,27 -36,15 -28,25" fill="#ffffff" />
-                        <polygon points="-54,0 -36,-7 -36,7" fill="#ffffff" />
-                        <polygon points="-46,-27 -28,-25 -36,-15" fill="#ffffff" />
-                        <polygon points="-27,-46 -15,-35 -25,-28" fill="#ffffff" />
-                    </g>
-
-                    <!-- Stylized Crescent Moon Emblem (Upper Flag Element) -->
-                    <g transform="translate(1450, 190) scale(0.9)" filter="url(#celestialGlow)">
-                        <path d="M -30,-6 C -30,22 2,36 28,22 C 7,24 -14,12 -16,-8 C -16,-19 -7,-28 2,-32 C -18,-28 -30,-20 -30,-6 Z" fill="#ffffff" />
-                        <circle cx="-1" cy="-3" r="9" fill="#ffffff" />
-                    </g>
-                </svg>
-            </div>
-
-            <!-- Atmospheric Aero Glows -->
-            <div class="hero-glow-blue"></div>
-            <div class="hero-glow-red"></div>
-
             <!-- Cinematic Full-Bleed Portrait (right side, absolutely placed) -->
             <img :src="profile.photoUrl" :alt="profile.nameEn" class="hero-cinematic-portrait" loading="eager"
-                 onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85'">
+                onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85'">
 
-            <!-- Gradient Mask: keeps left text crisp, portrait and aero ribbons blend right -->
+            <!-- Gradient Mask: keeps left text crisp, portrait blends to the right -->
             <div class="hero-portrait-mask"></div>
             <div class="hero-bottom-vignette"></div>
 
@@ -232,9 +204,11 @@
                             <i class="fas fa-certificate" style="color: #fbbf24;"></i>
                             <span x-text="lang === 'ne' ? 'संसदीय आधिकारिक पोर्टल' : 'Official MP Portal'"></span>
                         </span>
-                        <span class="hero-authority-tag" style="border-color: rgba(0, 92, 55, 0.4); background: rgba(0, 92, 55, 0.2);">
+                        <span class="hero-authority-tag"
+                            style="border-color: rgba(0, 92, 55, 0.4); background: rgba(0, 92, 55, 0.2);">
                             <i class="fas fa-landmark"></i>
-                            <span x-text="lang === 'ne' ? 'प्रतिनिधि सभा • इलाम–१' : 'House of Representatives • Ilam-1'"></span>
+                            <span
+                                x-text="lang === 'ne' ? 'प्रतिनिधि सभा • इलाम–१' : 'House of Representatives • Ilam-1'"></span>
                         </span>
                     </div>
 
@@ -243,15 +217,12 @@
 
                     <div class="hero-designation">
                         <i class="fas fa-user-tie" style="color: #fbbf24; font-size: 1.15rem;"></i>
-                        <span x-text="lang === 'ne' ? 'माननीय सांसद • प्रतिनिधि सभा, नेपाल' : 'Member of Parliament • House of Representatives, Nepal'"></span>
+                        <span
+                            x-text="lang === 'ne' ? 'माननीय सांसद • प्रतिनिधि सभा, नेपाल' : 'Member of Parliament • House of Representatives, Nepal'"></span>
                     </div>
 
                     <!-- Manifesto Quote -->
-                    <p class="hero-manifesto-lead"
-                       x-text="lang === 'ne'
-                        ? '"संसदमा तपाईको सशक्त आवाज, विकासमा हाम्रो इमानदार प्रयास। चिया किसानको समृद्धि, गुणस्तरीय शिक्षा र समुन्नत इलाम–१ का लागि निरन्तर समर्पित।"'
-                        : '\"Integrity in legislation, agility in constituency development, and dedication to transparent governance for a prosperous Ilam.\"'">
-                    </p>
+                    <p class="hero-manifesto-lead" x-text="lang === 'ne' ? profile.manifestoNe : profile.manifestoEn"></p>
 
                     <!-- Legislative Agenda Pills -->
                     <div class="hero-agenda-row">
@@ -277,13 +248,17 @@
                     <div class="hero-cta-suite">
                         <a href="gunaso.html" class="btn btn-accent btn-lg">
                             <i class="fas fa-headset"></i>
-                            <span x-text="lang === 'ne' ? 'जनगुनासो दर्ता गर्नुहोस्' : 'Citizen Grievance Portal'"></span>
+                            <span
+                                x-text="lang === 'ne' ? 'जनगुनासो दर्ता गर्नुहोस्' : 'Citizen Grievance Portal'"></span>
                         </a>
-                        <a href="media.html" class="btn btn-outline btn-lg" style="color: #ffffff; border-color: rgba(255,255,255,0.35);">
+                        <a href="media.html" class="btn btn-outline btn-lg"
+                            style="color: #ffffff; border-color: rgba(255,255,255,0.35);">
                             <i class="fas fa-play-circle" style="color: #60a5fa;"></i>
                             <span x-text="lang === 'ne' ? 'संसदीय सम्बोधन' : 'Parliamentary Speeches'"></span>
                         </a>
-                        <button class="btn btn-outline btn-lg" style="color: #ffffff; border-color: rgba(255,255,255,0.35);" @click="appointmentModal.isOpen = true">
+                        <button class="btn btn-outline btn-lg"
+                            style="color: #ffffff; border-color: rgba(255,255,255,0.35);"
+                            @click="appointmentModal.isOpen = true">
                             <i class="fas fa-calendar-check" style="color: #4ade80;"></i>
                             <span x-text="lang === 'ne' ? 'भेटघाट अनुरोध' : 'Request Meeting'"></span>
                         </button>
@@ -298,14 +273,17 @@
                 <div class="editorial-counter-grid">
                     <template x-for="stat in stats" :key="stat.id">
                         <div class="editorial-counter-col">
-                            <div class="editorial-action-icon" style="background: var(--bg-parliament-subtle); color: var(--parliament-blue);">
+                            <div class="editorial-action-icon"
+                                style="background: var(--bg-parliament-subtle); color: var(--parliament-blue);">
                                 <i class="fas" :class="stat.icon"></i>
                             </div>
                             <div>
                                 <div class="editorial-counter-num">
-                                    <span x-text="stat.count"></span><span x-text="stat.suffix" style="color: var(--accent-red);"></span>
+                                    <span x-text="stat.count"></span><span x-text="stat.suffix"
+                                        style="color: var(--accent-red);"></span>
                                 </div>
-                                <div class="editorial-counter-label" x-text="lang === 'ne' ? stat.labelNe : stat.labelEn"></div>
+                                <div class="editorial-counter-label"
+                                    x-text="lang === 'ne' ? stat.labelNe : stat.labelEn"></div>
                             </div>
                         </div>
                     </template>
@@ -319,48 +297,64 @@
                 <a href="gunaso.html" class="editorial-action-item">
                     <div class="editorial-action-icon"><i class="fas fa-file-signature"></i></div>
                     <div>
-                        <div class="editorial-action-title" x-text="lang === 'ne' ? 'जनगुनासो दर्ता' : 'Register Grievance'"></div>
-                        <div class="editorial-action-sub" x-text="lang === 'ne' ? 'सडक, खानेपानी, समस्या पठाउनुहोस्' : 'Submit civic issues directly'"></div>
+                        <div class="editorial-action-title"
+                            x-text="lang === 'ne' ? 'जनगुनासो दर्ता' : 'Register Grievance'"></div>
+                        <div class="editorial-action-sub"
+                            x-text="lang === 'ne' ? 'सडक, खानेपानी, समस्या पठाउनुहोस्' : 'Submit civic issues directly'">
+                        </div>
                     </div>
                 </a>
 
                 <a href="gunaso.html#track" class="editorial-action-item">
                     <div class="editorial-action-icon"><i class="fas fa-search-location"></i></div>
                     <div>
-                        <div class="editorial-action-title" x-text="lang === 'ne' ? 'गुनासो ट्र्याकिङ' : 'Track Status'"></div>
-                        <div class="editorial-action-sub" x-text="lang === 'ne' ? 'टिकट नम्बरबाट पछिल्लो अवस्था' : 'Live status tracking'"></div>
+                        <div class="editorial-action-title"
+                            x-text="lang === 'ne' ? 'गुनासो ट्र्याकिङ' : 'Track Status'"></div>
+                        <div class="editorial-action-sub"
+                            x-text="lang === 'ne' ? 'टिकट नम्बरबाट पछिल्लो अवस्था' : 'Live status tracking'"></div>
                     </div>
                 </a>
 
                 <a href="projects.html" class="editorial-action-item">
                     <div class="editorial-action-icon"><i class="fas fa-chart-line"></i></div>
                     <div>
-                        <div class="editorial-action-title" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Dossier'"></div>
-                        <div class="editorial-action-sub" x-text="lang === 'ne' ? 'बजेट र निर्माण कार्यको पारदर्शिता' : 'Transparent monitoring'"></div>
+                        <div class="editorial-action-title"
+                            x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Dossier'"></div>
+                        <div class="editorial-action-sub"
+                            x-text="lang === 'ne' ? 'बजेट र निर्माण कार्यको पारदर्शिता' : 'Transparent monitoring'">
+                        </div>
                     </div>
                 </a>
 
                 <a href="media.html" class="editorial-action-item">
                     <div class="editorial-action-icon"><i class="fas fa-video"></i></div>
                     <div>
-                        <div class="editorial-action-title" x-text="lang === 'ne' ? 'संसदीय भिडियो' : 'Parliament Archive'"></div>
-                        <div class="editorial-action-sub" x-text="lang === 'ne' ? 'सदन बैठक र नीतिगत बहस' : 'Speeches & zero hour debates'"></div>
+                        <div class="editorial-action-title"
+                            x-text="lang === 'ne' ? 'संसदीय भिडियो' : 'Parliament Archive'"></div>
+                        <div class="editorial-action-sub"
+                            x-text="lang === 'ne' ? 'सदन बैठक र नीतिगत बहस' : 'Speeches & zero hour debates'"></div>
                     </div>
                 </a>
             </div>
         </section>
 
         <!-- Vision & Policy Ledger Section (Unboxed Architectural List) -->
-        <section class="section" style="background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <section class="section"
+            style="background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">
                         <i class="fas fa-star" style="color: var(--accent-red); font-size: 0.75rem;"></i>
-                        <span x-text="lang === 'ne' ? 'हाम्रो संकल्प र प्रतिज्ञा' : 'Policy Vision & Legislative Pledges'"></span>
+                        <span
+                            x-text="lang === 'ne' ? 'हाम्रो संकल्प र प्रतिज्ञा' : 'Policy Vision & Legislative Pledges'"></span>
                     </span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'समृद्ध इलाम र समुन्नत नेपालको खाका' : 'Blueprint for Regional Transformation'"></h2>
-                    <p class="section-subtitle" x-text="lang === 'ne' ? 'नेपाली कांग्रेसको लोकतान्त्रिक मूल्य, स्पष्ट नीति र नतिजामुखी कार्ययोजना' : 'Democratic values, evidence-based legislation, and concrete public delivery.'"></p>
-                    
+                    <h2 class="section-title"
+                        x-text="lang === 'ne' ? 'समृद्ध इलाम र समुन्नत नेपालको खाका' : 'Blueprint for Regional Transformation'">
+                    </h2>
+                    <p class="section-subtitle"
+                        x-text="lang === 'ne' ? 'नेपाली कांग्रेसको लोकतान्त्रिक मूल्य, स्पष्ट नीति र नतिजामुखी कार्ययोजना' : 'Democratic values, evidence-based legislation, and concrete public delivery.'">
+                    </p>
+
                     <!-- 4 Stars Divider -->
                     <div class="nc-stars-divider">
                         <div class="nc-star-line"></div>
@@ -378,34 +372,49 @@
                         <div class="editorial-ledger-row">
                             <div class="editorial-ledger-num" x-text="pledge.num"></div>
                             <div>
-                                <h3 class="editorial-ledger-title" x-text="lang === 'ne' ? pledge.titleNe : pledge.titleEn"></h3>
+                                <h3 class="editorial-ledger-title"
+                                    x-text="lang === 'ne' ? pledge.titleNe : pledge.titleEn"></h3>
                             </div>
                             <div>
-                                <p class="editorial-ledger-desc" x-text="lang === 'ne' ? pledge.descNe : pledge.descEn"></p>
+                                <p class="editorial-ledger-desc" x-text="lang === 'ne' ? pledge.descNe : pledge.descEn">
+                                </p>
                             </div>
                         </div>
                     </template>
                 </div>
 
                 <!-- Policy Manifesto Download Strip -->
-                <div class="pledge-banner-section" style="border-radius: var(--radius-2xl); margin-top: 4rem; padding: 2.5rem 3rem;">
+                <div class="pledge-banner-section"
+                    style="border-radius: var(--radius-2xl); margin-top: 4rem; padding: 2.5rem 3rem;">
                     <div class="pledge-banner-grid">
                         <div>
-                            <span style="background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
-                                <i class="fas fa-file-lines"></i> <span x-text="lang === 'ne' ? 'आधिकारिक दस्ताबेज' : 'Policy Manifesto'"></span>
+                            <span
+                                style="background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; text-transform: uppercase;">
+                                <i class="fas fa-file-lines"></i> <span
+                                    x-text="lang === 'ne' ? 'आधिकारिक दस्ताबेज' : 'Policy Manifesto'"></span>
                             </span>
-                            <h3 class="pledge-banner-title" style="margin-top: 0.75rem;" x-text="lang === 'ne' ? 'इलाम–१ विकास मार्गचित्र तथा प्रतिज्ञा पत्र २०८२+' : 'Ilam-1 Development Blueprint & Policy Pledge'"></h3>
-                            <p class="pledge-banner-desc" x-text="lang === 'ne' ? 'चिया किसानको समृद्धि, सडक सञ्जालको स्तरोन्नति, गुणस्तरीय स्वास्थ्य बिमा र युवा उद्यमशीलताका नीतिगत प्रतिबद्धताहरू समेटिएको दस्तावेज।' : 'Comprehensive policy document outlining actionable roadmaps for agro-industrialization, universal healthcare, and STEM education.'"></p>
+                            <h3 class="pledge-banner-title" style="margin-top: 0.75rem;"
+                                x-text="lang === 'ne' ? 'इलाम–१ विकास मार्गचित्र तथा प्रतिज्ञा पत्र २०८२+' : 'Ilam-1 Development Blueprint & Policy Pledge'">
+                            </h3>
+                            <p class="pledge-banner-desc"
+                                x-text="lang === 'ne' ? 'चिया किसानको समृद्धि, सडक सञ्जालको स्तरोन्नति, गुणस्तरीय स्वास्थ्य बिमा र युवा उद्यमशीलताका नीतिगत प्रतिबद्धताहरू समेटिएको दस्तावेज।' : 'Comprehensive policy document outlining actionable roadmaps for agro-industrialization, universal healthcare, and STEM education.'">
+                            </p>
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: center;">
-                            <a href="https://nepalicongress.org/election2082/pratigya-patra" target="_blank" rel="noopener" class="btn btn-accent btn-lg" style="width: 100%;">
+                            <a href="https://nepalicongress.org/election2082/pratigya-patra" target="_blank"
+                                rel="noopener" class="btn btn-accent btn-lg" style="width: 100%;">
                                 <i class="fas fa-file-arrow-down"></i>
-                                <span x-text="lang === 'ne' ? 'प्रतिज्ञा पत्र अध्ययन गर्नुहोस्' : 'Download Policy Pledge'"></span>
+                                <span
+                                    x-text="lang === 'ne' ? 'प्रतिज्ञा पत्र अध्ययन गर्नुहोस्' : 'Download Policy Pledge'"></span>
                             </a>
-                            <a href="https://nepalicongress.org" target="_blank" rel="noopener" class="btn btn-outline btn-lg" style="color: #ffffff; border-color: rgba(255,255,255,0.4); width: 100%;">
+                            <a href="https://nepalicongress.org" target="_blank" rel="noopener"
+                                class="btn btn-outline btn-lg"
+                                style="color: #ffffff; border-color: rgba(255,255,255,0.4); width: 100%;">
                                 <i class="fas fa-tree"></i>
-                                <span x-text="lang === 'ne' ? 'नेपाली कांग्रेस आधिकारिक पोर्टल' : 'Nepali Congress Official'"></span>
-                                <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.8rem; margin-left: 4px;"></i>
+                                <span
+                                    x-text="lang === 'ne' ? 'नेपाली कांग्रेस आधिकारिक पोर्टल' : 'Nepali Congress Official'"></span>
+                                <i class="fas fa-arrow-up-right-from-square"
+                                    style="font-size: 0.8rem; margin-left: 4px;"></i>
                             </a>
                         </div>
                     </div>
@@ -418,9 +427,13 @@
         <section class="section" id="about">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag" x-text="lang === 'ne' ? 'परिचय तथा दृष्टिकोण' : 'Leadership & Profile'"></span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'जनप्रतिनिधि परिचय' : 'About the Member of Parliament'"></h2>
-                    <p class="section-subtitle" x-text="lang === 'ne' ? 'इलाम–१ को सम्भावनालाई अवसरमा बदल्ने प्रतिबद्धता' : 'Championing Regional Prosperity, Democratic Values & Transparent Governance'"></p>
+                    <span class="section-tag"
+                        x-text="lang === 'ne' ? 'परिचय तथा दृष्टिकोण' : 'Leadership & Profile'"></span>
+                    <h2 class="section-title"
+                        x-text="lang === 'ne' ? 'जनप्रतिनिधि परिचय' : 'About the Member of Parliament'"></h2>
+                    <p class="section-subtitle"
+                        x-text="lang === 'ne' ? 'इलाम–१ को सम्भावनालाई अवसरमा बदल्ने प्रतिबद्धता' : 'Championing Regional Prosperity, Democratic Values & Transparent Governance'">
+                    </p>
                     <div class="section-divider"></div>
                 </div>
 
@@ -430,26 +443,30 @@
                     </div>
                     <div class="about-text-content">
                         <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 900; color: var(--parliament-blue); margin-bottom: 1rem;"
-                            x-text="lang === 'ne' ? 'इलाम–१ का जनताको सुखदुःखको सहयात्री' : 'A Dedicated Voice for the People of Ilam-1'"></h3>
-                        
+                            x-text="lang === 'ne' ? 'इलाम–१ का जनताको सुखदुःखको सहयात्री' : 'A Dedicated Voice for the People of Ilam-1'">
+                        </h3>
+
                         <p style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.25rem; line-height: 1.8;"
-                           x-text="lang === 'ne' 
+                            x-text="lang === 'ne' 
                             ? 'इलाम–१ अपार सम्भावनाले भरिएको उर्वर भूमि हो। तर सम्भावना आफैं अवसर बन्दैन, त्यसका लागि स्पष्ट दृष्टि, योजना र इमानदार नेतृत्व चाहिन्छ। किसानका पसिनाको मूल्य, युवाका लागि गुणस्तरीय प्राविधिक शिक्षा र स्थानीय अर्थतन्त्रलाई मजबुत बनाउन म संघीय संसद्मा निरन्तर समर्पित छु।'
                             : 'Ilam-1 is a land of boundless potential. However, potential does not automatically become prosperity—it demands integrity, structured policy, and empathetic leadership. From agricultural market linkages to modern youth skill academies, my legislative mandate is dedicated to serving every citizen with full transparency.'">
                         </p>
 
                         <div class="editorial-pullquote" style="margin: 2rem 0;">
                             <blockquote>
-                                <p x-text="lang === 'ne' 
+                                <p
+                                    x-text="lang === 'ne' 
                                     ? '“संसदमा तपाईको सशक्त आवाज, विकासमा हाम्रो इमानदार प्रयास। परिणाममुखी नेतृत्व र समृद्ध इलामका लागि निरन्तर समर्पित।”' 
-                                    : '“Integrity in legislation, agility in constituency service, and dedication to transparent governance for a prosperous Ilam.”'"></p>
+                                    : '“Integrity in legislation, agility in constituency service, and dedication to transparent governance for a prosperous Ilam.”'">
+                                </p>
                                 <cite x-text="lang === 'ne' ? '— माननीय निश्कल राई' : '— Hon. Nishcal Rai, MP'"></cite>
                             </blockquote>
                         </div>
 
                         <div style="margin-top: 2rem;">
                             <a href="about.html" class="btn btn-primary btn-lg">
-                                <span x-text="lang === 'ne' ? 'विस्तृत जीवनी र राजनीतिक यात्रा हेर्नुहोस्' : 'Read Full Presidential Biography'"></span>
+                                <span
+                                    x-text="lang === 'ne' ? 'विस्तृत जीवनी र राजनीतिक यात्रा हेर्नुहोस्' : 'Read Full Presidential Biography'"></span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -463,8 +480,11 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Development Projects'"></span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'प्रमुख विकास आयोजनाहरू' : 'Constituency Development Dossier'"></h2>
-                    <p class="section-subtitle" x-text="lang === 'ne' ? 'सडक, चिया प्रशोधन, खानेपानी र अस्पताल स्तरोन्नति' : 'High-impact infrastructure, agriculture, and healthcare initiatives in Ilam-1'"></p>
+                    <h2 class="section-title"
+                        x-text="lang === 'ne' ? 'प्रमुख विकास आयोजनाहरू' : 'Constituency Development Dossier'"></h2>
+                    <p class="section-subtitle"
+                        x-text="lang === 'ne' ? 'सडक, चिया प्रशोधन, खानेपानी र अस्पताल स्तरोन्नति' : 'High-impact infrastructure, agriculture, and healthcare initiatives in Ilam-1'">
+                    </p>
                     <div class="section-divider"></div>
                 </div>
 
@@ -473,23 +493,32 @@
                     <template x-for="project in projects.slice(0, 4)" :key="project.id">
                         <div class="editorial-project-row">
                             <div>
-                                <div class="editorial-project-sector" x-text="lang === 'ne' ? project.categoryNe : project.categoryEn"></div>
-                                <h4 class="editorial-project-name" x-text="lang === 'ne' ? project.titleNe : project.titleEn"></h4>
-                                <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-map-pin" style="color: var(--accent-red);"></i> <span x-text="lang === 'ne' ? project.locationNe : project.locationEn"></span></span>
+                                <div class="editorial-project-sector"
+                                    x-text="lang === 'ne' ? project.categoryNe : project.categoryEn"></div>
+                                <h4 class="editorial-project-name"
+                                    x-text="lang === 'ne' ? project.titleNe : project.titleEn"></h4>
+                                <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-map-pin"
+                                        style="color: var(--accent-red);"></i> <span
+                                        x-text="lang === 'ne' ? project.locationNe : project.locationEn"></span></span>
                             </div>
                             <div>
-                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;" x-text="lang === 'ne' ? 'बजेट विनियोजन' : 'Budget'"></span>
-                                <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 900; color: var(--parliament-blue);" x-text="lang === 'ne' ? project.budgetNe : project.budgetEn"></div>
+                                <span
+                                    style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;"
+                                    x-text="lang === 'ne' ? 'बजेट विनियोजन' : 'Budget'"></span>
+                                <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 900; color: var(--parliament-blue);"
+                                    x-text="lang === 'ne' ? project.budgetNe : project.budgetEn"></div>
                             </div>
                             <div>
-                                <span class="project-status-tag" :class="project.progress === 100 ? 'status-completed' : 'status-progress'"
-                                      x-text="lang === 'ne' ? project.statusNe : project.statusEn"></span>
+                                <span class="project-status-tag"
+                                    :class="project.progress === 100 ? 'status-completed' : 'status-progress'"
+                                    x-text="lang === 'ne' ? project.statusNe : project.statusEn"></span>
                             </div>
                             <div>
                                 <div class="progress-bar-wrap" style="margin-top: 0;">
                                     <div class="progress-label-row">
                                         <span x-text="lang === 'ne' ? 'भौतिक प्रगति' : 'Physical Progress'"></span>
-                                        <span x-text="project.progress + '%'" style="font-weight: 800; color: var(--parliament-blue);"></span>
+                                        <span x-text="project.progress + '%'"
+                                            style="font-weight: 800; color: var(--parliament-blue);"></span>
                                     </div>
                                     <div class="progress-track" style="height: 8px;">
                                         <div class="progress-fill" :style="'width: ' + project.progress + '%'"></div>
@@ -502,7 +531,8 @@
 
                 <div style="text-align: center; margin-top: 3.5rem;">
                     <a href="projects.html" class="btn btn-primary btn-lg">
-                        <span x-text="lang === 'ne' ? 'सबै विकास आयोजना र बजेट विवरण हेर्नुहोस्' : 'View Full Projects & Budget Ledger'"></span>
+                        <span
+                            x-text="lang === 'ne' ? 'सबै विकास आयोजना र बजेट विवरण हेर्नुहोस्' : 'View Full Projects & Budget Ledger'"></span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -513,9 +543,14 @@
         <section class="section" id="media">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag" x-text="lang === 'ne' ? 'संसदीय गतिविधि र मिडिया' : 'Media & Speeches'"></span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'संसदीय सम्बोधन तथा भिडियोहरू' : 'Keynote Speeches & Parliamentary Theater'"></h2>
-                    <p class="section-subtitle" x-text="lang === 'ne' ? 'सदन बैठक, बजेट छलफल, शून्य समय र अन्तरवार्ताहरू' : 'Watch keynote addresses, policy debates & national media appearances'"></p>
+                    <span class="section-tag"
+                        x-text="lang === 'ne' ? 'संसदीय गतिविधि र मिडिया' : 'Media & Speeches'"></span>
+                    <h2 class="section-title"
+                        x-text="lang === 'ne' ? 'संसदीय सम्बोधन तथा भिडियोहरू' : 'Keynote Speeches & Parliamentary Theater'">
+                    </h2>
+                    <p class="section-subtitle"
+                        x-text="lang === 'ne' ? 'सदन बैठक, बजेट छलफल, शून्य समय र अन्तरवार्ताहरू' : 'Watch keynote addresses, policy debates & national media appearances'">
+                    </p>
                     <div class="section-divider"></div>
                 </div>
 
@@ -523,16 +558,21 @@
                 <div class="editorial-theater-grid">
                     <!-- Featured Cinematic Video -->
                     <div class="editorial-theater-featured" @click="openVideoModal(mediaItems[0])">
-                        <img :src="mediaItems[0].thumbnail" :alt="mediaItems[0].titleEn" class="editorial-theater-thumb">
+                        <img :src="mediaItems[0].thumbnail" :alt="mediaItems[0].titleEn"
+                            class="editorial-theater-thumb">
                         <div class="editorial-theater-overlay">
-                            <span class="gallery-category-pill" style="margin-bottom: 0.75rem;" x-text="lang === 'ne' ? 'मुख्य संसदीय सम्बोधन' : 'Featured Address'"></span>
+                            <span class="gallery-category-pill" style="margin-bottom: 0.75rem;"
+                                x-text="lang === 'ne' ? 'मुख्य संसदीय सम्बोधन' : 'Featured Address'"></span>
                             <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: #ffffff; line-height: 1.35; margin-bottom: 0.5rem;"
                                 x-text="lang === 'ne' ? mediaItems[0].titleNe : mediaItems[0].titleEn"></h3>
                             <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 1.25rem;"
-                               x-text="lang === 'ne' ? mediaItems[0].summaryNe : mediaItems[0].summaryEn"></p>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; color: #ffffff; font-weight: 800;">
-                                <div class="play-circle" style="width: 44px; height: 44px; font-size: 1rem;"><i class="fas fa-play"></i></div>
-                                <span x-text="lang === 'ne' ? 'अहिले भिडियो हेर्नुहोस्' : 'Watch Parliamentary Video'"></span>
+                                x-text="lang === 'ne' ? mediaItems[0].summaryNe : mediaItems[0].summaryEn"></p>
+                            <div
+                                style="display: flex; align-items: center; gap: 0.75rem; color: #ffffff; font-weight: 800;">
+                                <div class="play-circle" style="width: 44px; height: 44px; font-size: 1rem;"><i
+                                        class="fas fa-play"></i></div>
+                                <span
+                                    x-text="lang === 'ne' ? 'अहिले भिडियो हेर्नुहोस्' : 'Watch Parliamentary Video'"></span>
                             </div>
                         </div>
                     </div>
@@ -542,10 +582,13 @@
                         <template x-for="item in mediaItems.slice(1, 5)" :key="item.id">
                             <div class="editorial-playlist-item" @click="openVideoModal(item)">
                                 <div>
-                                    <div class="editorial-playlist-date" x-text="lang === 'ne' ? item.dateNe : item.dateEn"></div>
-                                    <h4 class="editorial-playlist-title" x-text="lang === 'ne' ? item.titleNe : item.titleEn"></h4>
+                                    <div class="editorial-playlist-date"
+                                        x-text="lang === 'ne' ? item.dateNe : item.dateEn"></div>
+                                    <h4 class="editorial-playlist-title"
+                                        x-text="lang === 'ne' ? item.titleNe : item.titleEn"></h4>
                                 </div>
-                                <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-parliament-subtle); color: var(--parliament-blue); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0;">
+                                <div
+                                    style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-parliament-subtle); color: var(--parliament-blue); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0;">
                                     <i class="fas fa-play"></i>
                                 </div>
                             </div>
@@ -555,7 +598,8 @@
 
                 <div style="text-align: center; margin-top: 3.5rem;">
                     <a href="media.html" class="btn btn-primary btn-lg">
-                        <span x-text="lang === 'ne' ? 'सबै संसदीय भिडियो तथा भाषणहरू हेर्नुहोस्' : 'Explore All Speeches & Media Archive'"></span>
+                        <span
+                            x-text="lang === 'ne' ? 'सबै संसदीय भिडियो तथा भाषणहरू हेर्नुहोस्' : 'Explore All Speeches & Media Archive'"></span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -567,9 +611,13 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag" x-text="lang === 'ne' ? 'फोटो ग्यालरी' : 'Photo Gallery'"></span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'तस्विरमा जनप्रतिनिधि गतिविधि' : 'Moments in Action & Public Service'"></h2>
-                    <p class="section-subtitle" x-text="lang === 'ne' ? 'संसद भवन, स्थलगत अनुगमन, जनतासँग भेटघाट र साँस्कृतिक उत्सवहरू' : 'Moments from parliamentary sessions, community meetings & field site visits'"></p>
-                    
+                    <h2 class="section-title"
+                        x-text="lang === 'ne' ? 'तस्विरमा जनप्रतिनिधि गतिविधि' : 'Moments in Action & Public Service'">
+                    </h2>
+                    <p class="section-subtitle"
+                        x-text="lang === 'ne' ? 'संसद भवन, स्थलगत अनुगमन, जनतासँग भेटघाट र साँस्कृतिक उत्सवहरू' : 'Moments from parliamentary sessions, community meetings & field site visits'">
+                    </p>
+
                     <!-- 4 Stars Divider -->
                     <div class="nc-stars-divider">
                         <div class="nc-star-line"></div>
@@ -591,9 +639,12 @@
                             <img :src="photo.thumb" :alt="photo.titleEn" class="gallery-marquee-img" loading="lazy">
                             <div class="gallery-marquee-gradient"></div>
                             <div class="gallery-marquee-content">
-                                <span class="gallery-category-pill" x-text="lang === 'ne' ? photo.categoryNe : photo.categoryEn"></span>
-                                <h4 class="gallery-marquee-title" x-text="lang === 'ne' ? photo.titleNe : photo.titleEn"></h4>
-                                <p class="gallery-marquee-desc" x-text="lang === 'ne' ? photo.captionNe : photo.captionEn"></p>
+                                <span class="gallery-category-pill"
+                                    x-text="lang === 'ne' ? photo.categoryNe : photo.categoryEn"></span>
+                                <h4 class="gallery-marquee-title"
+                                    x-text="lang === 'ne' ? photo.titleNe : photo.titleEn"></h4>
+                                <p class="gallery-marquee-desc"
+                                    x-text="lang === 'ne' ? photo.captionNe : photo.captionEn"></p>
                             </div>
                             <div class="gallery-marquee-badge"><i class="fas fa-expand"></i></div>
                         </div>
@@ -604,9 +655,12 @@
                             <img :src="photo.thumb" :alt="photo.titleEn" class="gallery-marquee-img" loading="lazy">
                             <div class="gallery-marquee-gradient"></div>
                             <div class="gallery-marquee-content">
-                                <span class="gallery-category-pill" x-text="lang === 'ne' ? photo.categoryNe : photo.categoryEn"></span>
-                                <h4 class="gallery-marquee-title" x-text="lang === 'ne' ? photo.titleNe : photo.titleEn"></h4>
-                                <p class="gallery-marquee-desc" x-text="lang === 'ne' ? photo.captionNe : photo.captionEn"></p>
+                                <span class="gallery-category-pill"
+                                    x-text="lang === 'ne' ? photo.categoryNe : photo.categoryEn"></span>
+                                <h4 class="gallery-marquee-title"
+                                    x-text="lang === 'ne' ? photo.titleNe : photo.titleEn"></h4>
+                                <p class="gallery-marquee-desc"
+                                    x-text="lang === 'ne' ? photo.captionNe : photo.captionEn"></p>
                             </div>
                             <div class="gallery-marquee-badge"><i class="fas fa-expand"></i></div>
                         </div>
@@ -616,7 +670,8 @@
 
             <div style="text-align: center; margin-top: 2.75rem;">
                 <a href="media.html" class="btn btn-primary btn-lg">
-                    <span x-text="lang === 'ne' ? 'पूरा फोटो ग्यालरी तथा भिडियो हेर्नुहोस्' : 'View Full Image Gallery & Speeches'"></span>
+                    <span
+                        x-text="lang === 'ne' ? 'पूरा फोटो ग्यालरी तथा भिडियो हेर्नुहोस्' : 'View Full Image Gallery & Speeches'"></span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -627,25 +682,30 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag" x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency'"></span>
-                    <h2 class="section-title" x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १' : 'Ilam Constituency No. 1'"></h2>
-                    <p class="section-subtitle" x-text="lang === 'ne' ? 'सन्दकपुर देखि माई नदीसम्म, चिया र प्राकृतिक सौन्दर्यको भूमि' : 'From Sandakpur peak (3,636m) to the scenic tea gardens of Mai basin'"></p>
+                    <h2 class="section-title"
+                        x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १' : 'Ilam Constituency No. 1'"></h2>
+                    <p class="section-subtitle"
+                        x-text="lang === 'ne' ? 'सन्दकपुर देखि माई नदीसम्म, चिया र प्राकृतिक सौन्दर्यको भूमि' : 'From Sandakpur peak (3,636m) to the scenic tea gardens of Mai basin'">
+                    </p>
                     <div class="section-divider"></div>
                 </div>
 
                 <div class="constituency-grid">
                     <div>
                         <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem;"
-                            x-text="lang === 'ne' ? 'इलामको इलम: चिया, अलैंची र सम्भावनाको भूमि' : 'Rich Heritage, Orthodox Tea & Agricultural Abundance'"></h3>
-                        
+                            x-text="lang === 'ne' ? 'इलामको इलम: चिया, अलैंची र सम्भावनाको भूमि' : 'Rich Heritage, Orthodox Tea & Agricultural Abundance'">
+                        </h3>
+
                         <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem;"
-                           x-text="lang === 'ne' 
+                            x-text="lang === 'ne' 
                             ? 'इलाम–१ कोशी प्रदेशको पूर्वी पहाडी भेगमा अवस्थित अद्वितीय भूगोल हो। सन्दकपुरको ३,६३६ मिटर उचाइदेखि माई नदीको फाँटसम्म फैलिएको यस क्षेत्रमा चिया बगान, अलैंची खेती, अदुवा र जैविक विविधता प्रमुख पहिचान हुन्।'
                             : 'Ilam-1 features a majestic landscape extending from Sandakpur peak (3,636m) bordering India to the fertile basin of Mai River. World-famous orthodox tea, high-grade cardamom, and pristine wetlands define this scenic area.'">
                         </p>
 
                         <div style="margin-top: 1.5rem;">
                             <a href="constituency.html" class="btn btn-primary">
-                                <span x-text="lang === 'ne' ? 'निर्वाचन क्षेत्रको विस्तृत नक्सा र विवरण' : 'Explore Full Constituency Profile'"></span>
+                                <span
+                                    x-text="lang === 'ne' ? 'निर्वाचन क्षेत्रको विस्तृत नक्सा र विवरण' : 'Explore Full Constituency Profile'"></span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -653,7 +713,7 @@
 
                     <div class="constituency-map-frame">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Ilam1PratinidhiSabha.svg/500px-Ilam1PratinidhiSabha.svg.png"
-                             alt="Ilam Constituency Map" class="constituency-map-img">
+                            alt="Ilam Constituency Map" class="constituency-map-img">
                     </div>
                 </div>
             </div>
@@ -662,18 +722,24 @@
         <!-- Citizen Grievance Call to Action Banner -->
         <section class="section section-muted" style="text-align: center; padding: 4rem 0;">
             <div class="container">
-                <div style="background: linear-gradient(135deg, #07172b, #0f2c59); color: #ffffff; padding: 3.5rem 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); max-width: 900px; margin: 0 auto;">
-                    <div style="font-size: 2.5rem; color: #fbbf24; margin-bottom: 1rem;"><i class="fas fa-headset"></i></div>
+                <div
+                    style="background: linear-gradient(135deg, #07172b, #0f2c59); color: #ffffff; padding: 3.5rem 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); max-width: 900px; margin: 0 auto;">
+                    <div style="font-size: 2.5rem; color: #fbbf24; margin-bottom: 1rem;"><i class="fas fa-headset"></i>
+                    </div>
                     <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem;"
-                        x-text="lang === 'ne' ? 'आफ्ना समस्या सिधै सांसद सचिवालयमा दर्ता गर्नुहोस्' : 'Have a Public Grievance or Community Issue?'"></h2>
+                        x-text="lang === 'ne' ? 'आफ्ना समस्या सिधै सांसद सचिवालयमा दर्ता गर्नुहोस्' : 'Have a Public Grievance or Community Issue?'">
+                    </h2>
                     <p style="font-size: 1.05rem; color: #cbd5e1; max-width: 650px; margin: 0 auto 2rem auto; line-height: 1.6;"
-                       x-text="lang === 'ne' ? 'सडक, खानेपानी, शिक्षा, स्वास्थ्य तथा कृषि सम्बन्धी कुनै पनि समस्या अनलाइन दर्ता गरी ट्र्याक गर्नुहोस्।' : 'Register local infrastructure, water, agriculture, or civic issues online and receive a tracking ticket immediately.'"></p>
+                        x-text="lang === 'ne' ? 'सडक, खानेपानी, शिक्षा, स्वास्थ्य तथा कृषि सम्बन्धी कुनै पनि समस्या अनलाइन दर्ता गरी ट्र्याक गर्नुहोस्।' : 'Register local infrastructure, water, agriculture, or civic issues online and receive a tracking ticket immediately.'">
+                    </p>
                     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                         <a href="gunaso.html" class="btn btn-accent btn-lg">
                             <i class="fas fa-file-signature"></i>
-                            <span x-text="lang === 'ne' ? 'जनगुनासो पोर्टल खोल्नुहोस्' : 'Open Grievance Portal'"></span>
+                            <span
+                                x-text="lang === 'ne' ? 'जनगुनासो पोर्टल खोल्नुहोस्' : 'Open Grievance Portal'"></span>
                         </a>
-                        <a href="contact.html" class="btn btn-outline btn-lg" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+                        <a href="contact.html" class="btn btn-outline btn-lg"
+                            style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
                             <i class="fas fa-envelope"></i>
                             <span x-text="lang === 'ne' ? 'सम्पर्क सचिवालय' : 'Contact Office'"></span>
                         </a>
@@ -694,17 +760,22 @@
                 <div>
                     <div class="footer-brand-logo">
                         <img :src="profile.emblemUrl" alt="Emblem" class="footer-emblem"
-                             onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+                            onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
                         <div class="footer-brand-text">
                             <h3 x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
-                            <p x-text="lang === 'ne' ? profile.roleNe + ', ' + profile.constituencyNe : profile.roleEn + ', ' + profile.constituencyEn"></p>
+                            <p
+                                x-text="lang === 'ne' ? profile.roleNe + ', ' + profile.constituencyNe : profile.roleEn + ', ' + profile.constituencyEn">
+                            </p>
                         </div>
                     </div>
                     <p class="footer-desc" x-text="lang === 'ne' ? profile.bioNe : profile.bioEn"></p>
                     <div class="footer-social-links">
-                        <a :href="profile.social.facebook" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a :href="profile.social.twitter" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
-                        <a :href="profile.social.instagram" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a :href="profile.social.facebook" target="_blank" rel="noopener" class="social-btn"
+                            aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a :href="profile.social.twitter" target="_blank" rel="noopener" class="social-btn"
+                            aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                        <a :href="profile.social.instagram" target="_blank" rel="noopener" class="social-btn"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
@@ -712,13 +783,19 @@
                 <div class="footer-col">
                     <h4 x-text="lang === 'ne' ? 'द्रुत पृष्ठहरू' : 'Pages'"></h4>
                     <ul class="footer-links">
-                        <li><a href="about.html" x-text="lang === 'ne' ? 'परिचय तथा दृष्टिकोण' : 'About & Journey'"></a></li>
-                        <li><a href="projects.html" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Tracker'"></a></li>
-                        <li><a href="media.html" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Speeches & Media'"></a></li>
+                        <li><a href="about.html" x-text="lang === 'ne' ? 'परिचय तथा दृष्टिकोण' : 'About & Journey'"></a>
+                        </li>
+                        <li><a href="projects.html" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects Tracker'"></a>
+                        </li>
+                        <li><a href="media.html" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Speeches & Media'"></a>
+                        </li>
                         <li><a href="gallery.html" x-text="lang === 'ne' ? 'फोटो ग्यालरी' : 'Image Gallery'"></a></li>
-                        <li><a href="constituency.html" x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency Profile'"></a></li>
-                        <li><a href="gunaso.html" x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></a></li>
-                        <li><a href="contact.html" x-text="lang === 'ne' ? 'सम्पर्क कार्यालय' : 'Contact Secretariat'"></a></li>
+                        <li><a href="constituency.html"
+                                x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency Profile'"></a></li>
+                        <li><a href="gunaso.html" x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></a>
+                        </li>
+                        <li><a href="contact.html"
+                                x-text="lang === 'ne' ? 'सम्पर्क कार्यालय' : 'Contact Secretariat'"></a></li>
                     </ul>
                 </div>
 
@@ -726,45 +803,58 @@
                 <div class="footer-col">
                     <h4 x-text="lang === 'ne' ? 'सरकारी तथा संसदीय पोर्टल' : 'Official Portals'"></h4>
                     <ul class="footer-links">
-                        <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संसद)' : 'Federal Parliament'"></a></li>
-                        <li><a href="https://nepal.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाल सरकार आधिकारिक पोर्टल' : 'Government of Nepal'"></a></li>
-                        <li><a href="https://nepalicongress.org" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाली कांग्रेस' : 'Nepali Congress'"></a></li>
-                        <li><a href="https://koshi.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'कोशी प्रदेश सरकार' : 'Koshi Province Gov.'"></a></li>
-                        <li><a href="https://ilam.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'इलाम जिल्ला समन्वय' : 'Ilam District Portal'"></a></li>
+                        <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener"
+                                x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संसद)' : 'Federal Parliament'"></a></li>
+                        <li><a href="https://nepal.gov.np" target="_blank" rel="noopener"
+                                x-text="lang === 'ne' ? 'नेपाल सरकार आधिकारिक पोर्टल' : 'Government of Nepal'"></a></li>
+                        <li><a href="https://nepalicongress.org" target="_blank" rel="noopener"
+                                x-text="lang === 'ne' ? 'नेपाली कांग्रेस' : 'Nepali Congress'"></a></li>
+                        <li><a href="https://koshi.gov.np" target="_blank" rel="noopener"
+                                x-text="lang === 'ne' ? 'कोशी प्रदेश सरकार' : 'Koshi Province Gov.'"></a></li>
+                        <li><a href="https://ilam.gov.np" target="_blank" rel="noopener"
+                                x-text="lang === 'ne' ? 'इलाम जिल्ला समन्वय' : 'Ilam District Portal'"></a></li>
                     </ul>
                 </div>
 
                 <!-- Liaison Office Summary -->
                 <div class="footer-col">
                     <h4 x-text="lang === 'ne' ? 'सम्पर्क सचिवालय' : 'Office Liaison'"></h4>
-                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-location-dot"></i> <span x-text="profile.centralOffice"></span></p>
-                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> <span x-text="profile.phone"></span></p>
-                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> <span x-text="profile.email"></span></p>
-                    <p style="font-size: 0.85rem; color: #fbbf24;"><i class="fas fa-clock"></i> <span x-text="lang === 'ne' ? profile.officeHoursNe : profile.officeHoursEn"></span></p>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i
+                            class="fas fa-location-dot"></i> <span x-text="profile.centralOffice"></span></p>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i>
+                        <span x-text="profile.phone"></span>
+                    </p>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i
+                            class="fas fa-envelope"></i> <span x-text="profile.email"></span></p>
+                    <p style="font-size: 0.85rem; color: #fbbf24;"><i class="fas fa-clock"></i> <span
+                            x-text="lang === 'ne' ? profile.officeHoursNe : profile.officeHoursEn"></span></p>
                 </div>
             </div>
 
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <div>
-                    <span x-text="'© 2026 ' + (lang === 'ne' ? profile.nameNe : profile.nameEn) + ' — ' + (lang === 'ne' ? 'प्रतिनिधि सभा सदस्य, इलाम–१। सर्वाधिकार सुरक्षित।' : 'Member of Parliament, Ilam-1. All rights reserved.')"></span>
+                    <span
+                        x-text="'© 2026 ' + (lang === 'ne' ? profile.nameNe : profile.nameEn) + ' — ' + (lang === 'ne' ? 'प्रतिनिधि सभा सदस्य, इलाम–१। सर्वाधिकार सुरक्षित।' : 'Member of Parliament, Ilam-1. All rights reserved.')"></span>
                 </div>
                 <div>
-                    <span x-text="lang === 'ne' ? 'पारदर्शिता, जनउत्तरदायित्व र लोकतान्त्रिक मूल्यमा आधारित' : 'Committed to Transparency, Good Governance & Public Service'"></span>
+                    <span
+                        x-text="lang === 'ne' ? 'पारदर्शिता, जनउत्तरदायित्व र लोकतान्त्रिक मूल्यमा आधारित' : 'Committed to Transparency, Good Governance & Public Service'"></span>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Video & Appointment Modals -->
-    <div class="modal-backdrop" x-show="videoModal.isOpen" x-cloak style="display: none;" @click.self="closeVideoModal()">
+    <div class="modal-backdrop" x-show="videoModal.isOpen" x-cloak style="display: none;"
+        @click.self="closeVideoModal()">
         <div class="modal-container video-modal-container">
             <button class="modal-close-btn" @click="closeVideoModal()"><i class="fas fa-times"></i></button>
             <div class="video-frame-wrap">
                 <template x-if="videoModal.isOpen">
                     <iframe :src="'https://www.youtube-nocookie.com/embed/' + videoModal.youtubeId + '?autoplay=1'"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 </template>
             </div>
             <div class="video-modal-info">
@@ -774,36 +864,48 @@
         </div>
     </div>
 
-    <div class="modal-backdrop" x-show="galleryModal.isOpen" x-cloak style="display: none;" @click.self="closeGalleryModal()">
+    <div class="modal-backdrop" x-show="galleryModal.isOpen" x-cloak style="display: none;"
+        @click.self="closeGalleryModal()">
         <div class="gallery-modal-container">
             <button class="modal-close-btn" @click="closeGalleryModal()"><i class="fas fa-times"></i></button>
             <div class="gallery-modal-stage">
-                <button class="gallery-nav-btn prev" @click="prevGalleryImage()" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                <button class="gallery-nav-btn prev" @click="prevGalleryImage()" aria-label="Previous"><i
+                        class="fas fa-chevron-left"></i></button>
                 <template x-if="galleryModal.activeList.length > 0">
                     <img :src="galleryModal.activeList[galleryModal.currentIndex].image"
-                         :alt="galleryModal.activeList[galleryModal.currentIndex].titleEn"
-                         class="gallery-modal-img">
+                        :alt="galleryModal.activeList[galleryModal.currentIndex].titleEn" class="gallery-modal-img">
                 </template>
-                <button class="gallery-nav-btn next" @click="nextGalleryImage()" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+                <button class="gallery-nav-btn next" @click="nextGalleryImage()" aria-label="Next"><i
+                        class="fas fa-chevron-right"></i></button>
             </div>
             <template x-if="galleryModal.activeList.length > 0">
                 <div class="gallery-modal-caption-box">
                     <div class="gallery-caption-text">
-                        <h4 x-text="lang === 'ne' ? galleryModal.activeList[galleryModal.currentIndex].titleNe : galleryModal.activeList[galleryModal.currentIndex].titleEn"></h4>
-                        <p x-text="lang === 'ne' ? galleryModal.activeList[galleryModal.currentIndex].captionNe : galleryModal.activeList[galleryModal.currentIndex].captionEn"></p>
+                        <h4
+                            x-text="lang === 'ne' ? galleryModal.activeList[galleryModal.currentIndex].titleNe : galleryModal.activeList[galleryModal.currentIndex].titleEn">
+                        </h4>
+                        <p
+                            x-text="lang === 'ne' ? galleryModal.activeList[galleryModal.currentIndex].captionNe : galleryModal.activeList[galleryModal.currentIndex].captionEn">
+                        </p>
                     </div>
-                    <div class="gallery-counter-pill" x-text="(galleryModal.currentIndex + 1) + ' / ' + galleryModal.activeList.length"></div>
+                    <div class="gallery-counter-pill"
+                        x-text="(galleryModal.currentIndex + 1) + ' / ' + galleryModal.activeList.length"></div>
                 </div>
             </template>
         </div>
     </div>
 
-    <div class="modal-backdrop" x-show="appointmentModal.isOpen" x-cloak style="display: none;" @click.self="appointmentModal.isOpen = false">
+    <div class="modal-backdrop" x-show="appointmentModal.isOpen" x-cloak style="display: none;"
+        @click.self="appointmentModal.isOpen = false">
         <div class="modal-container" style="max-width: 580px;">
-            <button class="modal-close-btn" @click="appointmentModal.isOpen = false"><i class="fas fa-times"></i></button>
+            <button class="modal-close-btn" @click="appointmentModal.isOpen = false"><i
+                    class="fas fa-times"></i></button>
             <div class="appointment-modal-body">
-                <h3 class="appointment-modal-title" x-text="lang === 'ne' ? 'भेटघाट समय अनुरोध फारम' : 'Request MP Appointment'"></h3>
-                <p class="appointment-modal-desc" x-text="lang === 'ne' ? 'सांसद तथा सचिवालयसँग भेटघाटका लागि विवरण भर्नुहोस्:' : 'Fill in the schedule request for official meetings:'"></p>
+                <h3 class="appointment-modal-title"
+                    x-text="lang === 'ne' ? 'भेटघाट समय अनुरोध फारम' : 'Request MP Appointment'"></h3>
+                <p class="appointment-modal-desc"
+                    x-text="lang === 'ne' ? 'सांसद तथा सचिवालयसँग भेटघाटका लागि विवरण भर्नुहोस्:' : 'Fill in the schedule request for official meetings:'">
+                </p>
                 <form @submit.prevent="submitAppointment()">
                     <div class="form-group">
                         <label class="form-label" x-text="lang === 'ne' ? 'पूरा नाम *' : 'Full Name *'"></label>
@@ -816,7 +918,8 @@
                     <div class="form-group">
                         <label class="form-label" x-text="lang === 'ne' ? 'भेटघाट स्थान' : 'Meeting Office'"></label>
                         <select class="form-select" x-model="appointmentModal.location">
-                            <option value="Constituency Office (Ilam)">Constituency Office (इलाम सम्पर्क कार्यालय)</option>
+                            <option value="Constituency Office (Ilam)">Constituency Office (इलाम सम्पर्क कार्यालय)
+                            </option>
                             <option value="Central Parliament (Kathmandu)">Central Parliament Office (काठमाडौँ)</option>
                             <option value="Virtual Video Meeting">Virtual / Video Call (अनलाइन संवाद)</option>
                         </select>
@@ -826,7 +929,8 @@
                         <input type="date" class="form-input" x-model="appointmentModal.date" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" x-text="lang === 'ne' ? 'भेटघाटको मुख्य उद्देश्य *' : 'Purpose of Meeting *'"></label>
+                        <label class="form-label"
+                            x-text="lang === 'ne' ? 'भेटघाटको मुख्य उद्देश्य *' : 'Purpose of Meeting *'"></label>
                         <textarea class="form-textarea" rows="3" x-model="appointmentModal.purpose" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">
@@ -839,4 +943,5 @@
     </div>
 
 </body>
+
 </html>
