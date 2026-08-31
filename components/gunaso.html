@@ -1,0 +1,166 @@
+<!-- Citizen Service & Grievance Portal (जनगुनासो) Component -->
+<section class="section section-muted" id="gunaso">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag" x-text="lang === 'ne' ? 'नागरिक सेवा' : 'Citizen Service Hub'"></span>
+            <h2 class="section-title" x-text="lang === 'ne' ? 'अनलाइन जनगुनासो तथा सुझाव पोर्टल' : 'Citizen Grievance & Service Portal'"></h2>
+            <p class="section-subtitle" x-text="lang === 'ne' ? 'आफ्ना गाउँ-टोलका समस्या सिधै सांसद सचिवालयमा दर्ता गर्नुहोस् र ट्र्याक गर्नुहोस्' : 'Direct Public Grievance Submission with Instant Ticket Tracking'"></p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="gunaso-wrapper">
+            <div class="gunaso-grid">
+                
+                <!-- Left: Submission Form or Success View -->
+                <div>
+                    <template x-if="!gunaso.submitted">
+                        <div>
+                            <h3 class="gunaso-form-title" x-text="lang === 'ne' ? 'नयाँ जनगुनासो दर्ता गर्नुहोस्' : 'Submit a Public Concern / Issue'"></h3>
+                            <p class="gunaso-form-desc" x-text="lang === 'ne' ? 'सडक, बिजुली, खानेपानी, स्वास्थ्य वा प्रशासनिक समस्या यहाँ लेख्नुहोस्।' : 'Fill out the form below. A tracking ticket ID will be generated immediately.'"></p>
+
+                            <form @submit.prevent="submitGunasoForm()">
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label class="form-label" x-text="lang === 'ne' ? 'तपाईंको पूरा नाम *' : 'Full Name *'"></label>
+                                        <input type="text" class="form-input" x-model="gunaso.form.name" required
+                                               :placeholder="lang === 'ne' ? 'उदा: राम बहादुर राई' : 'e.g. Ram Bahadur Rai'">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" x-text="lang === 'ne' ? 'मोबाइल नम्बर *' : 'Mobile Phone *'"></label>
+                                        <input type="tel" class="form-input" x-model="gunaso.form.phone" required
+                                               :placeholder="lang === 'ne' ? '९८XXXXXXXX' : '98XXXXXXXX'">
+                                    </div>
+                                </div>
+
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label class="form-label" x-text="lang === 'ne' ? 'स्थानीय तह / पालिका *' : 'Municipality / Rural Mun. *'"></label>
+                                        <select class="form-select" x-model="gunaso.form.municipality">
+                                            <option value="Ilam Municipality">Ilam Municipality (इलाम नगरपालिका)</option>
+                                            <option value="Suryodaya Municipality">Suryodaya Municipality (सूर्योदय नगरपालिका)</option>
+                                            <option value="Mai Municipality">Mai Municipality (माई नगरपालिका)</option>
+                                            <option value="Sandakpur Rural Municipality">Sandakpur Rural Mun. (सन्दकपुर गाउँपालिका)</option>
+                                            <option value="Maijogmai Rural Municipality">Maijogmai Rural Mun. (माइजोगमाई गाउँपालिका)</option>
+                                            <option value="Rong Rural Municipality">Rong Rural Mun. (रोङ गाउँपालिका)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" x-text="lang === 'ne' ? 'वडा नम्बर' : 'Ward Number'"></label>
+                                        <input type="text" class="form-input" x-model="gunaso.form.ward" placeholder="1 - 14">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" x-text="lang === 'ne' ? 'गुनासोको विषय / क्षेत्र *' : 'Issue Category *'"></label>
+                                    <select class="form-select" x-model="gunaso.form.category">
+                                        <option value="Infrastructure & Roads">Infrastructure & Roads (सडक, पुल तथा यातायात)</option>
+                                        <option value="Drinking Water & Electricity">Drinking Water & Electricity (खानेपानी तथा विद्युत)</option>
+                                        <option value="Agriculture & Tea Farming">Agriculture & Tea Farming (कृषि, चिया तथा मलखाद)</option>
+                                        <option value="Health & Hospital Services">Health & Hospital Services (स्वास्थ्य तथा अस्पताल)</option>
+                                        <option value="Education & School Facilities">Education & Schools (शिक्षा तथा विद्यालय)</option>
+                                        <option value="Administrative Governance">Administrative Governance (प्रशासनिक तथा अन्य)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" x-text="lang === 'ne' ? 'गुनासोको विस्तृत विवरण *' : 'Detailed Description *'"></label>
+                                    <textarea class="form-textarea" rows="4" x-model="gunaso.form.description" required
+                                              :placeholder="lang === 'ne' ? 'समस्याको स्थान, असर र आवश्यक सहयोगको विवरण लेख्नुहोस्...' : 'Describe the exact location, context and resolution needed...'"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="checkbox-group">
+                                        <input type="checkbox" x-model="gunaso.form.isUrgent">
+                                        <span x-text="lang === 'ne' ? 'यो आकस्मिक / तत्काल ध्यानाकर्षण आवश्यक विषय हो' : 'Mark as High Priority / Urgent Case'"></span>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-accent btn-lg" style="width: 100%;">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span x-text="lang === 'ne' ? 'जनगुनासो दर्ता गर्नुहोस्' : 'Submit Grievance Ticket'"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </template>
+
+                    <!-- Success Confirmation Card -->
+                    <template x-if="gunaso.submitted">
+                        <div class="alert-success-box">
+                            <div class="alert-success-icon"><i class="fas fa-circle-check"></i></div>
+                            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;"
+                                x-text="lang === 'ne' ? 'जनगुनासो सफलतापूर्वक दर्ता भयो!' : 'Grievance Successfully Registered!'"></h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;"
+                               x-text="lang === 'ne' ? 'तपाईंको गुनासो सांसद सचिवालय तथा सम्बन्धित शाखामा पठाइएको छ। कृपया आफ्नो टिकट नम्बर सुरक्षित राख्नुहोस्:' : 'Your concern has been forwarded to the Secretariat. Please keep your Ticket ID for tracking:'"></p>
+                            
+                            <div class="ticket-display-badge" x-text="gunaso.ticketId"></div>
+
+                            <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem; justify-content: center;">
+                                <button class="btn btn-primary btn-sm" @click="gunaso.trackingInput = gunaso.ticketId; trackGunasoStatus()">
+                                    <i class="fas fa-search"></i>
+                                    <span x-text="lang === 'ne' ? 'अहिले ट्र्याक गर्नुहोस्' : 'Track Now'"></span>
+                                </button>
+                                <button class="btn btn-outline btn-sm" @click="resetGunasoForm()">
+                                    <i class="fas fa-plus"></i>
+                                    <span x-text="lang === 'ne' ? 'अर्को गुनासो दर्ता' : 'Submit Another'"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Right: Live Ticket Tracking Box -->
+                <div class="gunaso-tracker-box">
+                    <h4 class="tracker-title" x-text="lang === 'ne' ? 'गुनासो अवस्था ट्र्याक गर्नुहोस्' : 'Track Grievance Status'"></h4>
+                    <p class="tracker-desc" x-text="lang === 'ne' ? 'पहिले दर्ता गरेको टिकट नम्बर (उदा: ILM-102938) यहाँ हाल्नुहोस्:' : 'Enter your registered ticket code to check real-time progress:'"></p>
+
+                    <div class="tracker-input-group">
+                        <input type="text" class="form-input" style="text-transform: uppercase;"
+                               x-model="gunaso.trackingInput" placeholder="ILM-XXXXXX"
+                               @keyup.enter="trackGunasoStatus()">
+                        <button class="btn btn-primary" @click="trackGunasoStatus()" :disabled="gunaso.isTracking">
+                            <i class="fas" :class="gunaso.isTracking ? 'fa-spinner fa-spin' : 'fa-search'"></i>
+                        </button>
+                    </div>
+
+                    <!-- Tracking Result Display -->
+                    <template x-if="gunaso.trackResult && gunaso.trackResult !== 'NOT_FOUND'">
+                        <div class="tracker-result-card">
+                            <span class="tracker-badge-status" x-text="lang === 'ne' ? gunaso.trackResult.statusNe : gunaso.trackResult.status"></span>
+                            <div class="tracker-detail-row">
+                                <span>Ticket ID:</span>
+                                <strong x-text="gunaso.trackResult.ticketId"></strong>
+                            </div>
+                            <div class="tracker-detail-row">
+                                <span x-text="lang === 'ne' ? 'क्षेत्र / वर्ग:' : 'Category:'"></span>
+                                <strong x-text="gunaso.trackResult.category"></strong>
+                            </div>
+                            <div class="tracker-detail-row">
+                                <span x-text="lang === 'ne' ? 'सम्बन्धित अधिकारी:' : 'Assigned To:'"></span>
+                                <strong x-text="lang === 'ne' ? gunaso.trackResult.assignedOfficerNe : gunaso.trackResult.assignedOfficer"></strong>
+                            </div>
+                            <div class="tracker-detail-row">
+                                <span x-text="lang === 'ne' ? 'दर्ता मिति:' : 'Submitted Date:'"></span>
+                                <strong x-text="gunaso.trackResult.submittedDate"></strong>
+                            </div>
+                            <div class="tracker-detail-row">
+                                <span x-text="lang === 'ne' ? 'अपेक्षित सम्बोधन:' : 'Est. Resolution:'"></span>
+                                <strong x-text="gunaso.trackResult.estimatedResolution"></strong>
+                            </div>
+                        </div>
+                    </template>
+
+                    <template x-if="gunaso.trackResult === 'NOT_FOUND'">
+                        <div style="padding: 1rem; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: var(--radius-md); font-size: 0.85rem; color: #e11d48; text-align: center;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span x-text="lang === 'ne' ? 'उक्त टिकट फेला परेन। कृपया सही कोड प्रविष्ट गर्नुहोस्।' : 'No ticket found with this ID. Please check and retry.'"></span>
+                        </div>
+                    </template>
+
+                    <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-muted);">
+                        <p><i class="fas fa-shield-alt"></i> <span x-text="lang === 'ne' ? 'सबै जनगुनासोहरू सिधै संघीय संसद सचिवालयको निगरानीमा रहन्छन्।' : 'All submissions are encrypted and monitored by the Parliamentary Secretariat.'"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

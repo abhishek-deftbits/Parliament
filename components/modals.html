@@ -1,0 +1,103 @@
+<!-- Interactive Modals & Lightboxes Component -->
+<div>
+    <!-- Video Player Lightbox Modal -->
+    <div class="modal-backdrop" x-show="videoModal.isOpen" x-cloak style="display: none;" @click.self="closeVideoModal()">
+        <div class="modal-container video-modal-container">
+            <button class="modal-close-btn" @click="closeVideoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-frame-wrap">
+                <template x-if="videoModal.isOpen">
+                    <iframe :src="'https://www.youtube-nocookie.com/embed/' + videoModal.youtubeId + '?autoplay=1'"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </template>
+            </div>
+            <div class="video-modal-info">
+                <span class="video-modal-category" x-text="videoModal.category"></span>
+                <h3 class="video-modal-title" x-text="videoModal.title"></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Gallery Lightbox Modal -->
+    <div class="modal-backdrop" x-show="galleryModal.isOpen" x-cloak style="display: none;" @click.self="closeGalleryModal()">
+        <div class="gallery-modal-container">
+            <button class="modal-close-btn" @click="closeGalleryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Image Stage with Navigation -->
+            <div class="gallery-modal-stage">
+                <button class="gallery-nav-btn prev" @click="prevGalleryImage()" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <template x-if="galleryModal.activeList.length > 0">
+                    <img :src="galleryModal.activeList[galleryModal.currentIndex].image"
+                         :alt="galleryModal.activeList[galleryModal.currentIndex].titleEn"
+                         class="gallery-modal-img">
+                </template>
+
+                <button class="gallery-nav-btn next" @click="nextGalleryImage()" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Caption & Counter -->
+            <template x-if="galleryModal.activeList.length > 0">
+                <div class="gallery-modal-caption-box">
+                    <div class="gallery-caption-text">
+                        <h4 x-text="lang === 'ne' ? galleryModal.activeList[galleryModal.currentIndex].titleNe : galleryModal.activeList[galleryModal.currentIndex].titleEn"></h4>
+                        <p x-text="lang === 'ne' ? galleryModal.activeList[galleryModal.currentIndex].captionNe : galleryModal.activeList[galleryModal.currentIndex].captionEn"></p>
+                    </div>
+                    <div class="gallery-counter-pill" x-text="(galleryModal.currentIndex + 1) + ' / ' + galleryModal.activeList.length"></div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Appointment Scheduler Modal -->
+    <div class="modal-backdrop" x-show="appointmentModal.isOpen" x-cloak style="display: none;" @click.self="appointmentModal.isOpen = false">
+        <div class="modal-container" style="max-width: 580px;">
+            <button class="modal-close-btn" @click="appointmentModal.isOpen = false">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="appointment-modal-body">
+                <h3 class="appointment-modal-title" x-text="lang === 'ne' ? 'भेटघाट समय अनुरोध फारम' : 'Request MP Appointment'"></h3>
+                <p class="appointment-modal-desc" x-text="lang === 'ne' ? 'सांसद तथा सचिवालयसँग भेटघाटका लागि विवरण भर्नुहोस्:' : 'Fill in the schedule request for official meetings or community consultations:'"></p>
+
+                <form @submit.prevent="submitAppointment()">
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'पूरा नाम *' : 'Full Name *'"></label>
+                        <input type="text" class="form-input" x-model="appointmentModal.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'मोबाइल नम्बर *' : 'Mobile Number *'"></label>
+                        <input type="tel" class="form-input" x-model="appointmentModal.phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'भेटघाट स्थान' : 'Meeting Office'"></label>
+                        <select class="form-select" x-model="appointmentModal.location">
+                            <option value="Constituency Office (Ilam)">Constituency Office (इलाम सम्पर्क कार्यालय)</option>
+                            <option value="Central Parliament (Kathmandu)">Central Parliament Office (काठमाडौँ)</option>
+                            <option value="Virtual Video Meeting">Virtual / Video Call (अनलाइन संवाद)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'प्रस्तावित मिति' : 'Preferred Date'"></label>
+                        <input type="date" class="form-input" x-model="appointmentModal.date" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" x-text="lang === 'ne' ? 'भेटघाटको मुख्य उद्देश्य *' : 'Purpose of Meeting *'"></label>
+                        <textarea class="form-textarea" rows="3" x-model="appointmentModal.purpose" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-calendar-check"></i>
+                        <span x-text="lang === 'ne' ? 'अनुरोध पेस गर्नुहोस्' : 'Submit Appointment Request'"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

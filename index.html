@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ne" x-data="parliamentApp" :class="{ 'dark': theme === 'dark' }">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title x-text="lang === 'ne' ? 'माननीय निश्कल राई — प्रतिनिधि सभा सदस्य, इलाम–१' : 'Hon. Nishcal Rai — Member of Parliament, Ilam-1, Nepal'">
+        Hon. Nishcal Rai — Member of Parliament, Ilam-1
+    </title>
+    <meta name="description" content="Official website of Hon. Nishcal Rai, Member of the House of Representatives (Federal Parliament of Nepal), Ilam Constituency No. 1. Citizen services, parliamentary speeches, constituency development projects, and public grievance portal.">
+
+    <!-- Google Fonts Preconnect & Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Mukta:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Core & Component Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <!-- Structured Data & Application Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+</head>
+<body :data-lang="lang">
+
+    <!-- 1. Top Civic Bar Component -->
+    <div x-component="topbar"></div>
+
+    <!-- 2. Sticky Navigation Component -->
+    <div x-component="navbar"></div>
+
+    <!-- 3. Main Page Content Sections -->
+    <main>
+        <!-- Hero Section Component -->
+        <div x-component="hero"></div>
+
+        <!-- Stats Counter Bar Component -->
+        <div x-component="stats"></div>
+
+        <!-- Quick Services Component -->
+        <div x-component="services"></div>
+
+        <!-- About Profile Component -->
+        <div x-component="about"></div>
+
+        <!-- Journey Timeline Component -->
+        <div x-component="journey"></div>
+
+        <!-- Priorities Component -->
+        <div x-component="priorities"></div>
+
+        <!-- Development Projects Tracker Component -->
+        <div x-component="projects"></div>
+
+        <!-- Dedicated Media & Speeches Component -->
+        <div x-component="media"></div>
+
+        <!-- Dedicated Image Gallery Component -->
+        <div x-component="gallery"></div>
+
+        <!-- Constituency Profile Component -->
+        <div x-component="constituency"></div>
+
+        <!-- Citizen Grievance Portal Component -->
+        <div x-component="gunaso"></div>
+
+        <!-- Contact & Liaison Offices Component -->
+        <div x-component="contact"></div>
+    </main>
+
+    <!-- 4. Institutional Civic Footer Component -->
+    <div x-component="footer"></div>
+
+    <!-- 5. Interactive Modals & Lightboxes Component -->
+    <div x-component="modals"></div>
+
+</body>
+</html>

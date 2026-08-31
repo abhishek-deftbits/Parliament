@@ -1,0 +1,53 @@
+<!-- Constituency Development Projects Tracker Component -->
+<section class="section section-muted" id="projects">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Development Projects'"></span>
+            <h2 class="section-title" x-text="lang === 'ne' ? 'आयोजना प्रगति तथा बजेट पारदर्शिता' : 'Constituency Project & Budget Tracker'"></h2>
+            <p class="section-subtitle" x-text="lang === 'ne' ? 'इलाम–१ मा सञ्चालित रणनीतिक योजनाहरूको प्रत्यक्ष अवस्था' : 'Live Tracking of Infrastructure, Education & Agricultural Initiatives'"></p>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Project Filters -->
+        <div class="filter-tabs">
+            <button class="tab-btn" :class="{ 'active': activeProjectTab === 'all' }" @click="activeProjectTab = 'all'" x-text="lang === 'ne' ? 'सबै आयोजना' : 'All Projects'"></button>
+            <button class="tab-btn" :class="{ 'active': activeProjectTab === 'infrastructure' }" @click="activeProjectTab = 'infrastructure'" x-text="lang === 'ne' ? 'सडक र पूर्वाधार' : 'Infrastructure'"></button>
+            <button class="tab-btn" :class="{ 'active': activeProjectTab === 'agriculture' }" @click="activeProjectTab = 'agriculture'" x-text="lang === 'ne' ? 'कृषि तथा चिया' : 'Agriculture'"></button>
+            <button class="tab-btn" :class="{ 'active': activeProjectTab === 'education' }" @click="activeProjectTab = 'education'" x-text="lang === 'ne' ? 'शिक्षा तथा प्रविधि' : 'Education'"></button>
+            <button class="tab-btn" :class="{ 'active': activeProjectTab === 'health' }" @click="activeProjectTab = 'health'" x-text="lang === 'ne' ? 'स्वास्थ्य' : 'Health'"></button>
+            <button class="tab-btn" :class="{ 'active': activeProjectTab === 'tourism' }" @click="activeProjectTab = 'tourism'" x-text="lang === 'ne' ? 'पर्यटन तथा रामसार' : 'Tourism'"></button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            <template x-for="project in filteredProjects" :key="project.id">
+                <div class="project-card">
+                    <div class="project-thumb-wrap">
+                        <img :src="project.image" :alt="project.titleEn" class="project-thumb" loading="lazy">
+                        <span class="project-status-tag" :class="project.progress === 100 ? 'status-completed' : 'status-progress'"
+                              x-text="lang === 'ne' ? project.statusNe : project.statusEn"></span>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-category" x-text="lang === 'ne' ? project.categoryNe : project.categoryEn"></div>
+                        <h4 class="project-title" x-text="lang === 'ne' ? project.titleNe : project.titleEn"></h4>
+                        
+                        <div class="project-meta-row">
+                            <span><i class="fas fa-map-pin"></i> <span x-text="lang === 'ne' ? project.locationNe : project.locationEn"></span></span>
+                            <span><i class="fas fa-coins"></i> <span x-text="lang === 'ne' ? project.budgetNe : project.budgetEn"></span></span>
+                        </div>
+
+                        <div class="progress-bar-wrap">
+                            <div class="progress-label-row">
+                                <span x-text="lang === 'ne' ? 'भौतिक प्रगति' : 'Physical Progress'"></span>
+                                <span x-text="project.progress + '%'"></span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" :style="'width: ' + project.progress + '%'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,48 @@
+<!-- Civic Top Bar Component -->
+<header class="civic-top-bar">
+    <div class="container civic-top-inner">
+        <!-- Left: Parliament Seal + MP Quick Info -->
+        <a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" class="civic-left" title="House of Representatives, Nepal">
+            <img :src="profile.emblemUrl" alt="Emblem of Nepal" class="civic-emblem"
+                 onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+            <div class="civic-institution">
+                <span class="civic-rep-title" x-text="lang === 'ne' ? 'प्रतिनिधि सभा • संघीय संसद' : 'House of Representatives • Federal Parliament'"></span>
+                <span class="civic-mp-name" x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></span>
+                <span class="civic-constituency" x-text="lang === 'ne' ? profile.constituencyNe : profile.constituencyEn"></span>
+            </div>
+        </a>
+
+        <!-- Center: Dynamic News Ticker -->
+        <div class="civic-ticker">
+            <span class="ticker-label">
+                <i class="fas fa-bullhorn"></i>
+                <span x-text="lang === 'ne' ? 'ताजा समाचार' : 'Updates'"></span>
+            </span>
+            <div class="ticker-marquee">
+                <marquee scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+                    <template x-for="(news, index) in tickerNews" :key="index">
+                        <span>
+                            <a href="#media" class="ticker-item" x-text="lang === 'ne' ? news.titleNe : news.titleEn"></a>
+                            <span style="margin: 0 12px; opacity: 0.5;">•</span>
+                        </span>
+                    </template>
+                </marquee>
+            </div>
+        </div>
+
+        <!-- Right: Date, Language & Theme Controls -->
+        <div class="civic-right">
+            <div class="civic-date">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg" alt="Nepal Flag" class="civic-flag">
+                <span x-text="lang === 'ne' ? currentDateNe : currentDateEn"></span>
+            </div>
+            <div class="civic-tools">
+                <button class="lang-btn" :class="{ 'active': lang === 'ne' }" @click="setLanguage('ne')" title="नेपाली">ने</button>
+                <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLanguage('en')" title="English">EN</button>
+                <button class="theme-toggle-btn" @click="toggleTheme()" :title="theme === 'dark' ? 'Light Mode' : 'Dark Mode'">
+                    <i class="fas" :class="theme === 'dark' ? 'fa-sun' : 'fa-moon'"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

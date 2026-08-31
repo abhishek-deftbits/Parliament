@@ -1,0 +1,62 @@
+<!-- Constituency Profile Component -->
+<section class="section" id="constituency">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag" x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र परिचय' : 'Constituency Profile'"></span>
+            <h2 class="section-title" x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १' : 'Ilam Constituency No. 1'"></h2>
+            <p class="section-subtitle" x-text="lang === 'ne' ? 'सन्दकपुर देखि माई नदीसम्म, प्राकृतिक सौन्दर्य र साँस्कृतिक विविधताको संगम' : 'From the Heights of Sandakpur to the Fertile Valley of Mai River'"></p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="constituency-grid">
+            <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem;"
+                    x-text="lang === 'ne' ? 'इलामको इलम: चिया, अलैंची र सम्भावनाको भूमि' : 'Rich Heritage, Orthodox Tea & Agricultural Abundance'"></h3>
+                
+                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1rem;"
+                   x-text="lang === 'ne' 
+                    ? 'इलाम–१ कोशी प्रदेशको पूर्वी पहाडी भेगमा अवस्थित अद्वितीय भूगोल हो। सन्दकपुरको ३,६३६ मिटर उचाइदेखि माई नदीको फाँटसम्म फैलिएको यस क्षेत्रमा चिया बगान, अलैंची खेती, अदुवा, अकबरे खुर्सानी र दुग्ध उत्पादन प्रमुख आर्थिक आधार हुन्।'
+                    : 'Ilam-1 encompasses a breathtaking topography extending from Sandakpur peak (3,636m) bordering India to the fertile basin of Mai River. World-famous orthodox tea, cardamom cash-crops, kiwifruit, and rich indigenous biodiversity define this scenic constituency.'">
+                </p>
+
+                <div class="constituency-facts-grid">
+                    <div class="c-fact-card">
+                        <i class="fas fa-map-location c-fact-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'स्थान तथा प्रदेश' : 'Geographic Location'"></h5>
+                            <p x-text="lang === 'ne' ? 'इलाम जिल्ला, कोशी प्रदेश, नेपाल' : 'Ilam District, Koshi Province'"></p>
+                        </div>
+                    </div>
+                    <div class="c-fact-card">
+                        <i class="fas fa-mountain-sun c-fact-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'भौगोलिक उचाइ' : 'Altitude & Terrain'"></h5>
+                            <p x-text="lang === 'ne' ? 'सन्दकपुर (३६३६ मि.) देखि माई नदी' : 'Sandakpur (3,636m) to Mai Basin'"></p>
+                        </div>
+                    </div>
+                    <div class="c-fact-card">
+                        <i class="fas fa-mug-hot c-fact-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'प्रमुख पहिचान' : 'Constituency Specialties'"></h5>
+                            <p x-text="lang === 'ne' ? 'अर्थोडक्स चिया, कन्याम, माई पोखरी रामसार' : 'Orthodox Tea, Mai Pokhari Ramsar'"></p>
+                        </div>
+                    </div>
+                    <div class="c-fact-card">
+                        <i class="fas fa-users c-fact-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'साँस्कृतिक सौहार्द' : 'Demographics & Culture'"></h5>
+                            <p x-text="lang === 'ne' ? 'किरात, लिम्बू, राई, ब्राह्मण, क्षेत्री, दलित' : 'Multicultural & Harmonious Community'"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="constituency-map-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Ilam1PratinidhiSabha.svg/500px-Ilam1PratinidhiSabha.svg.png"
+                     alt="Ilam Constituency Map" class="constituency-map-img">
+                <p style="margin-top: 1rem; font-size: 0.85rem; font-weight: 700; color: var(--primary);"
+                   x-text="lang === 'ne' ? 'इलाम निर्वाचन क्षेत्र नं. १ — निर्वाचन नक्सा' : 'Ilam-1 Parliamentary Constituency Map'"></p>
+            </div>
+        </div>
+    </div>
+</section>

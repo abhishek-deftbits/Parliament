@@ -1,0 +1,18 @@
+<!-- Stats Counter Bar Component -->
+<section class="stats-section">
+    <div class="container stats-grid">
+        <template x-for="stat in stats" :key="stat.id">
+            <div class="stat-card">
+                <div class="stat-icon-wrap">
+                    <i class="fas" :class="stat.icon"></i>
+                </div>
+                <div>
+                    <div class="stat-number">
+                        <span x-text="stat.count"></span><span x-text="stat.suffix"></span>
+                    </div>
+                    <div class="stat-label" x-text="lang === 'ne' ? stat.labelNe : stat.labelEn"></div>
+                </div>
+            </div>
+        </template>
+    </div>
+</section>

@@ -1,0 +1,43 @@
+<!-- Dedicated Media & Parliamentary Speeches Component -->
+<section class="section" id="media">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag" x-text="lang === 'ne' ? 'संसदीय गतिविधि र मिडिया' : 'Media & Speeches'"></span>
+            <h2 class="section-title" x-text="lang === 'ne' ? 'संसदीय सम्बोधन तथा भिडियो अभिलेख' : 'Parliamentary Speeches & Media Archive'"></h2>
+            <p class="section-subtitle" x-text="lang === 'ne' ? 'सदन बैठक, शून्य समय, समिति छलफल र राष्ट्रिय टेलिभिजन अन्तरवार्ताहरू' : 'Watch Keynote Addresses, Policy Debates & Committee Hearings'"></p>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Media Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="tab-btn" :class="{ 'active': activeMediaTab === 'all' }" @click="activeMediaTab = 'all'" x-text="lang === 'ne' ? 'सबै गतिविधि' : 'All Media'"></button>
+            <button class="tab-btn" :class="{ 'active': activeMediaTab === 'speech' }" @click="activeMediaTab = 'speech'" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Parliament Speeches'"></button>
+            <button class="tab-btn" :class="{ 'active': activeMediaTab === 'media' }" @click="activeMediaTab = 'media'" x-text="lang === 'ne' ? 'अन्तरवार्ता तथा बहस' : 'Interviews & Debates'"></button>
+        </div>
+
+        <!-- Media Grid -->
+        <div class="media-grid">
+            <template x-for="item in filteredMedia" :key="item.id">
+                <div class="media-card" @click="openVideoModal(item)">
+                    <div class="media-thumb-wrap">
+                        <img :src="item.thumbnail" :alt="item.titleEn" class="media-thumb" loading="lazy">
+                        <div class="media-play-overlay">
+                            <div class="play-circle"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <div class="media-meta-row">
+                            <span class="media-cat-tag">
+                                <i class="fas" :class="item.type === 'speech' ? 'fa-landmark' : 'fa-tv'"></i>
+                                <span x-text="lang === 'ne' ? item.categoryNe : item.categoryEn"></span>
+                            </span>
+                            <span x-text="lang === 'ne' ? item.dateNe : item.dateEn"></span>
+                        </div>
+                        <h4 class="media-title" x-text="lang === 'ne' ? item.titleNe : item.titleEn"></h4>
+                        <p class="media-summary" x-text="lang === 'ne' ? item.summaryNe : item.summaryEn"></p>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</section>

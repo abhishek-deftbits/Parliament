@@ -1,0 +1,70 @@
+<!-- Institutional Civic Footer Component -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Brand Info -->
+            <div>
+                <div class="footer-brand-logo">
+                    <img :src="profile.emblemUrl" alt="Emblem" class="footer-emblem"
+                         onerror="this.src='https://giwmscdntwo.gov.np/static/assets/image/Emblem_of_Nepal.png'">
+                    <div class="footer-brand-text">
+                        <h3 x-text="lang === 'ne' ? profile.nameNe : profile.nameEn"></h3>
+                        <p x-text="lang === 'ne' ? profile.roleNe + ', ' + profile.constituencyNe : profile.roleEn + ', ' + profile.constituencyEn"></p>
+                    </div>
+                </div>
+                <p class="footer-desc" x-text="lang === 'ne' ? profile.bioNe : profile.bioEn"></p>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com" target="_blank" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="social-btn" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Navigation Quick Links -->
+            <div class="footer-col">
+                <h4 x-text="lang === 'ne' ? 'द्रुत लिंकहरू' : 'Quick Navigation'"></h4>
+                <ul class="footer-links">
+                    <li><a href="#about" x-text="lang === 'ne' ? 'परिचय' : 'About Leader'"></a></li>
+                    <li><a href="#journey" x-text="lang === 'ne' ? 'राजनीतिक यात्रा' : 'Political Journey'"></a></li>
+                    <li><a href="#priorities" x-text="lang === 'ne' ? 'कार्य प्राथमिकता' : 'Priorities'"></a></li>
+                    <li><a href="#projects" x-text="lang === 'ne' ? 'विकास आयोजना' : 'Projects'"></a></li>
+                    <li><a href="#media" x-text="lang === 'ne' ? 'संसदीय भाषणहरू' : 'Speeches & Media'"></a></li>
+                    <li><a href="#gallery" x-text="lang === 'ne' ? 'फोटो ग्यालरी' : 'Image Gallery'"></a></li>
+                    <li><a href="#gunaso" x-text="lang === 'ne' ? 'जनगुनासो पोर्टल' : 'Citizen Grievance'"></a></li>
+                </ul>
+            </div>
+
+            <!-- Institutional Links -->
+            <div class="footer-col">
+                <h4 x-text="lang === 'ne' ? 'सरकारी तथा संसदीय पोर्टल' : 'Official Portals'"></h4>
+                <ul class="footer-links">
+                    <li><a href="https://hr.parliament.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'प्रतिनिधि सभा (संसद)' : 'Federal Parliament'"></a></li>
+                    <li><a href="https://nepal.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाल सरकार आधिकारिक पोर्टल' : 'Government of Nepal'"></a></li>
+                    <li><a href="https://nepalicongress.org" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'नेपाली कांग्रेस' : 'Nepali Congress'"></a></li>
+                    <li><a href="https://koshi.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'कोशी प्रदेश सरकार' : 'Koshi Province Gov.'"></a></li>
+                    <li><a href="https://ilam.gov.np" target="_blank" rel="noopener" x-text="lang === 'ne' ? 'इलाम जिल्ला समन्वय' : 'Ilam District Portal'"></a></li>
+                </ul>
+            </div>
+
+            <!-- Liaison Office Summary -->
+            <div class="footer-col">
+                <h4 x-text="lang === 'ne' ? 'सम्पर्क सचिवालय' : 'Office Liaison'"></h4>
+                <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-location-dot"></i> <span x-text="profile.centralOffice"></span></p>
+                <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> <span x-text="profile.phone"></span></p>
+                <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> <span x-text="profile.email"></span></p>
+                <p style="font-size: 0.85rem; color: #fbbf24;"><i class="fas fa-clock"></i> <span x-text="lang === 'ne' ? profile.officeHoursNe : profile.officeHoursEn"></span></p>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom">
+            <div>
+                <span x-text="'© 2026 ' + (lang === 'ne' ? profile.nameNe : profile.nameEn) + ' — ' + (lang === 'ne' ? 'प्रतिनिधि सभा सदस्य, इलाम–१। सर्वाधिकार सुरक्षित।' : 'Member of Parliament, Ilam-1. All rights reserved.')"></span>
+            </div>
+            <div>
+                <span x-text="lang === 'ne' ? 'पारदर्शिता, जनउत्तरदायित्व र लोकतान्त्रिक मूल्यमा आधारित' : 'Committed to Transparency, Good Governance & Public Service'"></span>
+            </div>
+        </div>
+    </div>
+</footer>

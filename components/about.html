@@ -1,0 +1,64 @@
+<!-- About & Executive Profile Component -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag" x-text="lang === 'ne' ? 'परिचय तथा दृष्टिकोण' : 'Leadership & Profile'"></span>
+            <h2 class="section-title" x-text="lang === 'ne' ? 'जनप्रतिनिधि परिचय' : 'About the Member of Parliament'"></h2>
+            <p class="section-subtitle" x-text="lang === 'ne' ? 'इलाम–१ को सम्भावनालाई अवसरमा बदल्ने प्रतिबद्धता' : 'Championing Regional Prosperity, Democratic Values & Transparent Governance'"></p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-portrait-frame">
+                <img :src="profile.photoUrl" :alt="profile.nameEn" class="about-portrait-img">
+            </div>
+            <div class="about-text-content">
+                <h3 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; color: var(--primary); margin-bottom: 1rem;"
+                    x-text="lang === 'ne' ? 'इलाम–१ का जनताको सुखदुःखको सहयात्री' : 'A Dedicated Voice for the People of Ilam-1'"></h3>
+                
+                <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.7;"
+                   x-text="lang === 'ne' 
+                    ? 'इलाम–१ अपार सम्भावनाले भरिएको उर्वर भूमि हो। तर सम्भावना आफैं अवसर बन्दैन, त्यसका लागि स्पष्ट दृष्टि, योजना र इमानदार नेतृत्व चाहिन्छ। किसानका पसिनाको मूल्य, युवाका लागि गुणस्तरीय प्राविधिक शिक्षा र स्थानीय अर्थतन्त्रलाई मजबुत बनाउन म संघीय संसद्मा निरन्तर समर्पित छु।'
+                    : 'Ilam-1 is a land of boundless potential. However, potential does not automatically become prosperity—it demands integrity, structured policy, and empathetic leadership. From agricultural market linkages to modern youth skill academies, my legislative mandate is dedicated to serving every citizen with full transparency.'">
+                </p>
+
+                <div class="about-quote-box">
+                    <p x-text="lang === 'ne' 
+                        ? '“संसदमा तपाईको सशक्त आवाज, विकासमा हाम्रो इमानदार प्रयास। परिणाममुखी नेतृत्व र समृद्ध इलामका लागि निरन्तर समर्पित।”' 
+                        : '“Integrity in legislation, agility in constituency service, and dedication to transparent governance for a prosperous Ilam.”'"></p>
+                </div>
+
+                <div class="about-highlights">
+                    <div class="highlight-box">
+                        <i class="fas fa-landmark highlight-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'संसदीय जिम्मेवारी' : 'Parliamentary Role'"></h5>
+                            <p x-text="lang === 'ne' ? 'प्रतिनिधि सभा सदस्य, संघीय संसद' : 'Member, House of Representatives'"></p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <i class="fas fa-map-location-dot highlight-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'निर्वाचन क्षेत्र' : 'Constituency'"></h5>
+                            <p x-text="lang === 'ne' ? 'इलाम–१ (कोशी प्रदेश)' : 'Ilam-1 (Koshi Province)'"></p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <i class="fas fa-flag highlight-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'राजनीतिक दल' : 'Political Affiliation'"></h5>
+                            <p x-text="lang === 'ne' ? 'नेपाली कांग्रेस' : 'Nepali Congress'"></p>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <i class="fas fa-award highlight-icon"></i>
+                        <div>
+                            <h5 x-text="lang === 'ne' ? 'मूल मन्त्र' : 'Core Focus'"></h5>
+                            <p x-text="lang === 'ne' ? 'सुशासन, कृषि रूपान्तरण र रोजगारी' : 'Good Governance & Agro-Enterprise'"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

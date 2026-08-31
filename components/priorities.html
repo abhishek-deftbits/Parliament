@@ -1,0 +1,23 @@
+<!-- Priorities & Policy Pillars Component -->
+<section class="section" id="priorities">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag" x-text="lang === 'ne' ? 'कार्य प्राथमिकता' : 'Policy Priorities'"></span>
+            <h2 class="section-title" x-text="lang === 'ne' ? 'समृद्ध इलामका मुख्य ६ स्तम्भ' : '6 Pillars of Regional Development'"></h2>
+            <p class="section-subtitle" x-text="lang === 'ne' ? 'नीतिगत सुधार र स्थानीय विकासका लागि स्पष्ट मार्गचित्र' : 'Key Legislative & Socio-Economic Goals for Ilam-1'"></p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="priorities-grid">
+            <template x-for="(priority, index) in priorities" :key="index">
+                <div class="priority-card">
+                    <div class="priority-icon-wrap" :class="priority.color">
+                        <i class="fas" :class="priority.icon"></i>
+                    </div>
+                    <h4 class="priority-title" x-text="lang === 'ne' ? priority.titleNe : priority.titleEn"></h4>
+                    <p class="priority-desc" x-text="lang === 'ne' ? priority.descNe : priority.descEn"></p>
+                </div>
+            </template>
+        </div>
+    </div>
+</section>
