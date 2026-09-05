@@ -76,7 +76,8 @@ document.addEventListener('alpine:init', () => {
         currentDateNe: '',
         currentDateEn: '',
 
-        init() {
+        async init() {
+            await this.loadComponents();
             this.updateDates();
             this.applyTheme(this.theme);
             this.setupScrollReveal();
@@ -98,6 +99,46 @@ document.addEventListener('alpine:init', () => {
                     this.appointmentModal.isOpen = false;
                 }
             });
+        },
+
+        async loadComponents() {
+            const headerEl = document.getElementById('site-header');
+            const footerEl = document.getElementById('site-footer');
+            const promises = [];
+
+            if (headerEl && !headerEl.dataset.loaded) {
+                promises.push(
+                    fetch('header.html')
+                        .then(r => r.text())
+                        .then(html => {
+                            headerEl.innerHTML = html;
+                            headerEl.dataset.loaded = 'true';
+                            if (window.Alpine) {
+                                Alpine.nextTick(() => Alpine.initTree(headerEl));
+                            }
+                        })
+                        .catch(err => console.error('Error loading header.html:', err))
+                );
+            }
+
+            if (footerEl && !footerEl.dataset.loaded) {
+                promises.push(
+                    fetch('footer.html')
+                        .then(r => r.text())
+                        .then(html => {
+                            footerEl.innerHTML = html;
+                            footerEl.dataset.loaded = 'true';
+                            if (window.Alpine) {
+                                Alpine.nextTick(() => Alpine.initTree(footerEl));
+                            }
+                        })
+                        .catch(err => console.error('Error loading footer.html:', err))
+                );
+            }
+
+            if (promises.length > 0) {
+                await Promise.all(promises);
+            }
         },
 
         setupScrollReveal() {
